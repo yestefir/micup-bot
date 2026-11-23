@@ -1,0 +1,248 @@
+{
+  "language": "Deutsch",
+  "permissions": {
+    "MODERATE_MEMBERS": "Mitglieder timeouten",
+    "BAN_MEMBERS": "Mitglieder sperren",
+    "MANAGE_MESSAGES": "Nachrichten verwalten",
+    "MANAGE_GUILD": "Server verwalten"
+  },
+  "status": {
+    "success": "Erfolg",
+    "error": "Fehler",
+    "warning": "Warnung",
+    "info": "Info"
+  },
+  "errors": {
+    "generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "guildOnly": "Dieser Befehl kann nur auf einem Server verwendet werden.",
+    "missingPermission": "Dir fehlt diese Berechtigung: {permission}",
+    "botMissingPermission": "Mir fehlt diese Berechtigung: {permission}",
+    "usage": "Verwendung: {usage}",
+    "setting": {
+      "invalidInteger": "Der Wert muss eine ganze Zahl sein.",
+      "invalidBoolean": "Der Wert muss true oder false sein.",
+      "tooSmall": "Der Wert muss mindestens {min} sein.",
+      "tooLarge": "Der Wert darf höchstens {max} sein.",
+      "tooShort": "Der Wert muss mindestens {min} Zeichen lang sein.",
+      "tooLong": "Der Wert darf höchstens {max} Zeichen lang sein.",
+      "invalidChoice": "Der Wert muss einer dieser Werte sein: {choices}",
+      "invalid": "Dieser Wert ist nicht erlaubt.",
+      "invalidId": "Gib eine gültige ID oder Erwähnung ein.",
+      "tooMany": "Es können höchstens {max} Rollen gewählt werden."
+    },
+    "unknownCommand": "Dieser Befehl ist veraltet oder unbekannt. Versuche es gleich noch einmal."
+  },
+  "purge": {
+    "name": "loeschen",
+    "aliases": "löschen,leeren",
+    "description": "Löscht die letzten Nachrichten in diesem Kanal",
+    "amount": {
+      "name": "anzahl",
+      "description": "Wie viele Nachrichten gelöscht werden"
+    },
+    "user": {
+      "name": "benutzer",
+      "description": "Nur Nachrichten dieses Benutzers löschen"
+    },
+    "msg": {
+      "tooMany": "Du kannst höchstens {max} Nachrichten auf einmal löschen.",
+      "nothing": "Es gab keine Nachrichten zum Löschen.",
+      "done": "Gelöschte Nachrichten: {count}"
+    }
+  },
+  "mute": {
+    "name": "stummschalten",
+    "aliases": "mute",
+    "description": "Schaltet einen Benutzer für eine bestimmte Zeit stumm",
+    "user": {
+      "name": "benutzer",
+      "description": "Der stummzuschaltende Benutzer"
+    },
+    "msg": {
+      "done": "{user} wurde für {duration} stummgeschaltet."
+    },
+    "panel": {
+      "title": "Stummschaltung",
+      "chooseDuration": "Wähle, wie lange {user} stummgeschaltet wird. Ohne Aktion innerhalb von {seconds} Sekunden wird abgebrochen.",
+      "chooseReason": "Dauer: **{duration}**\nFüge einen Grund hinzu oder fahre ohne fort. Ohne Aktion innerhalb von {seconds} Sekunden wird abgebrochen.",
+      "cancelled": "Stummschaltung abgebrochen.",
+      "expired": "Zeit abgelaufen, Stummschaltung abgebrochen.",
+      "notYours": "Nur der Moderator, der dies gestartet hat, kann dieses Panel nutzen.",
+      "busy": "Für diesen Benutzer läuft bereits eine Stummschaltung.",
+      "reasonButton": "Grund angeben",
+      "noReasonButton": "Ohne Grund",
+      "cancelButton": "Abbrechen",
+      "modalTitle": "Grund der Stummschaltung",
+      "reasonLabel": "Grund"
+    }
+  },
+  "ban": {
+    "name": "sperren",
+    "aliases": "ban,bannen",
+    "description": "Sperrt einen Benutzer vom Server",
+    "user": {
+      "name": "benutzer",
+      "description": "Der zu sperrende Benutzer"
+    },
+    "msg": {
+      "done": "{user} wurde vom Server gesperrt.",
+      "deleteField": "Gelöschte Nachrichten"
+    },
+    "panel": {
+      "title": "Sperre",
+      "chooseDelete": "Wähle, wie weit zurück die Nachrichten von {user} gelöscht werden. Ohne Aktion innerhalb von {seconds} Sekunden wird abgebrochen.",
+      "chooseReason": "Zu löschende Nachrichten: **{deleted}**\nFüge einen Grund hinzu oder fahre ohne fort. Ohne Aktion innerhalb von {seconds} Sekunden wird abgebrochen.",
+      "cancelled": "Sperre abgebrochen.",
+      "expired": "Zeit abgelaufen, Sperre abgebrochen.",
+      "notYours": "Nur der Moderator, der dies gestartet hat, kann dieses Panel nutzen.",
+      "busy": "Für diesen Benutzer läuft bereits eine Sperre.",
+      "reasonButton": "Grund angeben",
+      "noReasonButton": "Ohne Grund",
+      "cancelButton": "Abbrechen",
+      "modalTitle": "Grund der Sperre",
+      "reasonLabel": "Grund",
+      "deleteNone": "Nicht löschen"
+    }
+  },
+  "moderation": {
+    "msg": {
+      "self": "Das kannst du nicht bei dir selbst tun.",
+      "bot": "Das kann ich bei mir selbst nicht tun.",
+      "owner": "Das kann beim Serverbesitzer nicht getan werden.",
+      "actorHierarchy": "Die Rolle dieses Benutzers ist höher oder gleich deiner.",
+      "botHierarchy": "Die Rolle dieses Benutzers ist höher oder gleich meiner.",
+      "notMember": "Dieser Benutzer ist nicht auf dem Server.",
+      "forbidden": "Micup hat die Aktion abgelehnt. Prüfe meine Berechtigungen und Rollenposition.",
+      "notFound": "Benutzer nicht gefunden.",
+      "reason": "Grund",
+      "duration": "Dauer",
+      "moderator": "Moderator",
+      "noReason": "Nicht angegeben",
+      "alreadyMuted": "Dieser Benutzer ist bereits stummgeschaltet.",
+      "targetBot": "Bots können nicht stummgeschaltet werden."
+    }
+  },
+  "settings": {
+    "name": "einstellungen",
+    "aliases": "config",
+    "description": "Öffnet das Panel mit den Servereinstellungen",
+    "panel": {
+      "title": "Servereinstellungen",
+      "value": "Wert",
+      "default": "Standard",
+      "notSet": "nicht gesetzt",
+      "on": "an",
+      "off": "aus",
+      "edit": "Bearbeiten",
+      "turnOn": "Einschalten",
+      "turnOff": "Ausschalten",
+      "reset": "Zurücksetzen",
+      "close": "Schließen",
+      "pickRole": "Rolle auswählen",
+      "pickChannel": "Kanal auswählen",
+      "modalTitle": "Einstellung bearbeiten",
+      "notYours": "Nur wer dieses Panel geöffnet hat, kann es benutzen.",
+      "page": "Seite {page}/{pages}",
+      "pickRoles": "Rollen auswählen",
+      "rolesCount": "Rollen: {count}"
+    },
+    "msg": {
+      "unknownKey": "Unbekannte Einstellung: {key}"
+    },
+    "items": {
+      "prefix": "Zeichen, mit dem Befehle beginnen, z. B. !",
+      "language": "Sprache des Bots auf diesem Server",
+      "levels": {
+        "enabled": "XP für Nachrichten vergeben",
+        "xpMin": "Niedrigste XP pro Nachricht",
+        "xpMax": "Höchste XP pro Nachricht",
+        "cooldownSeconds": "Sekunden zwischen zwei XP-Gewinnen eines Mitglieds",
+        "announce": "Wie Level-Ups angekündigt werden",
+        "channel": "Kanal für Level-Up-Karten. Ohne Kanal antwortet der Bot dort, wo das Mitglied aufgestiegen ist"
+      },
+      "mute": {
+        "sessionSeconds": "Sekunden, die das Stummschalt-Panel auf eine Auswahl wartet, bevor es abbricht"
+      },
+      "purge": {
+        "maxAmount": "Höchstzahl an Nachrichten, die ein Löschbefehl entfernen darf"
+      },
+      "ban": {
+        "sessionSeconds": "Sekunden, die das Sperr-Panel auf eine Auswahl wartet, bevor es abbricht"
+      },
+      "autorole": {
+        "roles": "Rollen, die neuen Mitgliedern automatisch gegeben werden (Bots werden übersprungen)"
+      },
+      "guildtag": {
+        "roles": "Rollen für Mitglieder, die den Servertag tragen",
+        "removeRoles": "Rollen zurücknehmen, wenn der Tag entfernt wird",
+        "logChannel": "Kanal für Logs, wenn jemand den Tag annimmt oder entfernt"
+      }
+    },
+    "choices": {
+      "levels": {
+        "announce": {
+          "message": "Im Kanal ankündigen",
+          "off": "Aus"
+        }
+      }
+    },
+    "categories": {
+      "general": "Allgemein",
+      "levels": "Level",
+      "moderation": "Moderation",
+      "autorole": "Autorolle",
+      "guildtag": "Servertag"
+    },
+    "requirements": {
+      "guildTag": "Der Servertag ist nicht aktiv. Diese Einstellungen können erst bearbeitet werden, wenn der Tag aktiviert ist."
+    }
+  },
+  "rank": {
+    "name": "rang",
+    "aliases": "level,xp",
+    "description": "Zeigt dein Level und deine XP",
+    "user": {
+      "name": "benutzer",
+      "description": "Der Benutzer, den du ansehen willst"
+    },
+    "msg": {
+      "title": "Levelkarte",
+      "noData": "{user} hat noch keine XP gesammelt.",
+      "levelUp": "{user} ist aufgestiegen! Neues Level: **{level}**",
+      "level": "Level",
+      "rank": "Rang",
+      "totalXp": "Gesamt-XP"
+    },
+    "card": {
+      "levelUp": "Aufgestiegen"
+    }
+  },
+  "leaderboard": {
+    "name": "bestenliste",
+    "aliases": "top",
+    "description": "Zeigt die Level-Rangliste des Servers",
+    "page": {
+      "name": "seite",
+      "description": "Seitennummer"
+    },
+    "msg": {
+      "title": "Bestenliste",
+      "empty": "Noch niemand hat XP gesammelt.",
+      "entry": "**{position}** {user} — Level {level} · {xp} XP",
+      "page": "Seite {page}/{pages}",
+      "invalidPage": "Ungültige Seite. Gib eine Zahl zwischen 1 und {pages} ein."
+    }
+  },
+  "guildtag": {
+    "log": {
+      "adoptedTitle": "Servertag angenommen",
+      "adopted": "{user} trägt jetzt den Servertag.",
+      "removedTitle": "Servertag entfernt",
+      "removed": "{user} trägt den Servertag nicht mehr.",
+      "tag": "Tag",
+      "rolesGiven": "Vergebene Rollen",
+      "rolesRemoved": "Entzogene Rollen",
+      "rolesFailed": "Rollen, die nicht geändert werden konnten"
+    }
+  }
+}

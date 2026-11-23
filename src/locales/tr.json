@@ -1,0 +1,248 @@
+{
+  "language": "Türkçe",
+  "permissions": {
+    "MODERATE_MEMBERS": "Üyelere Zaman Aşımı Uygula",
+    "BAN_MEMBERS": "Üyeleri Yasakla",
+    "MANAGE_MESSAGES": "Mesajları Yönet",
+    "MANAGE_GUILD": "Sunucuyu Yönet"
+  },
+  "status": {
+    "success": "Başarılı",
+    "error": "Hata",
+    "warning": "Uyarı",
+    "info": "Bilgi"
+  },
+  "errors": {
+    "generic": "Bir şeyler ters gitti. Lütfen tekrar dene.",
+    "guildOnly": "Bu komut yalnızca sunucularda kullanılabilir.",
+    "missingPermission": "Bu yetkiye sahip olmalısın: {permission}",
+    "botMissingPermission": "Benim şu yetkiye ihtiyacım var: {permission}",
+    "usage": "Kullanım: {usage}",
+    "setting": {
+      "invalidInteger": "Değer tam sayı olmalı.",
+      "invalidBoolean": "Değer true veya false olmalı.",
+      "tooSmall": "Değer en az {min} olmalı.",
+      "tooLarge": "Değer en fazla {max} olmalı.",
+      "tooShort": "Değer en az {min} karakter olmalı.",
+      "tooLong": "Değer en fazla {max} karakter olmalı.",
+      "invalidChoice": "Değer şunlardan biri olmalı: {choices}",
+      "invalid": "Bu değere izin verilmiyor.",
+      "invalidId": "Geçerli bir kimlik veya etiket gir.",
+      "tooMany": "En fazla {max} rol seçilebilir."
+    },
+    "unknownCommand": "Bu komut güncel değil veya tanınmıyor. Biraz sonra tekrar dene."
+  },
+  "purge": {
+    "name": "sil",
+    "aliases": "temizle,clear",
+    "description": "Bu kanaldaki son mesajları siler",
+    "amount": {
+      "name": "miktar",
+      "description": "Kaç mesaj silineceği"
+    },
+    "user": {
+      "name": "kullanici",
+      "description": "Yalnızca bu kullanıcının mesajlarını sil"
+    },
+    "msg": {
+      "tooMany": "Tek seferde en fazla {max} mesaj silebilirsin.",
+      "nothing": "Silinecek mesaj bulunamadı.",
+      "done": "Silinen mesaj sayısı: {count}"
+    }
+  },
+  "mute": {
+    "name": "mute",
+    "aliases": "sustur,sus",
+    "description": "Bir kullanıcıyı belirli süre susturur",
+    "user": {
+      "name": "kullanici",
+      "description": "Susturulacak kullanıcı"
+    },
+    "msg": {
+      "done": "{user} {duration} süreyle susturuldu."
+    },
+    "panel": {
+      "title": "Mute",
+      "chooseDuration": "{user} için mute süresini seç. {seconds} saniye içinde işlem yapılmazsa iptal edilir.",
+      "chooseReason": "Süre: **{duration}**\nSebep ekleyebilir veya sebepsiz devam edebilirsin. {seconds} saniye içinde işlem yapılmazsa iptal edilir.",
+      "cancelled": "Mute iptal edildi.",
+      "expired": "Süre doldu, mute iptal edildi.",
+      "notYours": "Bu paneli yalnızca komutu başlatan yetkili kullanabilir.",
+      "busy": "Bu kullanıcı için zaten bir mute işlemi sürüyor.",
+      "reasonButton": "Sebep gir",
+      "noReasonButton": "Sebepsiz",
+      "cancelButton": "İptal",
+      "modalTitle": "Mute sebebi",
+      "reasonLabel": "Sebep"
+    }
+  },
+  "ban": {
+    "name": "ban",
+    "aliases": "yasakla",
+    "description": "Bir kullanıcıyı sunucudan yasaklar",
+    "user": {
+      "name": "kullanici",
+      "description": "Yasaklanacak kullanıcı"
+    },
+    "msg": {
+      "done": "{user} sunucudan yasaklandı.",
+      "deleteField": "Silinen mesajlar"
+    },
+    "panel": {
+      "title": "Ban",
+      "chooseDelete": "{user} için silinecek mesajların süresini seç. {seconds} saniye içinde işlem yapılmazsa iptal edilir.",
+      "chooseReason": "Silinecek mesajlar: **{deleted}**\nSebep ekleyebilir veya sebepsiz devam edebilirsin. {seconds} saniye içinde işlem yapılmazsa iptal edilir.",
+      "cancelled": "Ban iptal edildi.",
+      "expired": "Süre doldu, ban iptal edildi.",
+      "notYours": "Bu paneli yalnızca komutu başlatan yetkili kullanabilir.",
+      "busy": "Bu kullanıcı için zaten bir ban işlemi sürüyor.",
+      "reasonButton": "Sebep gir",
+      "noReasonButton": "Sebepsiz",
+      "cancelButton": "İptal",
+      "modalTitle": "Ban sebebi",
+      "reasonLabel": "Sebep",
+      "deleteNone": "Silme"
+    }
+  },
+  "moderation": {
+    "msg": {
+      "self": "Bu işlemi kendine uygulayamazsın.",
+      "bot": "Bu işlemi bana uygulayamam.",
+      "owner": "Sunucu sahibine bu işlem uygulanamaz.",
+      "actorHierarchy": "Bu kullanıcının rolü seninkinden yüksek veya eşit.",
+      "botHierarchy": "Bu kullanıcının rolü benimkinden yüksek veya eşit.",
+      "notMember": "Bu kullanıcı sunucuda değil.",
+      "forbidden": "Micup bu işlemi reddetti. Yetkilerimi ve rol sıramı kontrol et.",
+      "notFound": "Kullanıcı bulunamadı.",
+      "reason": "Sebep",
+      "duration": "Süre",
+      "moderator": "Yetkili",
+      "noReason": "Belirtilmedi",
+      "alreadyMuted": "Bu kullanıcı zaten susturulmuş.",
+      "targetBot": "Botlara mute uygulanamaz."
+    }
+  },
+  "settings": {
+    "name": "ayarlar",
+    "aliases": "ayar",
+    "description": "Sunucu ayarları panelini açar",
+    "panel": {
+      "title": "Sunucu ayarları",
+      "value": "Değer",
+      "default": "Varsayılan",
+      "notSet": "ayarlanmamış",
+      "on": "açık",
+      "off": "kapalı",
+      "edit": "Düzenle",
+      "turnOn": "Aç",
+      "turnOff": "Kapat",
+      "reset": "Sıfırla",
+      "close": "Paneli kapat",
+      "pickRole": "Bir rol seç",
+      "pickChannel": "Bir kanal seç",
+      "modalTitle": "Ayarı düzenle",
+      "notYours": "Bu paneli yalnızca açan kişi kullanabilir.",
+      "page": "Sayfa {page}/{pages}",
+      "pickRoles": "Rolleri seç",
+      "rolesCount": "Rol: {count}"
+    },
+    "msg": {
+      "unknownKey": "Bilinmeyen ayar: {key}"
+    },
+    "items": {
+      "prefix": "Komutları başlatan işaret, örneğin !",
+      "language": "Botun bu sunucuda kullandığı dil",
+      "levels": {
+        "enabled": "Mesajlar için XP ver",
+        "xpMin": "Mesaj başına verilen en düşük XP",
+        "xpMax": "Mesaj başına verilen en yüksek XP",
+        "cooldownSeconds": "Bir üyenin iki XP kazanımı arasındaki saniye",
+        "announce": "Seviye atlamaların nasıl duyurulacağı",
+        "channel": "Seviye atlama kartlarının gönderileceği kanal. Boşsa atlanılan kanala yanıt verilir"
+      },
+      "mute": {
+        "sessionSeconds": "Mute panelinin bir seçim için beklediği saniye, sonra iptal eder"
+      },
+      "purge": {
+        "maxAmount": "Tek bir sil komutunun silebileceği en fazla mesaj"
+      },
+      "ban": {
+        "sessionSeconds": "Ban panelinin bir seçim için beklediği saniye, sonra iptal eder"
+      },
+      "autorole": {
+        "roles": "Sunucuya katılan üyelere otomatik verilen roller (botlara verilmez)"
+      },
+      "guildtag": {
+        "roles": "Sunucu etiketini takan üyelere verilen roller",
+        "removeRoles": "Etiket çıkarılınca verilen roller geri alınsın",
+        "logChannel": "Etiket takıldığında ve çıkarıldığında log gönderilecek kanal"
+      }
+    },
+    "choices": {
+      "levels": {
+        "announce": {
+          "message": "Kanalda duyur",
+          "off": "Kapalı"
+        }
+      }
+    },
+    "categories": {
+      "general": "Genel",
+      "levels": "Seviye",
+      "moderation": "Moderasyon",
+      "autorole": "Otomatik rol",
+      "guildtag": "Sunucu etiketi"
+    },
+    "requirements": {
+      "guildTag": "Sunucu etiketi aktif değil. Etiket açılana kadar bu ayarlar düzenlenemez."
+    }
+  },
+  "rank": {
+    "name": "seviye",
+    "aliases": "rank,level,xp",
+    "description": "Seviyeni ve XP durumunu gösterir",
+    "user": {
+      "name": "kullanici",
+      "description": "Seviyesine bakılacak kullanıcı"
+    },
+    "msg": {
+      "title": "Seviye kartı",
+      "noData": "{user} henüz XP kazanmadı.",
+      "levelUp": "{user} seviye atladı! Yeni seviye: **{level}**",
+      "level": "Seviye",
+      "rank": "Sıralama",
+      "totalXp": "Toplam XP"
+    },
+    "card": {
+      "levelUp": "Seviye atladı"
+    }
+  },
+  "leaderboard": {
+    "name": "liderlik",
+    "aliases": "top,leaderboard,siralama,sıralama",
+    "description": "Sunucunun seviye sıralamasını gösterir",
+    "page": {
+      "name": "sayfa",
+      "description": "Sayfa numarası"
+    },
+    "msg": {
+      "title": "Liderlik tablosu",
+      "empty": "Henüz kimse XP kazanmadı.",
+      "entry": "**{position}** {user} — Seviye {level} · {xp} XP",
+      "page": "Sayfa {page}/{pages}",
+      "invalidPage": "Geçersiz sayfa. 1 ile {pages} arasında bir sayı gir."
+    }
+  },
+  "guildtag": {
+    "log": {
+      "adoptedTitle": "Sunucu etiketi takıldı",
+      "adopted": "{user} sunucu etiketini taktı.",
+      "removedTitle": "Sunucu etiketi çıkarıldı",
+      "removed": "{user} sunucu etiketini çıkardı.",
+      "tag": "Etiket",
+      "rolesGiven": "Verilen roller",
+      "rolesRemoved": "Geri alınan roller",
+      "rolesFailed": "Değiştirilemeyen roller"
+    }
+  }
+}

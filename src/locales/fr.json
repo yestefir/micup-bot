@@ -1,0 +1,248 @@
+{
+  "language": "Français",
+  "permissions": {
+    "MODERATE_MEMBERS": "Exclure temporairement des membres",
+    "BAN_MEMBERS": "Bannir des membres",
+    "MANAGE_MESSAGES": "Gérer les messages",
+    "MANAGE_GUILD": "Gérer le serveur"
+  },
+  "status": {
+    "success": "Succès",
+    "error": "Erreur",
+    "warning": "Avertissement",
+    "info": "Information"
+  },
+  "errors": {
+    "generic": "Un problème est survenu. Réessaie.",
+    "guildOnly": "Cette commande ne peut être utilisée que sur un serveur.",
+    "missingPermission": "Il te faut cette permission : {permission}",
+    "botMissingPermission": "Il me faut cette permission : {permission}",
+    "usage": "Utilisation : {usage}",
+    "setting": {
+      "invalidInteger": "La valeur doit être un nombre entier.",
+      "invalidBoolean": "La valeur doit être true ou false.",
+      "tooSmall": "La valeur doit être au moins {min}.",
+      "tooLarge": "La valeur doit être au plus {max}.",
+      "tooShort": "La valeur doit contenir au moins {min} caractères.",
+      "tooLong": "La valeur doit contenir au plus {max} caractères.",
+      "invalidChoice": "La valeur doit être l'une de : {choices}",
+      "invalid": "Cette valeur n'est pas autorisée.",
+      "invalidId": "Saisis un identifiant ou une mention valide.",
+      "tooMany": "Tu peux choisir au maximum {max} rôles."
+    },
+    "unknownCommand": "Cette commande est obsolète ou inconnue. Réessaie dans un instant."
+  },
+  "purge": {
+    "name": "supprimer",
+    "aliases": "effacer,nettoyer",
+    "description": "Supprime les derniers messages de ce salon",
+    "amount": {
+      "name": "nombre",
+      "description": "Combien de messages supprimer"
+    },
+    "user": {
+      "name": "utilisateur",
+      "description": "Supprimer uniquement les messages de cet utilisateur"
+    },
+    "msg": {
+      "tooMany": "Tu peux supprimer au plus {max} messages à la fois.",
+      "nothing": "Il n'y avait aucun message à supprimer.",
+      "done": "Messages supprimés : {count}"
+    }
+  },
+  "mute": {
+    "name": "muet",
+    "aliases": "mute",
+    "description": "Rend un utilisateur muet pendant une durée",
+    "user": {
+      "name": "utilisateur",
+      "description": "L'utilisateur à rendre muet"
+    },
+    "msg": {
+      "done": "{user} a été rendu muet pendant {duration}."
+    },
+    "panel": {
+      "title": "Mute",
+      "chooseDuration": "Choisis la durée du mute de {user}. L'action est annulée si rien n'est fait en {seconds} secondes.",
+      "chooseReason": "Durée : **{duration}**\nAjoute un motif ou continue sans. L'action est annulée si rien n'est fait en {seconds} secondes.",
+      "cancelled": "Mute annulé.",
+      "expired": "Temps écoulé, mute annulé.",
+      "notYours": "Seul le modérateur qui a lancé ceci peut utiliser ce panneau.",
+      "busy": "Un mute est déjà en cours pour cet utilisateur.",
+      "reasonButton": "Ajouter un motif",
+      "noReasonButton": "Sans motif",
+      "cancelButton": "Annuler",
+      "modalTitle": "Motif du mute",
+      "reasonLabel": "Motif"
+    }
+  },
+  "ban": {
+    "name": "bannir",
+    "aliases": "ban",
+    "description": "Bannit un utilisateur du serveur",
+    "user": {
+      "name": "utilisateur",
+      "description": "L'utilisateur à bannir"
+    },
+    "msg": {
+      "done": "{user} a été banni du serveur.",
+      "deleteField": "Messages supprimés"
+    },
+    "panel": {
+      "title": "Bannissement",
+      "chooseDelete": "Choisis sur quelle durée supprimer les messages de {user}. L'action est annulée si rien n'est fait en {seconds} secondes.",
+      "chooseReason": "Messages à supprimer : **{deleted}**\nAjoute un motif ou continue sans. L'action est annulée si rien n'est fait en {seconds} secondes.",
+      "cancelled": "Bannissement annulé.",
+      "expired": "Temps écoulé, bannissement annulé.",
+      "notYours": "Seul le modérateur qui a lancé ceci peut utiliser ce panneau.",
+      "busy": "Un bannissement est déjà en cours pour cet utilisateur.",
+      "reasonButton": "Ajouter un motif",
+      "noReasonButton": "Sans motif",
+      "cancelButton": "Annuler",
+      "modalTitle": "Motif du bannissement",
+      "reasonLabel": "Motif",
+      "deleteNone": "Ne pas supprimer"
+    }
+  },
+  "moderation": {
+    "msg": {
+      "self": "Tu ne peux pas faire ça sur toi-même.",
+      "bot": "Je ne peux pas faire ça sur moi-même.",
+      "owner": "Impossible de faire ça au propriétaire du serveur.",
+      "actorHierarchy": "Le rôle de cet utilisateur est supérieur ou égal au tien.",
+      "botHierarchy": "Le rôle de cet utilisateur est supérieur ou égal au mien.",
+      "notMember": "Cet utilisateur n'est pas sur le serveur.",
+      "forbidden": "Micup a refusé l'action. Vérifie mes permissions et la position de mon rôle.",
+      "notFound": "Utilisateur introuvable.",
+      "reason": "Motif",
+      "duration": "Durée",
+      "moderator": "Modérateur",
+      "noReason": "Non précisé",
+      "alreadyMuted": "Cet utilisateur est déjà muet.",
+      "targetBot": "Les bots ne peuvent pas être rendus muets."
+    }
+  },
+  "settings": {
+    "name": "parametres",
+    "aliases": "paramètres,config",
+    "description": "Ouvre le panneau des paramètres du serveur",
+    "panel": {
+      "title": "Paramètres du serveur",
+      "value": "Valeur",
+      "default": "Par défaut",
+      "notSet": "non défini",
+      "on": "activé",
+      "off": "désactivé",
+      "edit": "Modifier",
+      "turnOn": "Activer",
+      "turnOff": "Désactiver",
+      "reset": "Réinitialiser",
+      "close": "Fermer",
+      "pickRole": "Choisis un rôle",
+      "pickChannel": "Choisis un salon",
+      "modalTitle": "Modifier le paramètre",
+      "notYours": "Seule la personne qui a ouvert ce panneau peut l'utiliser.",
+      "page": "Page {page}/{pages}",
+      "pickRoles": "Choisis des rôles",
+      "rolesCount": "Rôles : {count}"
+    },
+    "msg": {
+      "unknownKey": "Paramètre inconnu : {key}"
+    },
+    "items": {
+      "prefix": "Caractère qui démarre les commandes, par exemple !",
+      "language": "Langue utilisée par le bot sur ce serveur",
+      "levels": {
+        "enabled": "Donner de l'XP pour les messages",
+        "xpMin": "XP minimale par message",
+        "xpMax": "XP maximale par message",
+        "cooldownSeconds": "Secondes entre deux gains d'XP d'un membre",
+        "announce": "Comment les montées de niveau sont annoncées",
+        "channel": "Salon des cartes de niveau. S'il est vide, le bot répond là où le membre a gagné un niveau"
+      },
+      "mute": {
+        "sessionSeconds": "Secondes pendant lesquelles le panneau de mute attend un choix avant d'annuler"
+      },
+      "purge": {
+        "maxAmount": "Nombre maximal de messages qu'une commande de suppression peut effacer"
+      },
+      "ban": {
+        "sessionSeconds": "Secondes pendant lesquelles le panneau de bannissement attend un choix avant d'annuler"
+      },
+      "autorole": {
+        "roles": "Rôles donnés automatiquement aux nouveaux membres (les bots sont ignorés)"
+      },
+      "guildtag": {
+        "roles": "Rôles donnés aux membres qui portent le tag du serveur",
+        "removeRoles": "Retirer les rôles quand le tag est enlevé",
+        "logChannel": "Salon des journaux quand quelqu'un prend ou enlève le tag"
+      }
+    },
+    "choices": {
+      "levels": {
+        "announce": {
+          "message": "Annoncer dans le salon",
+          "off": "Désactivé"
+        }
+      }
+    },
+    "categories": {
+      "general": "Général",
+      "levels": "Niveaux",
+      "moderation": "Modération",
+      "autorole": "Rôle automatique",
+      "guildtag": "Tag du serveur"
+    },
+    "requirements": {
+      "guildTag": "Le tag du serveur n'est pas actif. Ces paramètres ne peuvent pas être modifiés tant qu'il n'est pas activé."
+    }
+  },
+  "rank": {
+    "name": "niveau",
+    "aliases": "rank,xp",
+    "description": "Affiche ton niveau et ton XP",
+    "user": {
+      "name": "utilisateur",
+      "description": "L'utilisateur à consulter"
+    },
+    "msg": {
+      "title": "Carte de niveau",
+      "noData": "{user} n'a pas encore gagné d'XP.",
+      "levelUp": "{user} a gagné un niveau ! Nouveau niveau : **{level}**",
+      "level": "Niveau",
+      "rank": "Rang",
+      "totalXp": "XP total"
+    },
+    "card": {
+      "levelUp": "Niveau supérieur"
+    }
+  },
+  "leaderboard": {
+    "name": "classement",
+    "aliases": "top",
+    "description": "Affiche le classement des niveaux du serveur",
+    "page": {
+      "name": "page",
+      "description": "Numéro de page"
+    },
+    "msg": {
+      "title": "Classement",
+      "empty": "Personne n'a encore gagné d'XP.",
+      "entry": "**{position}** {user} — Niveau {level} · {xp} XP",
+      "page": "Page {page}/{pages}",
+      "invalidPage": "Page invalide. Entre un nombre entre 1 et {pages}."
+    }
+  },
+  "guildtag": {
+    "log": {
+      "adoptedTitle": "Tag du serveur pris",
+      "adopted": "{user} porte maintenant le tag du serveur.",
+      "removedTitle": "Tag du serveur retiré",
+      "removed": "{user} ne porte plus le tag du serveur.",
+      "tag": "Tag",
+      "rolesGiven": "Rôles donnés",
+      "rolesRemoved": "Rôles retirés",
+      "rolesFailed": "Rôles qui n'ont pas pu être modifiés"
+    }
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "language": "English",
+  "permissions": {
+    "MODERATE_MEMBERS": "Timeout Members",
+    "BAN_MEMBERS": "Ban Members",
+    "MANAGE_MESSAGES": "Manage Messages",
+    "MANAGE_GUILD": "Manage Server"
+  },
+  "status": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Info"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "guildOnly": "This command can only be used in a server.",
+    "missingPermission": "You need this permission: {permission}",
+    "botMissingPermission": "I need this permission: {permission}",
+    "usage": "Usage: {usage}",
+    "setting": {
+      "invalidInteger": "The value must be a whole number.",
+      "invalidBoolean": "The value must be true or false.",
+      "tooSmall": "The value must be at least {min}.",
+      "tooLarge": "The value must be at most {max}.",
+      "tooShort": "The value must be at least {min} characters.",
+      "tooLong": "The value must be at most {max} characters.",
+      "invalidChoice": "The value must be one of: {choices}",
+      "invalid": "This value is not allowed.",
+      "invalidId": "Enter a valid ID or mention.",
+      "tooMany": "You can select at most {max} roles."
+    },
+    "unknownCommand": "This command is outdated or unknown. Try again in a moment."
+  },
+  "purge": {
+    "name": "purge",
+    "aliases": "clear,clean",
+    "description": "Delete recent messages in this channel",
+    "amount": {
+      "name": "amount",
+      "description": "How many messages to delete"
+    },
+    "user": {
+      "name": "user",
+      "description": "Only delete messages from this user"
+    },
+    "msg": {
+      "tooMany": "You can delete at most {max} messages at once.",
+      "nothing": "There were no messages to delete.",
+      "done": "Messages deleted: {count}"
+    }
+  },
+  "mute": {
+    "name": "mute",
+    "description": "Mute a user for a set time",
+    "user": {
+      "name": "user",
+      "description": "The user to mute"
+    },
+    "msg": {
+      "done": "{user} was muted for {duration}."
+    },
+    "panel": {
+      "title": "Mute",
+      "chooseDuration": "Choose how long to mute {user}. The action is cancelled if nothing happens within {seconds} seconds.",
+      "chooseReason": "Duration: **{duration}**\nAdd a reason or continue without one. The action is cancelled if nothing happens within {seconds} seconds.",
+      "cancelled": "Mute cancelled.",
+      "expired": "Time ran out, mute cancelled.",
+      "notYours": "Only the moderator who started this can use this panel.",
+      "busy": "A mute is already in progress for this user.",
+      "reasonButton": "Add reason",
+      "noReasonButton": "No reason",
+      "cancelButton": "Cancel",
+      "modalTitle": "Mute reason",
+      "reasonLabel": "Reason"
+    }
+  },
+  "ban": {
+    "name": "ban",
+    "description": "Ban a user from the server",
+    "user": {
+      "name": "user",
+      "description": "The user to ban"
+    },
+    "msg": {
+      "done": "{user} was banned from the server.",
+      "deleteField": "Messages deleted"
+    },
+    "panel": {
+      "title": "Ban",
+      "chooseDelete": "Choose how far back to delete {user}'s messages. The action is cancelled if nothing happens within {seconds} seconds.",
+      "chooseReason": "Messages to delete: **{deleted}**\nAdd a reason or continue without one. The action is cancelled if nothing happens within {seconds} seconds.",
+      "cancelled": "Ban cancelled.",
+      "expired": "Time ran out, ban cancelled.",
+      "notYours": "Only the moderator who started this can use this panel.",
+      "busy": "A ban is already in progress for this user.",
+      "reasonButton": "Add reason",
+      "noReasonButton": "No reason",
+      "cancelButton": "Cancel",
+      "modalTitle": "Ban reason",
+      "reasonLabel": "Reason",
+      "deleteNone": "Don't delete"
+    }
+  },
+  "moderation": {
+    "msg": {
+      "self": "You can't do this to yourself.",
+      "bot": "I can't do this to myself.",
+      "owner": "This can't be done to the server owner.",
+      "actorHierarchy": "This user's role is higher than or equal to yours.",
+      "botHierarchy": "This user's role is higher than or equal to mine.",
+      "notMember": "This user is not in the server.",
+      "forbidden": "Micup refused the action. Check my permissions and role position.",
+      "notFound": "User not found.",
+      "reason": "Reason",
+      "duration": "Duration",
+      "moderator": "Moderator",
+      "noReason": "Not specified",
+      "alreadyMuted": "This user is already muted.",
+      "targetBot": "Bots can't be muted."
+    }
+  },
+  "settings": {
+    "name": "settings",
+    "aliases": "config",
+    "description": "Open the server settings panel",
+    "panel": {
+      "title": "Server settings",
+      "value": "Value",
+      "default": "Default",
+      "notSet": "not set",
+      "on": "on",
+      "off": "off",
+      "edit": "Edit",
+      "turnOn": "Turn on",
+      "turnOff": "Turn off",
+      "reset": "Reset",
+      "close": "Close",
+      "pickRole": "Select a role",
+      "pickChannel": "Select a channel",
+      "modalTitle": "Edit setting",
+      "notYours": "Only the person who opened this panel can use it.",
+      "page": "Page {page}/{pages}",
+      "pickRoles": "Select roles",
+      "rolesCount": "Roles: {count}"
+    },
+    "msg": {
+      "unknownKey": "Unknown setting: {key}"
+    },
+    "items": {
+      "prefix": "Text that starts a command, for example !",
+      "language": "Language the bot uses in this server",
+      "levels": {
+        "enabled": "Give XP for messages",
+        "xpMin": "Smallest XP given per message",
+        "xpMax": "Largest XP given per message",
+        "cooldownSeconds": "Seconds between two XP gains of one member",
+        "announce": "How level ups are announced",
+        "channel": "Channel for level up cards. If empty, the bot replies where the member leveled up"
+      },
+      "mute": {
+        "sessionSeconds": "Seconds the mute panel waits for a choice before it cancels"
+      },
+      "purge": {
+        "maxAmount": "Most messages one purge command can delete"
+      },
+      "ban": {
+        "sessionSeconds": "Seconds the ban panel waits for a choice before it cancels"
+      },
+      "autorole": {
+        "roles": "Roles given automatically to members who join (bots are skipped)"
+      },
+      "guildtag": {
+        "roles": "Roles given to members who wear the server tag",
+        "removeRoles": "Take the roles back when the tag is removed",
+        "logChannel": "Channel for logs when someone takes or removes the tag"
+      }
+    },
+    "choices": {
+      "levels": {
+        "announce": {
+          "message": "Announce in the channel",
+          "off": "Off"
+        }
+      }
+    },
+    "categories": {
+      "general": "General",
+      "levels": "Levels",
+      "moderation": "Moderation",
+      "autorole": "Auto role",
+      "guildtag": "Server tag"
+    },
+    "requirements": {
+      "guildTag": "The server tag is not active. These settings cannot be edited until the tag is enabled."
+    }
+  },
+  "rank": {
+    "name": "rank",
+    "aliases": "level,xp",
+    "description": "Show your level and XP",
+    "user": {
+      "name": "user",
+      "description": "The user to look up"
+    },
+    "msg": {
+      "title": "Level card",
+      "noData": "{user} hasn't earned any XP yet.",
+      "levelUp": "{user} leveled up! New level: **{level}**",
+      "level": "Level",
+      "rank": "Rank",
+      "totalXp": "Total XP"
+    },
+    "card": {
+      "levelUp": "Leveled up"
+    }
+  },
+  "leaderboard": {
+    "name": "leaderboard",
+    "aliases": "top",
+    "description": "Show the server's level ranking",
+    "page": {
+      "name": "page",
+      "description": "Page number"
+    },
+    "msg": {
+      "title": "Leaderboard",
+      "empty": "Nobody has earned XP yet.",
+      "entry": "**{position}** {user} — Level {level} · {xp} XP",
+      "page": "Page {page}/{pages}",
+      "invalidPage": "Invalid page. Enter a number between 1 and {pages}."
+    }
+  },
+  "guildtag": {
+    "log": {
+      "adoptedTitle": "Server tag taken",
+      "adopted": "{user} started wearing the server tag.",
+      "removedTitle": "Server tag removed",
+      "removed": "{user} stopped wearing the server tag.",
+      "tag": "Tag",
+      "rolesGiven": "Roles given",
+      "rolesRemoved": "Roles taken back",
+      "rolesFailed": "Roles that could not be changed"
+    }
+  }
+}

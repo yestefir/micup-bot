@@ -1,0 +1,248 @@
+{
+  "language": "Español",
+  "permissions": {
+    "MODERATE_MEMBERS": "Aislar temporalmente a miembros",
+    "BAN_MEMBERS": "Banear miembros",
+    "MANAGE_MESSAGES": "Gestionar mensajes",
+    "MANAGE_GUILD": "Gestionar servidor"
+  },
+  "status": {
+    "success": "Éxito",
+    "error": "Error",
+    "warning": "Aviso",
+    "info": "Información"
+  },
+  "errors": {
+    "generic": "Algo salió mal. Inténtalo de nuevo.",
+    "guildOnly": "Este comando solo se puede usar en un servidor.",
+    "missingPermission": "Necesitas este permiso: {permission}",
+    "botMissingPermission": "Necesito este permiso: {permission}",
+    "usage": "Uso: {usage}",
+    "setting": {
+      "invalidInteger": "El valor debe ser un número entero.",
+      "invalidBoolean": "El valor debe ser true o false.",
+      "tooSmall": "El valor debe ser al menos {min}.",
+      "tooLarge": "El valor debe ser como máximo {max}.",
+      "tooShort": "El valor debe tener al menos {min} caracteres.",
+      "tooLong": "El valor debe tener como máximo {max} caracteres.",
+      "invalidChoice": "El valor debe ser uno de: {choices}",
+      "invalid": "Este valor no está permitido.",
+      "invalidId": "Introduce un ID o una mención válidos.",
+      "tooMany": "Se pueden elegir como máximo {max} roles."
+    },
+    "unknownCommand": "Este comando está desactualizado o es desconocido. Inténtalo de nuevo en un momento."
+  },
+  "purge": {
+    "name": "borrar",
+    "aliases": "limpiar",
+    "description": "Borra los mensajes recientes de este canal",
+    "amount": {
+      "name": "cantidad",
+      "description": "Cuántos mensajes borrar"
+    },
+    "user": {
+      "name": "usuario",
+      "description": "Borrar solo los mensajes de este usuario"
+    },
+    "msg": {
+      "tooMany": "Puedes borrar como máximo {max} mensajes a la vez.",
+      "nothing": "No había mensajes para borrar.",
+      "done": "Mensajes borrados: {count}"
+    }
+  },
+  "mute": {
+    "name": "silenciar",
+    "aliases": "mute",
+    "description": "Silencia a un usuario durante un tiempo",
+    "user": {
+      "name": "usuario",
+      "description": "El usuario que silenciar"
+    },
+    "msg": {
+      "done": "{user} fue silenciado durante {duration}."
+    },
+    "panel": {
+      "title": "Silencio",
+      "chooseDuration": "Elige cuánto tiempo silenciar a {user}. Se cancela si no haces nada en {seconds} segundos.",
+      "chooseReason": "Duración: **{duration}**\nAñade un motivo o continúa sin él. Se cancela si no haces nada en {seconds} segundos.",
+      "cancelled": "Silencio cancelado.",
+      "expired": "Se acabó el tiempo, silencio cancelado.",
+      "notYours": "Solo el moderador que inició esto puede usar este panel.",
+      "busy": "Ya hay un silencio en curso para este usuario.",
+      "reasonButton": "Añadir motivo",
+      "noReasonButton": "Sin motivo",
+      "cancelButton": "Cancelar",
+      "modalTitle": "Motivo del silencio",
+      "reasonLabel": "Motivo"
+    }
+  },
+  "ban": {
+    "name": "banear",
+    "aliases": "ban,vetar",
+    "description": "Veta a un usuario del servidor",
+    "user": {
+      "name": "usuario",
+      "description": "El usuario que banear"
+    },
+    "msg": {
+      "done": "{user} fue baneado del servidor.",
+      "deleteField": "Mensajes borrados"
+    },
+    "panel": {
+      "title": "Ban",
+      "chooseDelete": "Elige hasta cuándo atrás borrar los mensajes de {user}. Se cancela si no haces nada en {seconds} segundos.",
+      "chooseReason": "Mensajes que borrar: **{deleted}**\nAñade un motivo o continúa sin él. Se cancela si no haces nada en {seconds} segundos.",
+      "cancelled": "Ban cancelado.",
+      "expired": "Se acabó el tiempo, ban cancelado.",
+      "notYours": "Solo el moderador que inició esto puede usar este panel.",
+      "busy": "Ya hay un ban en curso para este usuario.",
+      "reasonButton": "Añadir motivo",
+      "noReasonButton": "Sin motivo",
+      "cancelButton": "Cancelar",
+      "modalTitle": "Motivo del ban",
+      "reasonLabel": "Motivo",
+      "deleteNone": "No borrar"
+    }
+  },
+  "moderation": {
+    "msg": {
+      "self": "No puedes hacerlo contigo mismo.",
+      "bot": "No puedo hacerlo conmigo mismo.",
+      "owner": "No se puede hacer al propietario del servidor.",
+      "actorHierarchy": "El rol de este usuario es igual o superior al tuyo.",
+      "botHierarchy": "El rol de este usuario es igual o superior al mío.",
+      "notMember": "Este usuario no está en el servidor.",
+      "forbidden": "Micup rechazó la acción. Revisa mis permisos y la posición de mi rol.",
+      "notFound": "Usuario no encontrado.",
+      "reason": "Motivo",
+      "duration": "Duración",
+      "moderator": "Moderador",
+      "noReason": "No especificado",
+      "alreadyMuted": "Este usuario ya está silenciado.",
+      "targetBot": "No se puede silenciar a los bots."
+    }
+  },
+  "settings": {
+    "name": "ajustes",
+    "aliases": "configuracion,config",
+    "description": "Abre el panel de ajustes del servidor",
+    "panel": {
+      "title": "Ajustes del servidor",
+      "value": "Valor",
+      "default": "Predeterminado",
+      "notSet": "sin definir",
+      "on": "activado",
+      "off": "desactivado",
+      "edit": "Editar",
+      "turnOn": "Activar",
+      "turnOff": "Desactivar",
+      "reset": "Restablecer",
+      "close": "Cerrar",
+      "pickRole": "Elige un rol",
+      "pickChannel": "Elige un canal",
+      "modalTitle": "Editar ajuste",
+      "notYours": "Solo quien abrió este panel puede usarlo.",
+      "page": "Página {page}/{pages}",
+      "pickRoles": "Elige roles",
+      "rolesCount": "Roles: {count}"
+    },
+    "msg": {
+      "unknownKey": "Ajuste desconocido: {key}"
+    },
+    "items": {
+      "prefix": "Carácter con el que empiezan los comandos, por ejemplo !",
+      "language": "Idioma que usa el bot en este servidor",
+      "levels": {
+        "enabled": "Dar XP por los mensajes",
+        "xpMin": "XP mínima por mensaje",
+        "xpMax": "XP máxima por mensaje",
+        "cooldownSeconds": "Segundos entre dos ganancias de XP de un miembro",
+        "announce": "Cómo se anuncian las subidas de nivel",
+        "channel": "Canal para las tarjetas de subida de nivel. Si está vacío, responde donde el miembro subió"
+      },
+      "mute": {
+        "sessionSeconds": "Segundos que el panel de silencio espera una elección antes de cancelar"
+      },
+      "purge": {
+        "maxAmount": "Máximo de mensajes que puede borrar un comando de borrado"
+      },
+      "ban": {
+        "sessionSeconds": "Segundos que el panel de ban espera una elección antes de cancelar"
+      },
+      "autorole": {
+        "roles": "Roles que se dan automáticamente a quienes se unen (se omiten los bots)"
+      },
+      "guildtag": {
+        "roles": "Roles para quienes llevan la etiqueta del servidor",
+        "removeRoles": "Quitar los roles cuando se retire la etiqueta",
+        "logChannel": "Canal de registros cuando alguien pone o quita la etiqueta"
+      }
+    },
+    "choices": {
+      "levels": {
+        "announce": {
+          "message": "Anunciar en el canal",
+          "off": "Desactivado"
+        }
+      }
+    },
+    "categories": {
+      "general": "General",
+      "levels": "Niveles",
+      "moderation": "Moderación",
+      "autorole": "Rol automático",
+      "guildtag": "Etiqueta del servidor"
+    },
+    "requirements": {
+      "guildTag": "La etiqueta del servidor no está activa. Estos ajustes no se pueden editar hasta que se active."
+    }
+  },
+  "rank": {
+    "name": "nivel",
+    "aliases": "rank,xp",
+    "description": "Muestra tu nivel y tu XP",
+    "user": {
+      "name": "usuario",
+      "description": "El usuario que consultar"
+    },
+    "msg": {
+      "title": "Tarjeta de nivel",
+      "noData": "{user} aún no ha ganado XP.",
+      "levelUp": "¡{user} subió de nivel! Nuevo nivel: **{level}**",
+      "level": "Nivel",
+      "rank": "Puesto",
+      "totalXp": "XP total"
+    },
+    "card": {
+      "levelUp": "Subió de nivel"
+    }
+  },
+  "leaderboard": {
+    "name": "clasificacion",
+    "aliases": "top",
+    "description": "Muestra la clasificación de niveles del servidor",
+    "page": {
+      "name": "pagina",
+      "description": "Número de página"
+    },
+    "msg": {
+      "title": "Clasificación",
+      "empty": "Nadie ha ganado XP todavía.",
+      "entry": "**{position}** {user} — Nivel {level} · {xp} XP",
+      "page": "Página {page}/{pages}",
+      "invalidPage": "Página no válida. Introduce un número entre 1 y {pages}."
+    }
+  },
+  "guildtag": {
+    "log": {
+      "adoptedTitle": "Etiqueta del servidor puesta",
+      "adopted": "{user} ahora lleva la etiqueta del servidor.",
+      "removedTitle": "Etiqueta del servidor retirada",
+      "removed": "{user} dejó de llevar la etiqueta del servidor.",
+      "tag": "Etiqueta",
+      "rolesGiven": "Roles dados",
+      "rolesRemoved": "Roles retirados",
+      "rolesFailed": "Roles que no se pudieron cambiar"
+    }
+  }
+}

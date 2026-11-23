@@ -1,0 +1,13 @@
+{
+  "scale": 2,
+  "colors": {
+    "background": "#0E1013",
+    "border": "#1E2127",
+    "text": "#F2F3F5",
+    "secondary": "#A6ABB3",
+    "muted": "#767C86",
+    "track": "#22262D",
+    "fill": "#F2F3F5",
+    "placeholder": "#1A1D23"
+  }
+}

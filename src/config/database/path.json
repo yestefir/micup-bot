@@ -1,0 +1,5 @@
+{
+  "settings": "./db/settings.db",
+  "levels": "./db/levels.db",
+  "guildTag": "./db/guildtag.db"
+}
