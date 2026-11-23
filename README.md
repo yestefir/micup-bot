@@ -4,9 +4,11 @@
 
 # micup-bot
 
-**Seviye, moderasyon ve sunucu yönetimi — tek bir bot.**
+**Micup için seviye sistemi, moderasyon ve sunucu yönetimi botu.**
 
-[`micup.ts`](https://www.npmjs.com/package/micup.ts) üzerine kurulu, Node.js ile yazılmış, çok dilli bir sunucu botu.
+XP/seviye, rank kartı, liderlik tablosu, ban · mute · purge, ayar paneli, otomatik rol ve sunucu etiketi — hepsi tek botta. [`micup.ts`](https://www.npmjs.com/package/micup.ts) ile yazıldı, 6 dili destekler.
+
+![License](https://img.shields.io/badge/license-MIT-blue) ![Node](https://img.shields.io/badge/node-%3E%3D24-339933?logo=node.js&logoColor=white) ![Micup](https://img.shields.io/badge/platform-Micup-black)
 
 </div>
 
@@ -77,10 +79,10 @@ Türkçe, İngilizce (`en-US`), Almanca, İspanyolca (`es-ES`), Fransızca ve Ru
 
 ## Kurulum
 
-Node.js 20.6+ gerekir (`--env-file` desteği için).
+Node.js 24 veya üzeri ve bir Micup bot tokenı gerekir (`micup.ts` SDK'sının şartı).
 
 ```bash
-git clone https://github.com/Cihqt/micup-bot.git
+git clone https://github.com/yestefir/micup-bot.git
 cd micup-bot
 npm install
 cp .env.example .env

@@ -1,18 +1,50 @@
 {
   "name": "micup-bot",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Micup bot: XP & seviye sistemi, rank kartı, liderlik tablosu, moderasyon (ban, mute, purge), ayar paneli, otomatik rol ve sunucu etiketi. micup.ts ile yazıldı, 6 dil destekler.",
+  "keywords": [
+    "micup",
+    "micup-bot",
+    "micup-api",
+    "micup.ts",
+    "bot",
+    "moderation-bot",
+    "leveling-bot",
+    "level-system",
+    "xp-system",
+    "rank-card",
+    "leaderboard",
+    "moderation",
+    "autorole",
+    "guild-tag",
+    "slash-commands",
+    "multilingual",
+    "i18n",
+    "turkish",
+    "canvas",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/yestefir/micup-bot#readme",
+  "bugs": {
+    "url": "https://github.com/yestefir/micup-bot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yestefir/micup-bot.git"
+  },
+  "author": "yestefir",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "test": "node --test \"test/*.test.js\"",
     "start": "node --env-file=.env src/server.js",
     "dev": "node --watch --env-file=.env src/server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "private": true,
   "dependencies": {
     "@fontsource/inter": "^5.3.0",
     "@napi-rs/canvas": "^1.2.0",
