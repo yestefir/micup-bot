@@ -1,5 +1,6 @@
 import { MicupAPIError } from 'micup.ts';
 import { formatDuration } from '../args/duration.js';
+import { postModLog } from './log.js';
 
 const MAX_AUDIT_REASON = 400;
 
@@ -39,7 +40,9 @@ export const moderation = {
       const duration = formatDuration(durationMs);
       const text = context.t('mute.msg.done', { user: `<@${targetId}>`, duration });
       const extra = [{ name: context.t('moderation.msg.duration'), value: duration, inline: true }];
-      return result('success', text, details(context, actor, reason, extra));
+      const fields = details(context, actor, reason, extra);
+      await postModLog(context, { kind: 'mute', actor, targetId, fields });
+      return result('success', text, fields);
     });
   },
 
@@ -53,7 +56,9 @@ export const moderation = {
       const cleaned = deleteSeconds > 0 ? formatDuration(deleteSeconds * 1000) : context.t('ban.panel.deleteNone');
       const text = context.t('ban.msg.done', { user: `<@${targetId}>` });
       const extra = [{ name: context.t('ban.msg.deleteField'), value: cleaned, inline: true }];
-      return result('success', text, details(context, actor, reason, extra));
+      const fields = details(context, actor, reason, extra);
+      await postModLog(context, { kind: 'ban', actor, targetId, fields });
+      return result('success', text, fields);
     });
   },
 };

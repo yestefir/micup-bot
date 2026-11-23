@@ -1,6 +1,6 @@
 import { avatarUrl, fetchAvatar } from './card/avatar.js';
 import { progress } from './formula.js';
-import { formatNumber } from './views.js';
+import { formatNumber, nextReward } from './views.js';
 
 const MAX_ALT_LENGTH = 1000;
 
@@ -12,7 +12,25 @@ function labelsFor(context) {
     rank: context.t('rank.msg.rank'),
     totalXp: context.t('rank.msg.totalXp'),
     levelUp: context.t('rank.card.levelUp'),
+    nextReward: context.t('rank.msg.nextReward'),
   };
+}
+
+async function roleName(context, roleId) {
+  try {
+    const roles = await context.client.rest.guilds.roles(context.guildId);
+    return roles.find((role) => role.id === roleId)?.name ?? null;
+  } catch {
+    return null;
+  }
+}
+
+async function rewardLine(context, level, labels) {
+  const reward = nextReward(context, level);
+  if (!reward) return null;
+  const name = await roleName(context, reward.roleId);
+  const text = [`${labels.level} ${reward.level}`, name].filter(Boolean).join(' · ');
+  return { label: labels.nextReward, text };
 }
 
 export async function rankCardData(context, user, row) {
@@ -22,6 +40,7 @@ export async function rankCardData(context, user, row) {
   const name = displayNameOf(user);
   const rank = `#${levels.rankOf(context.guildId, user.id)}`;
   const totalXp = formatNumber(context, row.xp);
+  const reward = await rewardLine(context, state.level, labels);
 
   return {
     name,
@@ -34,7 +53,8 @@ export async function rankCardData(context, user, row) {
     xpInto: formatNumber(context, state.into),
     xpNeeded: formatNumber(context, state.needed),
     totalXp,
-    alt: `${name} · ${labels.level} ${state.level} · ${labels.rank} ${rank} · ${totalXp} XP`,
+    reward,
+    alt: [`${name} · ${labels.level} ${state.level} · ${labels.rank} ${rank} · ${totalXp} XP`, reward && `${reward.label}: ${reward.text}`].filter(Boolean).join(' · '),
   };
 }
 
