@@ -77,10 +77,10 @@ Türkçe, İngilizce (`en-US`), Almanca, İspanyolca (`es-ES`), Fransızca ve Ru
 
 ## Kurulum
 
-Node.js 20.6+ gerekir (`--env-file` desteği için).
+Node.js 24 veya üzeri ve bir Micup bot tokenı gerekir (`micup.ts` SDK'sının şartı).
 
 ```bash
-git clone https://github.com/Cihqt/micup-bot.git
+git clone https://github.com/yestefir/micup-bot.git
 cd micup-bot
 npm install
 cp .env.example .env
