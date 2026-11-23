@@ -5,7 +5,7 @@ import messageCreate from '../src/events/messagecreate.js';
 import messageUpdate from '../src/events/messageupdate.js';
 import { moderateMessage } from '../src/utils/moderation/automod.js';
 import { GUILD, body, createMessage, createWorld as createTestWorld } from './support/fakes.js';
-import { controls, openPanel, valueOf } from './support/panel.js';
+import { controls, field, openPanel, valueOf } from './support/panel.js';
 
 async function createWorld() {
   const world = await createTestWorld();
@@ -151,4 +151,69 @@ test('message managers and higher permissions bypass automod on new and edited m
   await messageCreate.execute(message, world.client);
   assert.equal(calls[0], 'delete');
   assert.match(calls[1], /reklam bağlantısı/);
+});
+
+test('the settings panel saves and clears roles exempt from all automod filters', async () => {
+  const world = await createWorld();
+  const panel = await openPanel(world, { permissions: Permission.ManageGuild });
+  await panel.left(2);
+  const view = await panel.down(2);
+  assert.equal(field(view, 0).name, 'automod.exemptRoles');
+  assert.equal(controls(view)[1][0].type, 6);
+  assert.equal(controls(view)[1][0].max_values, 25);
+
+  const roles = ['111111', '222222'];
+  const denied = await panel.press('roles', { values: roles, user: 'T' });
+  assert.equal(denied.log.replies.length, 1);
+  assert.deepEqual(valueOf(world, 'automod.exemptRoles'), []);
+
+  const saved = await panel.press('roles', { values: roles });
+  assert.deepEqual(valueOf(world, 'automod.exemptRoles'), roles);
+  assert.deepEqual(controls(saved.log.updates[0])[1][0].default_values, roles.map((id) => ({ id, type: 'role' })));
+  assert.deepEqual(world.app.settings.get('other-guild', 'automod.exemptRoles'), []);
+
+  world.members.T.roles = ['333333', '222222'];
+  for (const content of ['Siktir.', 'BÜTÜN MESAJ BÜYÜK HARF', 'https://example.org', 'media.micup.gg/picture.png']) {
+    const { message, calls } = messageFor(world, content);
+    assert.equal(await moderateMessage(message, world.client), false);
+    await messageUpdate.execute({ guildId: GUILD, content, message }, world.client);
+    assert.deepEqual(calls, []);
+  }
+  assert.equal(world.app.automodHistory.size, 0);
+
+  await panel.press('reset');
+  assert.deepEqual(valueOf(world, 'automod.exemptRoles'), []);
+  const { message, calls } = messageFor(world, 'https://example.org');
+  assert.equal(await moderateMessage(message, world.client), true);
+  assert.equal(calls[0], 'delete');
+});
+
+test('automod checks cached and fetched roles when an edited message has no member', async () => {
+  const world = await createWorld();
+  world.app.settings.set(GUILD, 'automod.exemptRoles', ['111111']);
+  const { message, calls } = messageFor(world, 'https://example.org');
+  message.member = undefined;
+  const update = { guildId: GUILD, content: message.content, fetch: async () => message };
+  let cachedMember = { roles: ['111111'] };
+  world.client.sessionFor = () => ({ state: { member: () => cachedMember } });
+
+  const fetches = [];
+  const fetchMember = world.client.rest.guilds.member;
+  world.client.rest.guilds.member = (...args) => {
+    fetches.push(args);
+    return fetchMember(...args);
+  };
+  await messageUpdate.execute(update, world.client);
+  assert.deepEqual(calls, []);
+  assert.deepEqual(fetches, []);
+
+  cachedMember = undefined;
+  world.members.T.roles = ['111111'];
+  await messageUpdate.execute(update, world.client);
+  assert.deepEqual(calls, []);
+  assert.deepEqual(fetches, [[GUILD, 'T']]);
+
+  world.members.T.roles = ['222222'];
+  await messageUpdate.execute(update, world.client);
+  assert.equal(calls[0], 'delete');
 });

@@ -158,7 +158,8 @@
       },
       "automod": {
         "adExemptChannels": "Canales donde se permiten enlaces externos. El permiso de subida se comprueba en todos los canales.",
-        "profanityWords": "Separa con comas las palabras y frases bloqueadas. Déjalo vacío para borrar la lista."
+        "profanityWords": "Separa con comas las palabras y frases bloqueadas. Déjalo vacío para borrar la lista.",
+        "exemptRoles": "Selecciona los roles exentos de todos los filtros de moderación automática."
       },
       "prefix": "Carácter con el que empiezan los comandos, por ejemplo !",
       "language": "Idioma que usa el bot en este servidor",

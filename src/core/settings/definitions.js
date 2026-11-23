@@ -101,6 +101,7 @@ export function defineSettings({ settings, i18n, config }) {
     maxLength: 2000,
     allowEmpty: true,
   });
+  settings.define('automod.exemptRoles', { category: 'automod', type: 'roles', default: [] });
 
   settings.define('voice.channel', {
     category: 'voice',

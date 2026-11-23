@@ -158,7 +158,8 @@
       },
       "automod": {
         "adExemptChannels": "Dış bağlantılara izin verilen kanallar. Görsel yükleme izni her kanalda kontrol edilir.",
-        "profanityWords": "Engellenecek kelimeleri ve ifadeleri virgülle ayır. Boş bırakırsan liste temizlenir."
+        "profanityWords": "Engellenecek kelimeleri ve ifadeleri virgülle ayır. Boş bırakırsan liste temizlenir.",
+        "exemptRoles": "Tüm otomatik moderasyon filtrelerinden muaf tutulacak rolleri seç."
       },
       "prefix": "Komutları başlatan işaret, örneğin !",
       "language": "Botun bu sunucuda kullandığı dil",

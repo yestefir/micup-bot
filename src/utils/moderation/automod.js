@@ -81,6 +81,16 @@ function spamState(history, message, now) {
   return state;
 }
 
+async function hasExemptRole(message, client, exemptRoles) {
+  const { guildId, author } = message;
+  let roles = message.member?.roles ?? client.sessionFor(guildId)?.state.member(guildId, author.id)?.roles;
+  if (!roles) {
+    const member = await client.rest.guilds.member(guildId, author.id).catch(() => null);
+    roles = member?.roles ?? [];
+  }
+  return roles.some((role) => exemptRoles.includes(role));
+}
+
 export async function moderateMessage(message, client, { edited = false, now = Date.now() } = {}) {
   const { guildId, author, content } = message;
   if (!guildId || author.bot || message.fromSelf || message.fromWebhook || typeof content !== 'string') return false;
@@ -89,6 +99,9 @@ export async function moderateMessage(message, client, { edited = false, now = D
   if ((permissions & BYPASS_PERMISSIONS) !== 0n) return false;
 
   const { app } = client;
+  const exemptRoles = app.settings.get(guildId, 'automod.exemptRoles');
+  if (exemptRoles.length && await hasExemptRole(message, client, exemptRoles)) return false;
+
   const spam = edited ? null : spamState(app.automodHistory, message, now);
   const hosts = [];
   const text = content.replace(LINKS, (link) => {

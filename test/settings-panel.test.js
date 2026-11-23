@@ -113,7 +113,7 @@ test('right and left switch between category pages and wrap around', async () =>
 
   const automod = await right(1);
   assert.equal(tabsOf(automod), tabs(6));
-  assert.equal(footerOf(automod), `Sayfa 7/${PAGE_COUNT} · 1/2`);
+  assert.equal(footerOf(automod), `Sayfa 7/${PAGE_COUNT} · 1/3`);
 
   const voice = await right(1);
   assert.equal(tabsOf(voice), tabs(7));
@@ -815,7 +815,7 @@ test('the panel keeps one height on every page and for every kind of setting', a
     for (let position = 1; position < size; position += 1) record(await down(1));
   }
 
-  assert.equal(shapes.length, 2 + 6 + 4 + 1 + 3 + 2 + 2 + 1 + 2);
+  assert.equal(shapes.length, 2 + 6 + 4 + 1 + 3 + 2 + 3 + 1 + 2);
   assert.deepEqual(new Set(shapes.map((shape) => shape.listRows)), new Set([6]));
   assert.deepEqual(new Set(shapes.map((shape) => shape.componentRows)), new Set([3]));
   assert.deepEqual(new Set(shapes.map((shape) => shape.fields)), new Set([3]));

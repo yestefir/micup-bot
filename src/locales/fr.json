@@ -158,7 +158,8 @@
       },
       "automod": {
         "adExemptChannels": "Salons où les liens externes sont autorisés. L’autorisation de joindre des fichiers est vérifiée dans chaque salon.",
-        "profanityWords": "Sépare les mots et expressions bloqués par des virgules. Laisse le champ vide pour effacer la liste."
+        "profanityWords": "Sépare les mots et expressions bloqués par des virgules. Laisse le champ vide pour effacer la liste.",
+        "exemptRoles": "Sélectionne les rôles exemptés de tous les filtres de modération automatique."
       },
       "prefix": "Caractère qui démarre les commandes, par exemple !",
       "language": "Langue utilisée par le bot sur ce serveur",
