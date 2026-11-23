@@ -47,6 +47,7 @@
   "dependencies": {
     "@fontsource/inter": "^5.3.0",
     "@napi-rs/canvas": "^1.2.0",
-    "micup.ts": "^2.0.0"
+    "micup.ts": "^2.0.0",
+    "tldts-icann": "^7.5.5"
   }
 }

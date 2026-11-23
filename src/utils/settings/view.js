@@ -35,7 +35,7 @@ export function choicesOf(definition) {
 }
 
 export function controlFor(definition) {
-  if (definition.type === 'roles') return 'roles';
+  if (definition.type === 'roles' || definition.type === 'channels') return definition.type;
   if (definition.type === 'role') return 'role';
   if (definition.type === 'channel') return 'channel';
   if (definition.type === 'boolean') return 'toggle';
@@ -57,8 +57,8 @@ export function describeSetting(context, definition) {
 }
 
 export function shortValue(context, definition, value) {
-  if (definition.type === 'roles') {
-    return value?.length > 0 ? context.t('settings.panel.rolesCount', { count: value.length }) : '—';
+  if (definition.type === 'roles' || definition.type === 'channels') {
+    return value?.length > 0 ? context.t(`settings.panel.${definition.type}Count`, { count: value.length }) : '—';
   }
   if (value === null || value === undefined || value === '') return '—';
   if (definition.type === 'boolean') return context.t(value ? 'settings.panel.on' : 'settings.panel.off');
@@ -66,11 +66,11 @@ export function shortValue(context, definition, value) {
   return clip(plain(value), panelConfig.valueWidth);
 }
 
-function mentionList(ids) {
+function mentionList(ids, type) {
   const mentions = [];
   let length = 0;
   for (const id of ids) {
-    const mention = `<@&${id}>`;
+    const mention = type === 'channels' ? `<#${id}>` : `<@&${id}>`;
     if (length + mention.length + 1 > MENTION_LIST_LIMIT) break;
     mentions.push(mention);
     length += mention.length + 1;
@@ -79,8 +79,8 @@ function mentionList(ids) {
 }
 
 export function richValue(context, definition, value) {
-  if (definition.type === 'roles') {
-    return value?.length > 0 ? mentionList(value) : `*${context.t('settings.panel.notSet')}*`;
+  if (definition.type === 'roles' || definition.type === 'channels') {
+    return value?.length > 0 ? mentionList(value, definition.type) : `*${context.t('settings.panel.notSet')}*`;
   }
   if (value === null || value === undefined || value === '') return `*${context.t('settings.panel.notSet')}*`;
   if (definition.type === 'boolean') return context.t(value ? 'settings.panel.on' : 'settings.panel.off');
@@ -145,14 +145,16 @@ function controlRow(context, prefix, definition, value) {
     return selectRow(stringSelect(`${prefix}choice`, ...options));
   }
 
-  if (control === 'roles') {
+  if (control === 'roles' || control === 'channels') {
+    const channels = control === 'channels';
+    const id = `${prefix}${control}`;
     const menu = {
-      ...roleSelect(`${prefix}roles`),
-      placeholder: t('settings.panel.pickRoles'),
+      ...(channels ? channelSelect(id, ...(definition.channelTypes ?? DEFAULT_CHANNEL_TYPES)) : roleSelect(id)),
+      placeholder: t(channels ? 'settings.panel.pickChannels' : 'settings.panel.pickRoles'),
       min_values: 1,
       max_values: Math.min(definition.maxItems ?? MAX_SELECT_OPTIONS, MAX_SELECT_OPTIONS),
     };
-    if (value?.length > 0) menu.default_values = value.slice(0, MAX_SELECT_OPTIONS).map((id) => defaultRole(id));
+    if (value?.length > 0) menu.default_values = value.slice(0, MAX_SELECT_OPTIONS).map(channels ? defaultChannel : defaultRole);
     return selectRow(menu);
   }
 
