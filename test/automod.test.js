@@ -4,8 +4,14 @@ import { Permission } from 'micup.ts';
 import messageCreate from '../src/events/messagecreate.js';
 import messageUpdate from '../src/events/messageupdate.js';
 import { moderateMessage } from '../src/utils/moderation/automod.js';
-import { GUILD, body, createMessage, createWorld } from './support/fakes.js';
+import { GUILD, body, createMessage, createWorld as createTestWorld } from './support/fakes.js';
 import { controls, openPanel, valueOf } from './support/panel.js';
+
+async function createWorld() {
+  const world = await createTestWorld();
+  world.client.permissionsFor = (_guildId, userId) => userId === 'T' ? Permission.SendMessages : Permission.All;
+  return world;
+}
 
 function messageFor(world, content, channelId = '12345') {
   const message = createMessage(world, content, 'T');
@@ -48,8 +54,6 @@ test('Micup media links require Attach Files in the message channel and the warn
     return args[2] === '12345' ? Permission.AttachFiles : Permission.SendMessages;
   };
   const { message } = messageFor(world, 'media.micup.gg/picture.png');
-  message.member.hasPermission = (permission, channelId) =>
-    world.client.permissionsFor(GUILD, message.author.id, channelId) === permission;
   assert.equal(await moderateMessage(message, world.client), false);
 
   const blocked = messageFor(world, 'https://media.micup.gg/picture.png', '67890');
@@ -121,4 +125,30 @@ test('spam counts repeats and bursts per author and channel and throttles repeat
   }
   const { message } = messageFor(world, 'aynı mesaj');
   assert.equal(await moderateMessage(message, world.client, { now: 15_000 }), false);
+});
+
+test('message managers and higher permissions bypass automod on new and edited messages', async () => {
+  const world = await createWorld();
+  const processed = [];
+  world.client.interactions = { prefix: { handleMessage: async (message) => processed.push(message.content) } };
+  world.app.settings.set(GUILD, 'automod.profanityWords', 'yasak ifade');
+  const contents = ['yasak ifade', 'https://example.org', 'media.micup.gg/picture.png', 'BÜTÜN MESAJ BÜYÜK HARF'];
+
+  for (const permissions of [Permission.ManageMessages, Permission.ManageGuild, Permission.Administrator, Permission.All]) {
+    world.client.permissionsFor = (_guildId, _userId, channelId) => channelId === '12345' ? permissions : undefined;
+    for (const content of contents) {
+      const { message, calls } = messageFor(world, content);
+      await messageCreate.execute(message, world.client);
+      await messageUpdate.execute({ guildId: GUILD, content, message }, world.client);
+      assert.deepEqual(calls, []);
+    }
+  }
+
+  assert.deepEqual(processed, Array(4).fill(contents).flat());
+  assert.equal(world.app.automodHistory.size, 0);
+
+  const { message, calls } = messageFor(world, 'https://example.org', '67890');
+  await messageCreate.execute(message, world.client);
+  assert.equal(calls[0], 'delete');
+  assert.match(calls[1], /reklam bağlantısı/);
 });

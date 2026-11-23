@@ -10,6 +10,7 @@ const RATE_WINDOW = 5_000;
 const RATE_LIMIT = 6;
 const REPEAT_LIMIT = 3;
 const HISTORY_LIMIT = 5_000;
+const BYPASS_PERMISSIONS = Permission.ManageMessages | Permission.ManageGuild | Permission.Administrator;
 
 function linkHost(link) {
   const explicit = /^https?:\/\//i.test(link);
@@ -19,14 +20,9 @@ function linkHost(link) {
   return null;
 }
 
-function advertisement(message, client, settings, hosts) {
-  if (hosts.includes('media.micup.gg')) {
-    let allowed = message.member?.hasPermission(Permission.AttachFiles, message.channelId);
-    if (allowed === undefined) {
-      const bits = client.permissionsFor(message.guildId, message.author.id, message.channelId);
-      allowed = typeof bits === 'bigint' && hasPermissions(bits, Permission.AttachFiles);
-    }
-    if (!allowed) return 'mediaPermission';
+function advertisement(message, settings, hosts, permissions) {
+  if (hosts.includes('media.micup.gg') && !hasPermissions(permissions, Permission.AttachFiles)) {
+    return 'mediaPermission';
   }
 
   const exempt = settings.get(message.guildId, 'automod.adExemptChannels');
@@ -89,6 +85,9 @@ export async function moderateMessage(message, client, { edited = false, now = D
   const { guildId, author, content } = message;
   if (!guildId || author.bot || message.fromSelf || message.fromWebhook || typeof content !== 'string') return false;
 
+  const permissions = client.permissionsFor(guildId, author.id, message.channelId) ?? 0n;
+  if ((permissions & BYPASS_PERMISSIONS) !== 0n) return false;
+
   const { app } = client;
   const spam = edited ? null : spamState(app.automodHistory, message, now);
   const hosts = [];
@@ -98,7 +97,7 @@ export async function moderateMessage(message, client, { edited = false, now = D
     hosts.push(host);
     return ' ';
   });
-  let reason = hosts.length ? advertisement(message, client, app.settings, hosts) : null;
+  let reason = hosts.length ? advertisement(message, app.settings, hosts, permissions) : null;
   if (!reason && containsProfanity(text, app.settings.get(guildId, 'automod.profanityWords'))) reason = 'profanity';
   if (!reason && isCaps(text)) reason = 'caps';
   if (!reason && spam?.blocked) reason = 'spam';
