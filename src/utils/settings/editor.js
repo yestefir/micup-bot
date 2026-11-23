@@ -6,7 +6,7 @@ import { findEditable, settingsPanel } from './panel.js';
 import { isLocked } from './requirements.js';
 import { buildView, groupByCategory, requirementNotice } from './view.js';
 
-const CHANGING_ACTIONS = new Set(['reset', 'toggle', 'roles', 'channels', 'choice', 'role', 'channel', 'edit']);
+const CHANGING_ACTIONS = new Set(['reset', 'toggle', 'roles', 'choice', 'role', 'channel', 'edit']);
 const MODAL_LABEL_LIMIT = 45;
 const MODAL_TITLE_LIMIT = 45;
 const DEFAULT_TEXT_LENGTH = 200;
@@ -57,7 +57,7 @@ export async function openSettingsPanel(context, { actor }) {
     const current = settings.get(guildId, definition.key);
     const input = {
       ...paragraphInput('value', clip(definition.key, MODAL_LABEL_LIMIT)),
-      required: !definition.allowEmpty,
+      required: true,
       max_length: definition.maxLength ?? (definition.type === 'integer' ? INTEGER_LENGTH : DEFAULT_TEXT_LENGTH),
     };
     if (definition.minLength) input.min_length = definition.minLength;
@@ -118,8 +118,7 @@ export async function openSettingsPanel(context, { actor }) {
       await change(settingsPanel.reset(context, current.key));
     } else if (action === 'toggle') {
       await change(settingsPanel.set(context, current.key, String(!settings.get(guildId, current.key))));
-    } else if (action === 'roles' || action === 'channels') {
-      if (current.type !== action) return;
+    } else if (action === 'roles') {
       await change(settingsPanel.set(context, current.key, [...interaction.values]));
     } else if (action === 'choice' || action === 'role' || action === 'channel') {
       await change(settingsPanel.set(context, current.key, interaction.values[0]));

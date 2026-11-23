@@ -1,6 +1,5 @@
 import { Permission, SlashCommand } from 'micup.ts/easy';
 import { purgeMessages } from '../../../utils/purge/purge.js';
-import { postModLog } from '../../../utils/moderation/log.js';
 
 export default {
   guildOnly: true,
@@ -27,7 +26,6 @@ export default {
     await interaction.deferReply({ ephemeral: true });
     const channel = interaction.channel ?? (await context.client.channels.fetch(interaction.channelId));
     const count = await purgeMessages({ channel, amount, userId });
-    if (count > 0) await postModLog(context, { kind: 'purge', actor: interaction.member, channelId: interaction.channelId, fields: [{ name: context.t('modlog.count'), value: String(count), inline: true }] });
     if (count === 0) await context.info(context.t('purge.msg.nothing'));
     else await context.success(context.t('purge.msg.done', { count }));
   },

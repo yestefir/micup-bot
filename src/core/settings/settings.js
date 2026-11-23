@@ -16,10 +16,9 @@ export class SettingError extends Error {
 
 const TRUE_TOKENS = new Set(['true', 'on', 'yes', '1']);
 const FALSE_TOKENS = new Set(['false', 'off', 'no', '0']);
+const TYPES = new Set(['string', 'integer', 'boolean', 'role', 'channel', 'roles']);
 const NULLABLE_TYPES = new Set(['role', 'channel']);
 const SINGLE_ID_TYPES = new Set(['role', 'channel']);
-const LIST_ID_TYPES = { roles: 'role', channels: 'channel' };
-const TYPES = new Set(['string', 'integer', 'boolean', ...SINGLE_ID_TYPES, ...Object.keys(LIST_ID_TYPES)]);
 const MAX_LIST_ITEMS = 25;
 
 const resolveChoices = (definition) =>
@@ -53,11 +52,11 @@ function coerceId(type, value) {
   return id;
 }
 
-function coerceIdList(definition, value) {
+function coerceRoleList(definition, value) {
   const items = Array.isArray(value) ? value : String(value).split(/[\s,]+/).filter(Boolean);
-  const ids = [...new Set(items.map((item) => coerceId(LIST_ID_TYPES[definition.type], item)))];
+  const ids = [...new Set(items.map((item) => coerceId('role', item)))];
   const max = definition.maxItems ?? MAX_LIST_ITEMS;
-  if (ids.length > max) throw new SettingError(definition.type === 'channels' ? 'tooManyChannels' : 'tooMany', { max });
+  if (ids.length > max) throw new SettingError('tooMany', { max });
   return ids;
 }
 
@@ -78,7 +77,7 @@ function coerce(definition, value) {
   if (definition.type === 'integer') typed = coerceInteger(definition, value);
   else if (definition.type === 'boolean') typed = coerceBoolean(value);
   else if (SINGLE_ID_TYPES.has(definition.type)) typed = coerceId(definition.type, value);
-  else if (Object.hasOwn(LIST_ID_TYPES, definition.type)) typed = coerceIdList(definition, value);
+  else if (definition.type === 'roles') typed = coerceRoleList(definition, value);
   else typed = coerceString(definition, value);
 
   if (definition.normalize) typed = definition.normalize(typed);
@@ -120,7 +119,7 @@ export class Settings extends EventEmitter {
     }
     if (!TYPES.has(normalized.type)) throw new Error(`Unknown setting type for ${key}: ${normalized.type}`);
     if (normalized.default === undefined) throw new Error(`Setting ${key} needs a default`);
-    if (Object.hasOwn(LIST_ID_TYPES, normalized.type) && !Array.isArray(normalized.default)) {
+    if (normalized.type === 'roles' && !Array.isArray(normalized.default)) {
       throw new Error(`Setting ${key} needs a list as its default`);
     }
     if (normalized.default === null) {
@@ -185,11 +184,6 @@ export class Settings extends EventEmitter {
     values.delete(key);
     this.emit('change', { scope, key, value: this.get(scope, key), previous });
     return true;
-  }
-
-  clear(scope) {
-    this.#db.prepare("DELETE FROM settings WHERE scope = ?").run(scope);
-    this.#scopes.delete(scope);
   }
 
   entries(scope, { editableOnly = false } = {}) {

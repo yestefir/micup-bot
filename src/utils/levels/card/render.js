@@ -17,8 +17,6 @@ export const RANK_LAYOUT = Object.freeze({
   captionY: 192,
 });
 
-export const REWARD_ROW = Object.freeze({ extra: 44, y: 238 });
-
 export const LEVEL_UP_LAYOUT = Object.freeze({
   width: 720,
   height: 176,
@@ -43,17 +41,6 @@ export const LEADERBOARD_LAYOUT = Object.freeze({
   bottom: 24,
   avatarSize: 32,
   topRanks: 3,
-});
-
-export const WELCOME_LAYOUT = Object.freeze({
-  width: 900,
-  height: 300,
-  radius: 24,
-  avatar: { x: 390, y: 36, size: 120 },
-  labelY: 196,
-  nameY: 240,
-  subtitleY: 270,
-  textWidth: 780,
 });
 
 export const leaderboardHeight = (rowCount) =>
@@ -154,7 +141,7 @@ async function open(data) {
 }
 
 export async function renderRankCard(data) {
-  const layout = data.reward ? { ...RANK_LAYOUT, height: RANK_LAYOUT.height + REWARD_ROW.extra } : RANK_LAYOUT;
+  const layout = RANK_LAYOUT;
   const { canvasApi, image } = await open(data);
   const { canvas, context } = setup(canvasApi, layout);
   const { lang, labels } = data;
@@ -219,25 +206,7 @@ export async function renderRankCard(data) {
   context.fillStyle = colors.muted;
   context.fillText(labels.totalXp, layout.contentRight - totalTextWidth - 10, layout.captionY);
 
-  if (data.reward) drawReward(context, data.reward, layout, data.lang);
-
   return canvas.toBuffer('image/png');
-}
-
-function drawReward(context, reward, layout, lang) {
-  rule(context, layout.contentX, REWARD_ROW.y - 24, layout.contentRight - layout.contentX);
-
-  drawLabel(context, reward.label, layout.contentX, REWARD_ROW.y, 'left', lang);
-  context.font = font(600, 12);
-  spaced(context, '1.6px');
-  const labelWidth = context.measureText(reward.label.toLocaleUpperCase(lang)).width;
-  spaced(context, '0px');
-
-  context.font = font(600, 16);
-  context.fillStyle = colors.text;
-  context.textAlign = 'left';
-  const x = layout.contentX + labelWidth + 16;
-  context.fillText(fitText(context, reward.text, layout.contentRight - x), x, REWARD_ROW.y + 1);
 }
 
 export async function renderLevelUpCard(data) {
@@ -273,29 +242,6 @@ export async function renderLevelUpCard(data) {
   const blockWidth = toRight - (fromRight - fromWidth);
   const nameWidth = layout.contentRight - blockWidth - 36 - layout.contentX;
   context.fillText(fitText(context, data.name, nameWidth), layout.contentX, layout.nameY);
-
-  return canvas.toBuffer('image/png');
-}
-
-export async function renderWelcomeCard(data) {
-  const layout = WELCOME_LAYOUT;
-  const { canvasApi, image } = await open(data);
-  const { canvas, context } = setup(canvasApi, layout);
-  const center = layout.width / 2;
-
-  drawSurface(context, layout);
-  drawAvatar(context, image, data.name, layout.avatar);
-
-  drawLabel(context, data.labels.welcome, center, layout.labelY, 'center', data.lang);
-
-  context.font = font(700, 36);
-  context.fillStyle = colors.text;
-  context.textAlign = 'center';
-  context.fillText(fitText(context, data.name, layout.textWidth), center, layout.nameY);
-
-  context.font = font(400, 16);
-  context.fillStyle = colors.secondary;
-  context.fillText(fitText(context, data.subtitle, layout.textWidth), center, layout.subtitleY);
 
   return canvas.toBuffer('image/png');
 }

@@ -7,7 +7,7 @@ import { GuildTagStore } from './core/guildtag/store.js';
 import { I18n } from './core/i18n/i18n.js';
 import { LevelStore } from './core/levels/store.js';
 import { Settings } from './core/settings/settings.js';
-import { renderLeaderboardCard, renderLevelUpCard, renderRankCard, renderWelcomeCard } from './utils/levels/card/render.js';
+import { renderLeaderboardCard, renderLevelUpCard, renderRankCard } from './utils/levels/card/render.js';
 
 const SRC_ROOT = fileURLToPath(new URL('.', import.meta.url));
 const PROJECT_ROOT = resolve(SRC_ROOT, '..');
@@ -45,9 +45,8 @@ export function createApp(overrides = {}) {
     levels: new LevelStore(config.levelsPath),
     guildTags: new GuildTagStore(config.guildTagPath),
     guildTagQueue: new Map(),
-    automodHistory: new Map(),
     requirementCache: new Map(),
-    cards: { rank: renderRankCard, levelUp: renderLevelUpCard, leaderboard: renderLeaderboardCard, welcome: renderWelcomeCard },
+    cards: { rank: renderRankCard, levelUp: renderLevelUpCard, leaderboard: renderLeaderboardCard },
     muteSessions: new Set(),
     banSessions: new Set(),
     describe: (key) => i18n.t(i18n.fallback, key),

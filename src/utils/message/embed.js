@@ -6,7 +6,7 @@ export function toColor(hex) {
   return Number.parseInt(String(hex).replace('#', ''), 16);
 }
 
-export function createEmbed({ type = 'info', title, description, fields, footer, timestamp, image } = {}) {
+export function createEmbed({ type = 'info', title, description, fields, footer, timestamp } = {}) {
   if (!TYPES.includes(type)) throw new Error(`Unknown embed type: ${type}`);
   const embed = { color: toColor(embedConfig.colors[type]) };
   if (title) embed.title = title;
@@ -14,7 +14,6 @@ export function createEmbed({ type = 'info', title, description, fields, footer,
   if (fields?.length) embed.fields = fields;
   if (footer) embed.footer = { text: footer };
   if (timestamp) embed.timestamp = timestamp;
-  if (image) embed.image = { url: image };
   return embed;
 }
 

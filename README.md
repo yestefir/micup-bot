@@ -4,11 +4,9 @@
 
 # micup-bot
 
-**Micup için seviye sistemi, moderasyon ve sunucu yönetimi botu.**
+**Seviye, moderasyon ve sunucu yönetimi — tek bir bot.**
 
-XP/seviye, rank kartı, liderlik tablosu, ban · mute · purge, ayar paneli, otomatik rol ve sunucu etiketi — hepsi tek botta. [`micup.ts`](https://www.npmjs.com/package/micup.ts) ile yazıldı, 6 dili destekler.
-
-![License](https://img.shields.io/badge/license-MIT-blue) ![Node](https://img.shields.io/badge/node-%3E%3D24-339933?logo=node.js&logoColor=white) ![Micup](https://img.shields.io/badge/platform-Micup-black)
+[`micup.ts`](https://www.npmjs.com/package/micup.ts) üzerine kurulu, Node.js ile yazılmış, çok dilli bir sunucu botu.
 
 </div>
 
@@ -40,18 +38,6 @@ Sayfalı, avatarlı sıralama kartı.
 
 `ban`, `mute` ve `sil` komutları; rol hiyerarşisi kontrolü, yetki denetimi ve süreli onay oturumlarıyla çalışır. Yanlışlıkla işlem yapmayı zorlaştırır.
 
-### Seviye ödülleri ve XP yönetimi
-
-`/levelrole` ile bir seviyeye ulaşan üyeye otomatik rol verilir. `/xpignore` ile seçilen kanallarda XP kazanılmaz. `/xpadjust` ve `/xpreset` ile yöneticiler XP'yi düzeltebilir.
-
-### Hoşgeldin kartı
-
-Ayar panelinden bir kanal seçersen yeni gelen üyeler avatarlı bir kartla karşılanır. İstersen `{user}`, `{server}` ve `{count}` kullanan kendi metnini yazabilirsin. Kart çizilemezse düz embed gönderilir.
-
-### Moderasyon günlüğü
-
-Ayar panelinden bir kanal seçersen ban, mute ve purge işlemleri oraya yazılır.
-
 ### Ayar paneli
 
 `/ayarlar` ile sunucu başına etkileşimli panel: prefix, dil, XP aralığı, bekleme süresi, duyuru kanalı, moderasyon oturum süreleri ve roller buradan değişir.
@@ -80,15 +66,6 @@ Türkçe, İngilizce (`en-US`), Almanca, İspanyolca (`es-ES`), Fransızca ve Ru
 | --- | --- | --- | --- |
 | `seviye [kullanıcı]` | `rank`, `level`, `xp` | Seviye ve XP durumunu gösterir | — |
 | `liderlik [sayfa]` | `top`, `leaderboard`, `siralama` | Sunucu sıralamasını gösterir | — |
-| `ping` | — | Botun gecikmesini gösterir | — |
-| `yardim` | `help` | Komutları listeler | — |
-| `avatar [kullanıcı]` | — | Avatarı büyük gösterir | — |
-| `kullanicibilgi [kullanıcı]` | `userinfo` | Kullanıcı bilgisi | — |
-| `sunucubilgi` | `serverinfo` | Sunucu bilgisi | — |
-| `xpayarla <kullanıcı> <miktar>` | `xpadjust` | XP ekler/çıkarır (negatif = çıkar) | Sunucuyu Yönet |
-| `xpsifirla <kullanıcı>` | `xpreset` | XP'yi sıfırlar | Sunucuyu Yönet |
-| `seviyerol [seviye] [rol]` | `levelrole` | Seviye ödül rolü ayarlar / kaldırır / listeler | Sunucuyu Yönet |
-| `xpyoksay [kanal]` | `xpignore` | Kanalda XP kazanmayı kapatır / açar | Sunucuyu Yönet |
 | `ayarlar` | `ayar` | Ayar panelini açar | Sunucuyu Yönet |
 | `mute <kullanıcı>` | `sustur`, `sus` | Kullanıcıyı süreli susturur | Üyeleri Zaman Aşımına Uğrat |
 | `ban <kullanıcı>` | `yasakla` | Kullanıcıyı yasaklar | Üyeleri Yasakla |

@@ -10,17 +10,3 @@ export function parseUserId(token) {
   if (/^\d{5,}$/.test(token)) return token;
   return null;
 }
-
-export function parseChannelId(token) {
-  if (typeof token !== 'string') return null;
-  const mention = token.match(/^<#(\d{5,})>$/);
-  if (mention) return mention[1];
-  return /^\d{5,}$/.test(token) ? token : null;
-}
-
-export function parseRoleId(token) {
-  if (typeof token !== 'string') return null;
-  const mention = token.match(/^<@&(\d{5,})>$/);
-  if (mention) return mention[1];
-  return /^\d{5,}$/.test(token) ? token : null;
-}

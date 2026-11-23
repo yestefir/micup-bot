@@ -19,7 +19,6 @@
     "botMissingPermission": "Mir fehlt diese Berechtigung: {permission}",
     "usage": "Verwendung: {usage}",
     "setting": {
-      "tooManyChannels": "Es können höchstens {max} Kanäle gewählt werden.",
       "invalidInteger": "Der Wert muss eine ganze Zahl sein.",
       "invalidBoolean": "Der Wert muss true oder false sein.",
       "tooSmall": "Der Wert muss mindestens {min} sein.",
@@ -128,8 +127,6 @@
     "aliases": "config",
     "description": "Öffnet das Panel mit den Servereinstellungen",
     "panel": {
-      "pickChannels": "Kanäle mit erlaubter Werbung auswählen",
-      "channelsCount": "Kanäle: {count}",
       "title": "Servereinstellungen",
       "value": "Wert",
       "default": "Standard",
@@ -153,10 +150,6 @@
       "unknownKey": "Unbekannte Einstellung: {key}"
     },
     "items": {
-      "automod": {
-        "adExemptChannels": "Kanäle, in denen externe Links erlaubt sind. Die Upload-Berechtigung gilt in jedem Kanal.",
-        "profanityWords": "Trenne gesperrte Wörter und Ausdrücke mit Kommas. Ein leeres Feld leert die Liste."
-      },
       "prefix": "Zeichen, mit dem Befehle beginnen, z. B. !",
       "language": "Sprache des Bots auf diesem Server",
       "levels": {
@@ -183,13 +176,6 @@
         "roles": "Rollen für Mitglieder, die den Servertag tragen",
         "removeRoles": "Rollen zurücknehmen, wenn der Tag entfernt wird",
         "logChannel": "Kanal für Logs, wenn jemand den Tag annimmt oder entfernt"
-      },
-      "moderation": {
-        "logChannel": "Kanal, in dem Moderationsaktionen (Ban, Mute, Löschen) protokolliert werden"
-      },
-      "welcome": {
-        "channel": "Kanal, in dem neue Mitglieder mit einer Karte begrüßt werden (leer = aus)",
-        "message": "Begrüßungstext. {user}, {server} und {count} sind möglich. Leer = Standardtext"
       }
     },
     "choices": {
@@ -201,24 +187,15 @@
       }
     },
     "categories": {
-      "automod": "Automatische Moderation",
       "general": "Allgemein",
       "levels": "Level",
       "moderation": "Moderation",
       "autorole": "Autorolle",
-      "guildtag": "Servertag",
-      "welcome": "Willkommen"
+      "guildtag": "Servertag"
     },
     "requirements": {
       "guildTag": "Der Servertag ist nicht aktiv. Diese Einstellungen können erst bearbeitet werden, wenn der Tag aktiviert ist."
     }
-  },
-  "automod": {
-    "mediaPermission": "Du darfst in diesem Kanal keine Bilder hochladen.",
-    "advertisement": "Werbelinks sind in diesem Kanal nicht erlaubt.",
-    "profanity": "Bitte verwende keine Schimpfwörter.",
-    "caps": "Bitte schreibe deine Nachricht nicht komplett in Großbuchstaben.",
-    "spam": "Bitte sende Nachrichten langsamer und wiederhole sie nicht."
   },
   "rank": {
     "name": "rang",
@@ -234,8 +211,7 @@
       "levelUp": "{user} ist aufgestiegen! Neues Level: **{level}**",
       "level": "Level",
       "rank": "Rang",
-      "totalXp": "Gesamt-XP",
-      "nextReward": "Nächste Belohnung"
+      "totalXp": "Gesamt-XP"
     },
     "card": {
       "levelUp": "Aufgestiegen"
@@ -267,137 +243,6 @@
       "rolesGiven": "Vergebene Rollen",
       "rolesRemoved": "Entzogene Rollen",
       "rolesFailed": "Rollen, die nicht geändert werden konnten"
-    }
-  },
-  "ping": {
-    "name": "ping",
-    "description": "Zeigt die Latenz des Bots",
-    "msg": {
-      "pong": "Pong! Latenz: **{ms} ms**"
-    }
-  },
-  "help": {
-    "name": "hilfe",
-    "description": "Listet die verfügbaren Befehle auf",
-    "msg": {
-      "title": "Befehle",
-      "footer": "Einige Befehle erfordern zusätzliche Berechtigungen."
-    }
-  },
-  "avatar": {
-    "name": "avatar",
-    "description": "Zeigt den Avatar eines Benutzers",
-    "user": {
-      "name": "benutzer",
-      "description": "Der Benutzer"
-    },
-    "msg": {
-      "title": "Avatar von {user}",
-      "none": "Dieser Benutzer hat keinen Avatar.",
-      "open": "In voller Größe öffnen"
-    }
-  },
-  "userinfo": {
-    "name": "benutzerinfo",
-    "description": "Zeigt Informationen über einen Benutzer",
-    "user": {
-      "name": "benutzer",
-      "description": "Der Benutzer"
-    },
-    "msg": {
-      "title": "Benutzerinfo",
-      "id": "ID",
-      "created": "Konto erstellt",
-      "joined": "Server beigetreten",
-      "bot": "Bot"
-    }
-  },
-  "serverinfo": {
-    "name": "serverinfo",
-    "description": "Zeigt Informationen über diesen Server",
-    "msg": {
-      "title": "Serverinfo",
-      "owner": "Besitzer",
-      "members": "Mitglieder",
-      "created": "Erstellt",
-      "id": "ID"
-    }
-  },
-  "xpadjust": {
-    "name": "xpanpassen",
-    "description": "Fügt XP hinzu oder entfernt sie (negative Anzahl zum Entfernen)",
-    "user": {
-      "name": "benutzer",
-      "description": "Der Benutzer"
-    },
-    "amount": {
-      "name": "anzahl",
-      "description": "Hinzuzufügende XP (negativ zum Entfernen)"
-    },
-    "msg": {
-      "done": "{user} hat jetzt **{xp}** XP (Level {level})."
-    }
-  },
-  "xpreset": {
-    "name": "xpzuruecksetzen",
-    "description": "Setzt die XP eines Benutzers zurück",
-    "user": {
-      "name": "benutzer",
-      "description": "Der Benutzer"
-    },
-    "msg": {
-      "done": "Die XP von {user} wurden zurückgesetzt.",
-      "nothing": "{user} hat keine XP zum Zurücksetzen."
-    }
-  },
-  "levelrole": {
-    "name": "levelrolle",
-    "description": "Level-Belohnungsrollen festlegen, entfernen oder auflisten",
-    "level": {
-      "name": "level",
-      "description": "Das Level (leer lassen, um Belohnungen aufzulisten)"
-    },
-    "role": {
-      "name": "rolle",
-      "description": "Die Belohnungsrolle (leer lassen, um die Belohnung zu entfernen)"
-    },
-    "msg": {
-      "title": "Level-Belohnungen",
-      "empty": "Es sind keine Level-Belohnungen festgelegt.",
-      "entry": "Level **{level}** → {role}",
-      "set": "Mitglieder, die Level **{level}** erreichen, erhalten {role}.",
-      "removed": "Die Belohnung für Level **{level}** wurde entfernt.",
-      "missing": "Für Level **{level}** gibt es keine Belohnung.",
-      "invalidLevel": "Gib ein Level zwischen 1 und {max} ein."
-    }
-  },
-  "xpignore": {
-    "name": "xpignorieren",
-    "description": "XP-Gewinn in einem Kanal stoppen oder wieder erlauben",
-    "channel": {
-      "name": "kanal",
-      "description": "Der Kanal (Standard: dieser)"
-    },
-    "msg": {
-      "added": "In {channel} gibt es keine XP mehr.",
-      "removed": "In {channel} gibt es wieder XP.",
-      "list": "Kanäle ohne XP"
-    }
-  },
-  "modlog": {
-    "mute": "Benutzer stummgeschaltet",
-    "ban": "Benutzer gebannt",
-    "purge": "Nachrichten gelöscht",
-    "line": "{moderator} → {target}",
-    "count": "Nachrichten"
-  },
-  "welcome": {
-    "msg": {
-      "default": "Willkommen auf {server}, {user}!"
-    },
-    "card": {
-      "title": "Willkommen",
-      "subtitle": "{server} · Mitglied Nr. {count}"
     }
   }
 }

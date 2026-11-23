@@ -1,5 +1,3 @@
-import { ChannelType } from 'micup.ts';
-
 export function defineSettings({ settings, i18n, config }) {
   settings.define('prefix', {
     category: 'general',
@@ -52,8 +50,6 @@ export function defineSettings({ settings, i18n, config }) {
     max: 1000,
   });
 
-  settings.define('moderation.logChannel', { category: 'moderation', type: 'channel', default: null });
-
   settings.define('ban.sessionSeconds', {
     category: 'moderation',
     type: 'integer',
@@ -80,25 +76,4 @@ export function defineSettings({ settings, i18n, config }) {
   settings.define('guildtag.removeRoles', { category: 'guildtag', requires: 'guildTag', type: 'boolean', default: true });
 
   settings.define('guildtag.logChannel', { category: 'guildtag', requires: 'guildTag', type: 'channel', default: null });
-
-  settings.define('welcome.channel', { category: 'welcome', type: 'channel', default: null });
-
-  settings.define('welcome.message', { category: 'welcome', type: 'string', default: '', maxLength: 200 });
-
-  settings.define('automod.adExemptChannels', {
-    category: 'automod',
-    type: 'channels',
-    default: [],
-    channelTypes: [
-      ChannelType.GuildText, ChannelType.GuildAnnouncement, ChannelType.GuildForum, ChannelType.GuildMedia,
-      ChannelType.AnnouncementThread, ChannelType.PublicThread, ChannelType.PrivateThread,
-    ],
-  });
-  settings.define('automod.profanityWords', {
-    category: 'automod',
-    type: 'string',
-    default: 'amk, aq, amına koyayım, ananı sikeyim, göt, orospu, oç, piç, sik, siktir, yarrak',
-    maxLength: 2000,
-    allowEmpty: true,
-  });
 }

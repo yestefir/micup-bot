@@ -1,7 +1,6 @@
 name: Guard main
 
-# main'e yalnızca üretim kodu girer. Testler (test/ ve "test" script'i), scripts/ ve test.yml dev dalında kalır.
-# PR dalını scripts/release-branch.sh hazırlar.
+# main'e yalnızca üretim kodu girer. Testler (test/ ve "test" script'i) dev dalında kalır.
 on:
   pull_request:
     branches: [main]
@@ -12,22 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Block dev-only files
         run: |
           set -eu
-          bad=$(git ls-tree -r --name-only HEAD -- test scripts .github/workflows/test.yml)
+          bad=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD" | grep -E '^test/' || true)
           if [ -n "$bad" ]; then
             echo "::error::Bu PR main'e girmemesi gereken dosyalar içeriyor:"
             echo "$bad"
             exit 1
           fi
-          node <<'NODE'
-          const fs = require('node:fs');
-          const { scripts } = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-          if (Object.hasOwn(scripts ?? {}, 'test')) {
-            console.error('::error::package.json içindeki "test" script\'i main\'e girmemeli.');
-            process.exitCode = 1;
-          }
-          NODE
+          if node -e "process.exit(JSON.parse(require('fs').readFileSync('package.json','utf8')).scripts?.test ? 0 : 1)"; then
+            echo "::error::package.json içindeki \"test\" script'i main'e girmemeli."
+            exit 1
+          fi
           echo "OK"

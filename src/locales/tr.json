@@ -19,7 +19,6 @@
     "botMissingPermission": "Benim şu yetkiye ihtiyacım var: {permission}",
     "usage": "Kullanım: {usage}",
     "setting": {
-      "tooManyChannels": "En fazla {max} kanal seçilebilir.",
       "invalidInteger": "Değer tam sayı olmalı.",
       "invalidBoolean": "Değer true veya false olmalı.",
       "tooSmall": "Değer en az {min} olmalı.",
@@ -128,8 +127,6 @@
     "aliases": "ayar",
     "description": "Sunucu ayarları panelini açar",
     "panel": {
-      "pickChannels": "Reklama izin verilen kanalları seç",
-      "channelsCount": "Kanal: {count}",
       "title": "Sunucu ayarları",
       "value": "Değer",
       "default": "Varsayılan",
@@ -153,10 +150,6 @@
       "unknownKey": "Bilinmeyen ayar: {key}"
     },
     "items": {
-      "automod": {
-        "adExemptChannels": "Dış bağlantılara izin verilen kanallar. Görsel yükleme izni her kanalda kontrol edilir.",
-        "profanityWords": "Engellenecek kelimeleri ve ifadeleri virgülle ayır. Boş bırakırsan liste temizlenir."
-      },
       "prefix": "Komutları başlatan işaret, örneğin !",
       "language": "Botun bu sunucuda kullandığı dil",
       "levels": {
@@ -183,13 +176,6 @@
         "roles": "Sunucu etiketini takan üyelere verilen roller",
         "removeRoles": "Etiket çıkarılınca verilen roller geri alınsın",
         "logChannel": "Etiket takıldığında ve çıkarıldığında log gönderilecek kanal"
-      },
-      "moderation": {
-        "logChannel": "Moderasyon işlemlerinin (ban, mute, sil) kaydedildiği kanal"
-      },
-      "welcome": {
-        "channel": "Yeni üyelerin kartla karşılandığı kanal (boş = kapalı)",
-        "message": "Karşılama metni. {user}, {server} ve {count} kullanılabilir. Boş = varsayılan metin"
       }
     },
     "choices": {
@@ -201,24 +187,15 @@
       }
     },
     "categories": {
-      "automod": "Otomatik moderasyon",
       "general": "Genel",
       "levels": "Seviye",
       "moderation": "Moderasyon",
       "autorole": "Otomatik rol",
-      "guildtag": "Sunucu etiketi",
-      "welcome": "Hoşgeldin"
+      "guildtag": "Sunucu etiketi"
     },
     "requirements": {
       "guildTag": "Sunucu etiketi aktif değil. Etiket açılana kadar bu ayarlar düzenlenemez."
     }
-  },
-  "automod": {
-    "mediaPermission": "Bu kanalda görsel yükleme iznin yok.",
-    "advertisement": "Bu kanalda reklam bağlantısı paylaşamazsın.",
-    "profanity": "Lütfen küfür kullanma.",
-    "caps": "Lütfen mesajında daha az büyük harf kullan.",
-    "spam": "Lütfen kısa sürede çok fazla veya tekrarlanan mesaj gönderme."
   },
   "rank": {
     "name": "seviye",
@@ -234,8 +211,7 @@
       "levelUp": "{user} seviye atladı! Yeni seviye: **{level}**",
       "level": "Seviye",
       "rank": "Sıralama",
-      "totalXp": "Toplam XP",
-      "nextReward": "Sıradaki ödül"
+      "totalXp": "Toplam XP"
     },
     "card": {
       "levelUp": "Seviye atladı"
@@ -267,137 +243,6 @@
       "rolesGiven": "Verilen roller",
       "rolesRemoved": "Geri alınan roller",
       "rolesFailed": "Değiştirilemeyen roller"
-    }
-  },
-  "ping": {
-    "name": "ping",
-    "description": "Botun gecikmesini gösterir",
-    "msg": {
-      "pong": "Pong! Gecikme: **{ms} ms**"
-    }
-  },
-  "help": {
-    "name": "yardim",
-    "description": "Kullanabileceğin komutları listeler",
-    "msg": {
-      "title": "Komutlar",
-      "footer": "Bazı komutlar ek yetki gerektirir."
-    }
-  },
-  "avatar": {
-    "name": "avatar",
-    "description": "Bir kullanıcının avatarını gösterir",
-    "user": {
-      "name": "kullanici",
-      "description": "Kullanıcı"
-    },
-    "msg": {
-      "title": "{user} kullanıcısının avatarı",
-      "none": "Bu kullanıcının avatarı yok.",
-      "open": "Tam boyutta aç"
-    }
-  },
-  "userinfo": {
-    "name": "kullanicibilgi",
-    "description": "Bir kullanıcı hakkında bilgi verir",
-    "user": {
-      "name": "kullanici",
-      "description": "Kullanıcı"
-    },
-    "msg": {
-      "title": "Kullanıcı bilgisi",
-      "id": "ID",
-      "created": "Hesap oluşturma",
-      "joined": "Sunucuya katılma",
-      "bot": "Bot"
-    }
-  },
-  "serverinfo": {
-    "name": "sunucubilgi",
-    "description": "Bu sunucu hakkında bilgi verir",
-    "msg": {
-      "title": "Sunucu bilgisi",
-      "owner": "Sahip",
-      "members": "Üye",
-      "created": "Oluşturulma",
-      "id": "ID"
-    }
-  },
-  "xpadjust": {
-    "name": "xpayarla",
-    "description": "XP ekler veya çıkarır (çıkarmak için negatif miktar gir)",
-    "user": {
-      "name": "kullanici",
-      "description": "Kullanıcı"
-    },
-    "amount": {
-      "name": "miktar",
-      "description": "Eklenecek XP (çıkarmak için negatif)"
-    },
-    "msg": {
-      "done": "{user} artık **{xp}** XP'ye sahip (seviye {level})."
-    }
-  },
-  "xpreset": {
-    "name": "xpsifirla",
-    "description": "Bir kullanıcının XP'sini sıfırlar",
-    "user": {
-      "name": "kullanici",
-      "description": "Kullanıcı"
-    },
-    "msg": {
-      "done": "{user} kullanıcısının XP'si sıfırlandı.",
-      "nothing": "{user} kullanıcısının sıfırlanacak XP'si yok."
-    }
-  },
-  "levelrole": {
-    "name": "seviyerol",
-    "description": "Seviye ödül rollerini ayarlar, kaldırır veya listeler",
-    "level": {
-      "name": "seviye",
-      "description": "Seviye (ödülleri listelemek için boş bırak)"
-    },
-    "role": {
-      "name": "rol",
-      "description": "Ödül rolü (ödülü kaldırmak için boş bırak)"
-    },
-    "msg": {
-      "title": "Seviye ödülleri",
-      "empty": "Hiç seviye ödülü ayarlanmamış.",
-      "entry": "Seviye **{level}** → {role}",
-      "set": "**{level}**. seviyeye ulaşan üyeler {role} rolünü alacak.",
-      "removed": "**{level}**. seviye ödülü kaldırıldı.",
-      "missing": "**{level}**. seviye için ödül yok.",
-      "invalidLevel": "1 ile {max} arasında bir seviye gir."
-    }
-  },
-  "xpignore": {
-    "name": "xpyoksay",
-    "description": "Bir kanalda XP kazanmayı durdurur veya geri açar",
-    "channel": {
-      "name": "kanal",
-      "description": "Kanal (varsayılan: bu kanal)"
-    },
-    "msg": {
-      "added": "{channel} artık XP vermiyor.",
-      "removed": "{channel} yeniden XP veriyor.",
-      "list": "XP verilmeyen kanallar"
-    }
-  },
-  "modlog": {
-    "mute": "Kullanıcı susturuldu",
-    "ban": "Kullanıcı yasaklandı",
-    "purge": "Mesajlar silindi",
-    "line": "{moderator} → {target}",
-    "count": "Mesaj"
-  },
-  "welcome": {
-    "msg": {
-      "default": "{server} sunucusuna hoş geldin, {user}!"
-    },
-    "card": {
-      "title": "Hoş geldin",
-      "subtitle": "{server} · {count}. üye"
     }
   }
 }
