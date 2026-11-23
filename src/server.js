@@ -6,7 +6,7 @@ import { Interactions } from './core/interaction/core.js';
 const app = createApp();
 
 if (!app.config.token) {
-  app.logger.error('MICUP_BOT_TOKEN is not set. Copy .env.example to .env and fill it in.');
+  app.logger.error('MICUP_BOT_TOKEN is not set. Set it in the environment or in a local .env file.');
   process.exit(1);
 }
 
