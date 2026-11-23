@@ -242,5 +242,12 @@
       "rolesRemoved": "Roles taken back",
       "rolesFailed": "Roles that could not be changed"
     }
+  },
+  "ping": {
+    "name": "ping",
+    "description": "Check the bot latency",
+    "msg": {
+      "pong": "Pong! Latency: **{ms} ms**"
+    }
   }
 }

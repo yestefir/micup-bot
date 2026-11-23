@@ -37,7 +37,7 @@ test('the log marks empty groups and the global scope', async () => {
   assert.equal(world.logs.at(-1), '[slash] global | created: - | updated: - | deleted: - | unchanged: 2');
 });
 
-const ALL_NAMES = ['ban', 'leaderboard', 'mute', 'purge', 'rank', 'settings'];
+const ALL_NAMES = ['ban', 'leaderboard', 'mute', 'ping', 'purge', 'rank', 'settings'];
 const serverNames = (world) => [...world.server.values()].map((command) => command.name).sort();
 const hasLocales = (command) => JSON.stringify(command).includes('_localizations');
 
@@ -94,7 +94,7 @@ test('one broken command does not stop the others', async () => {
   const summary = await world.interactions.register();
 
   assert.deepEqual(summary.failed, ['ban']);
-  assert.deepEqual(serverNames(world), ['leaderboard', 'mute', 'purge', 'rank', 'settings']);
+  assert.deepEqual(serverNames(world), ['leaderboard', 'mute', 'ping', 'purge', 'rank', 'settings']);
   assert.ok(world.errors.some((line) => line.includes('"ban" is rejected even without localizations (root: INVALID_FORMAT)')));
   assert.match(world.logs.at(-1), /failed: ban/);
 });

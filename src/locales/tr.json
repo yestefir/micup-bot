@@ -244,5 +244,12 @@
       "rolesRemoved": "Geri alınan roller",
       "rolesFailed": "Değiştirilemeyen roller"
     }
+  },
+  "ping": {
+    "name": "ping",
+    "description": "Botun gecikmesini gösterir",
+    "msg": {
+      "pong": "Pong! Gecikme: **{ms} ms**"
+    }
   }
 }

@@ -84,8 +84,8 @@ const history = (count, authorOf = () => '300') =>
 
 test('loads both slash commands and both prefix commands', async () => {
   const { client, interactions } = await setup();
-  assert.deepEqual([...client.slash.keys()].sort(), ['ban', 'leaderboard', 'mute', 'purge', 'rank', 'settings']);
-  assert.deepEqual([...interactions.prefix.commands.keys()].sort(), ['ban', 'leaderboard', 'mute', 'purge', 'rank', 'settings']);
+  assert.deepEqual([...client.slash.keys()].sort(), ['ban', 'leaderboard', 'mute', 'ping', 'purge', 'rank', 'settings']);
+  assert.deepEqual([...interactions.prefix.commands.keys()].sort(), ['ban', 'leaderboard', 'mute', 'ping', 'purge', 'rank', 'settings']);
 });
 
 test('prefix sil deletes the requested number of messages before the command', async () => {

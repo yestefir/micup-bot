@@ -68,6 +68,7 @@ Türkçe, İngilizce (`en-US`), Almanca, İspanyolca (`es-ES`), Fransızca ve Ru
 | --- | --- | --- | --- |
 | `seviye [kullanıcı]` | `rank`, `level`, `xp` | Seviye ve XP durumunu gösterir | — |
 | `liderlik [sayfa]` | `top`, `leaderboard`, `siralama` | Sunucu sıralamasını gösterir | — |
+| `ping` | — | Botun gecikmesini gösterir | — |
 | `ayarlar` | `ayar` | Ayar panelini açar | Sunucuyu Yönet |
 | `mute <kullanıcı>` | `sustur`, `sus` | Kullanıcıyı süreli susturur | Üyeleri Zaman Aşımına Uğrat |
 | `ban <kullanıcı>` | `yasakla` | Kullanıcıyı yasaklar | Üyeleri Yasakla |

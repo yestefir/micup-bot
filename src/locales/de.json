@@ -244,5 +244,12 @@
       "rolesRemoved": "Entzogene Rollen",
       "rolesFailed": "Rollen, die nicht geändert werden konnten"
     }
+  },
+  "ping": {
+    "name": "ping",
+    "description": "Zeigt die Latenz des Bots",
+    "msg": {
+      "pong": "Pong! Latenz: **{ms} ms**"
+    }
   }
 }
