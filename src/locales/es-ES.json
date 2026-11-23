@@ -153,6 +153,9 @@
       "unknownKey": "Ajuste desconocido: {key}"
     },
     "items": {
+      "voice": {
+        "channel": "Canal de voz al que se une el bot. Restablece el ajuste para desconectarlo."
+      },
       "automod": {
         "adExemptChannels": "Canales donde se permiten enlaces externos. El permiso de subida se comprueba en todos los canales.",
         "profanityWords": "Separa con comas las palabras y frases bloqueadas. Déjalo vacío para borrar la lista."
@@ -201,6 +204,7 @@
       }
     },
     "categories": {
+      "voice": "Voz",
       "automod": "Moderación automática",
       "general": "General",
       "levels": "Niveles",
@@ -219,6 +223,13 @@
     "profanity": "Evita usar palabrotas.",
     "caps": "Evita escribir todo el mensaje en mayúsculas.",
     "spam": "Evita mandar mensajes demasiado rápido o repetirlos."
+  },
+  "voice": {
+    "invalidChannel": "Elige un canal de voz de este servidor.",
+    "missingPermissions": "El bot necesita permiso para ver el canal y conectarse.",
+    "unavailable": "La conexión de voz no está disponible. Inténtalo de nuevo en un momento.",
+    "connectionFailed": "El bot no pudo conectarse al canal de voz. Inténtalo de nuevo en un momento.",
+    "unsupportedChannel": "Este canal de voz usa cifrado de extremo a extremo o una conexión entre pares."
   },
   "rank": {
     "name": "nivel",

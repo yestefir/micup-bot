@@ -214,6 +214,7 @@ test('every built in setting declares a category', async () => {
     'guildtag.logChannel': 'guildtag',
     'automod.adExemptChannels': 'automod',
     'automod.profanityWords': 'automod',
+    'voice.channel': 'voice',
   });
   for (const category of new Set(Object.values(categories))) {
     for (const code of app.i18n.codes) {

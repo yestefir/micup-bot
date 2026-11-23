@@ -31,6 +31,7 @@ let stopping = false;
 async function shutdown() {
   if (stopping) return;
   stopping = true;
+  await app.voiceChannels.close();
   await client.destroy();
   app.settings.close();
   app.levels.close();

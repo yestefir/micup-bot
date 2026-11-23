@@ -66,7 +66,7 @@ test('Micup media links require Attach Files in the message channel and the warn
 test('the settings panel saves channel exemptions and lets an administrator replace and clear the profanity list', async () => {
   const world = await createWorld();
   const panel = await openPanel(world);
-  const category = await panel.left(1);
+  const category = await panel.left(2);
   const [[select]] = controls(category).slice(1);
   assert.equal(select.type, 8);
   assert.equal(select.max_values, 25);

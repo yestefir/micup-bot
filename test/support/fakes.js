@@ -228,6 +228,7 @@ export function click(customId, { user = 'A', values = [] } = {}) {
     },
     showModal: async (form) => log.modals.push(form),
     reply: async (payload) => log.replies.push(payload),
+    followUp: async (payload) => log.replies.push(payload),
   };
 }
 

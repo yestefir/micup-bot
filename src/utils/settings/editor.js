@@ -1,7 +1,9 @@
 import { randomUUID } from 'node:crypto';
 import { modal, paragraphInput } from 'micup.ts/easy';
 import panelConfig from '../../config/general/panel.json' with { type: 'json' };
+import { SettingError } from '../../core/settings/settings.js';
 import { createSession } from '../interaction/session.js';
+import { VOICE_CHANNEL_SETTING, VoiceChannelError } from '../voice/channels.js';
 import { findEditable, settingsPanel } from './panel.js';
 import { isLocked } from './requirements.js';
 import { buildView, groupByCategory, requirementNotice } from './view.js';
@@ -68,6 +70,21 @@ export async function openSettingsPanel(context, { actor }) {
   const rejectWith = (interaction, text) =>
     interaction.reply({ embeds: [context.embed('error', text)], ephemeral: true });
 
+  const changeVoice = async (interaction, value) => {
+    await interaction.deferUpdate();
+    try {
+      await context.app.voiceChannels.change(client, guildId, value);
+    } catch (error) {
+      let key = 'voice.connectionFailed';
+      if (error instanceof SettingError) key = 'errors.setting.' + error.code;
+      if (error instanceof VoiceChannelError) key = 'voice.' + error.code;
+      await interaction.followUp({ embeds: [context.embed('error', t(key, error.params))], ephemeral: true });
+      return;
+    }
+    const next = view();
+    await panel.edit('info', next.text, next.options);
+  };
+
   const focus = (key) => {
     const list = groups();
     const target = list.findIndex((group) => group.items.some((item) => item.definition.key === key));
@@ -106,6 +123,13 @@ export async function openSettingsPanel(context, { actor }) {
       return;
     }
 
+    if (current.key === VOICE_CHANNEL_SETTING && CHANGING_ACTIONS.has(action)) {
+      if (action === 'reset') await changeVoice(interaction, null);
+      else if (action === 'channel') await changeVoice(interaction, interaction.values[0]);
+      else await rejectWith(interaction, t('errors.generic'));
+      return;
+    }
+
     if (action === 'up' || action === 'down') {
       positions.set(group.key, wrap(position(list), action === 'up' ? -1 : 1, group.items.length));
       await refreshLock();
@@ -127,6 +151,10 @@ export async function openSettingsPanel(context, { actor }) {
       await interaction.showModal(form(current));
     } else if (action === 'modal') {
       const target = findEditable(context, argument);
+      if (target?.key === VOICE_CHANNEL_SETTING) {
+        await rejectWith(interaction, t('voice.invalidChannel'));
+        return;
+      }
       if (target && (await isLocked(context, target))) {
         await rejectWith(interaction, requirementNotice(context, target) ?? t('errors.generic'));
         return;
