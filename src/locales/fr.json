@@ -176,6 +176,9 @@
         "roles": "Rôles donnés aux membres qui portent le tag du serveur",
         "removeRoles": "Retirer les rôles quand le tag est enlevé",
         "logChannel": "Salon des journaux quand quelqu'un prend ou enlève le tag"
+      },
+      "moderation": {
+        "logChannel": "Salon où sont journalisées les actions de modération (ban, mute, purge)"
       }
     },
     "choices": {
@@ -251,5 +254,120 @@
     "msg": {
       "pong": "Pong ! Latence : **{ms} ms**"
     }
+  },
+  "help": {
+    "name": "aide",
+    "description": "Liste les commandes disponibles",
+    "msg": {
+      "title": "Commandes",
+      "footer": "Certaines commandes demandent des permissions supplémentaires."
+    }
+  },
+  "avatar": {
+    "name": "avatar",
+    "description": "Affiche l'avatar d'un utilisateur",
+    "user": {
+      "name": "utilisateur",
+      "description": "L'utilisateur"
+    },
+    "msg": {
+      "title": "Avatar de {user}",
+      "none": "Cet utilisateur n'a pas d'avatar.",
+      "open": "Ouvrir en taille réelle"
+    }
+  },
+  "userinfo": {
+    "name": "infoutilisateur",
+    "description": "Affiche des informations sur un utilisateur",
+    "user": {
+      "name": "utilisateur",
+      "description": "L'utilisateur"
+    },
+    "msg": {
+      "title": "Infos de l'utilisateur",
+      "id": "ID",
+      "created": "Compte créé",
+      "joined": "A rejoint le serveur",
+      "bot": "Bot"
+    }
+  },
+  "serverinfo": {
+    "name": "infoserveur",
+    "description": "Affiche des informations sur ce serveur",
+    "msg": {
+      "title": "Infos du serveur",
+      "owner": "Propriétaire",
+      "members": "Membres",
+      "created": "Créé",
+      "id": "ID"
+    }
+  },
+  "xpadjust": {
+    "name": "ajusterxp",
+    "description": "Ajoute ou retire de l'XP (nombre négatif pour retirer)",
+    "user": {
+      "name": "utilisateur",
+      "description": "L'utilisateur"
+    },
+    "amount": {
+      "name": "nombre",
+      "description": "XP à ajouter (négatif pour retirer)"
+    },
+    "msg": {
+      "done": "{user} a maintenant **{xp}** XP (niveau {level})."
+    }
+  },
+  "xpreset": {
+    "name": "reinitialiserxp",
+    "description": "Réinitialise l'XP d'un utilisateur",
+    "user": {
+      "name": "utilisateur",
+      "description": "L'utilisateur"
+    },
+    "msg": {
+      "done": "L'XP de {user} a été réinitialisée.",
+      "nothing": "{user} n'a pas d'XP à réinitialiser."
+    }
+  },
+  "levelrole": {
+    "name": "rolesniveau",
+    "description": "Définit, retire ou liste les rôles de récompense par niveau",
+    "level": {
+      "name": "niveau",
+      "description": "Le niveau (laisser vide pour lister les récompenses)"
+    },
+    "role": {
+      "name": "role",
+      "description": "Le rôle de récompense (laisser vide pour retirer la récompense)"
+    },
+    "msg": {
+      "title": "Récompenses de niveau",
+      "empty": "Aucune récompense de niveau n'est définie.",
+      "entry": "Niveau **{level}** → {role}",
+      "set": "Les membres qui atteignent le niveau **{level}** recevront {role}.",
+      "removed": "La récompense du niveau **{level}** a été retirée.",
+      "missing": "Il n'y a pas de récompense pour le niveau **{level}**.",
+      "invalidLevel": "Saisis un niveau entre 1 et {max}."
+    }
+  },
+  "xpignore": {
+    "name": "ignorerxp",
+    "description": "Arrête ou reprend le gain d'XP dans un salon",
+    "channel": {
+      "name": "salon",
+      "description": "Le salon (par défaut : celui-ci)"
+    },
+    "msg": {
+      "added": "{channel} ne donne plus d'XP.",
+      "removed": "{channel} donne de nouveau de l'XP.",
+      "list": "Salons sans XP"
+    }
+  },
+  "modlog": {
+    "mute": "Utilisateur rendu muet",
+    "ban": "Utilisateur banni",
+    "purge": "Messages supprimés",
+    "line": "{moderator} → {target}",
+    "count": "Messages"
   }
 }

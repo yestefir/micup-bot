@@ -50,6 +50,8 @@ export function defineSettings({ settings, i18n, config }) {
     max: 1000,
   });
 
+  settings.define('moderation.logChannel', { category: 'moderation', type: 'channel', default: null });
+
   settings.define('ban.sessionSeconds', {
     category: 'moderation',
     type: 'integer',

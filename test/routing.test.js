@@ -78,7 +78,7 @@ test('a real client routes a slash command to the loaded handler', async () => {
 test('a real client reaches every loaded slash command', async () => {
   const { client, calls } = await realClient();
   const names = [...client.interactions.slash.commands.keys()].sort();
-  assert.deepEqual(names, ['ban', 'leaderboard', 'mute', 'ping', 'purge', 'rank', 'settings']);
+  assert.deepEqual(names, ['avatar', 'ban', 'help', 'leaderboard', 'levelrole', 'mute', 'ping', 'purge', 'rank', 'serverinfo', 'settings', 'userinfo', 'xpadjust', 'xpignore', 'xpreset']);
 
   for (const name of names) {
     calls.length = 0;

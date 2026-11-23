@@ -2,6 +2,7 @@ import { createContext } from '../../core/interaction/src/context.js';
 import { attachResponder, messageTarget } from '../message/response.js';
 import { deliverLevelUp } from './deliver.js';
 import { levelFromXp } from './formula.js';
+import { giveLevelRewards } from './rewards.js';
 
 export function rollXp(settings, guildId, random = Math.random) {
   const low = settings.get(guildId, 'levels.xpMin');
@@ -16,6 +17,7 @@ export async function handleMessageXp({ app, client, message, now = Date.now(), 
   const { settings, levels } = app;
   if (!settings.get(guildId, 'levels.enabled')) return null;
   if (message.content.startsWith(settings.get(guildId, 'prefix'))) return null;
+  if (message.channelId && levels.isIgnored(guildId, message.channelId)) return null;
 
   const cooldownMs = settings.get(guildId, 'levels.cooldownSeconds') * 1000;
   const userId = message.author.id;
@@ -27,6 +29,8 @@ export async function handleMessageXp({ app, client, message, now = Date.now(), 
   const after = levels.addMessageXp(guildId, userId, gained, now);
   const from = levelFromXp(before);
   const to = levelFromXp(after);
+
+  if (to > from) await giveLevelRewards({ app, client, member: message.member, guildId, from, to });
 
   if (to > from && settings.get(guildId, 'levels.announce') === 'message') {
     const context = createContext(app, client, { guildId });

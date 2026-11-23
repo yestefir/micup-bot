@@ -19,7 +19,7 @@ import { PADDED, actionsOf, controls, field, footerOf, lines, openPanel, rawLine
 
 const GENERAL_WIDTH = 'language'.length;
 const LEVELS_WIDTH = 'levels.cooldownSeconds'.length;
-const MODERATION_WIDTH = 'mute.sessionSeconds'.length;
+const MODERATION_WIDTH = 'moderation.logChannel'.length;
 
 async function worldWithAccess() {
   const world = await createWorld();
@@ -85,6 +85,7 @@ test('right and left switch between category pages and wrap around', async () =>
   assert.deepEqual(lines(moderation), [
     row('mute.sessionSeconds', '15', true, MODERATION_WIDTH),
     row('purge.maxAmount', '100', false, MODERATION_WIDTH),
+    row('moderation.logChannel', '—', false, MODERATION_WIDTH),
     row('ban.sessionSeconds', '15', false, MODERATION_WIDTH),
   ]);
 
@@ -238,7 +239,7 @@ test('number settings get a number modal, validate the range and keep the page a
   assert.equal(valueOf(world, 'purge.maxAmount'), 250);
   const edited = message.edits.at(-1);
   assert.equal(lines(edited)[1], row('purge.maxAmount', '250', true, MODERATION_WIDTH));
-  assert.equal(footerOf(edited), `Sayfa 3/${PAGE_COUNT} · 2/3`);
+  assert.equal(footerOf(edited), `Sayfa 3/${PAGE_COUNT} · 2/4`);
 });
 
 test('an answer for a setting on another page brings that page to the front', async () => {
@@ -790,7 +791,7 @@ test('the panel keeps one height on every page and for every kind of setting', a
     for (let position = 1; position < size; position += 1) record(await down(1));
   }
 
-  assert.equal(shapes.length, 2 + 6 + 3 + 1 + 3 + 2);
+  assert.equal(shapes.length, 2 + 6 + 4 + 1 + 3 + 2);
   assert.deepEqual(new Set(shapes.map((shape) => shape.listRows)), new Set([6]));
   assert.deepEqual(new Set(shapes.map((shape) => shape.componentRows)), new Set([3]));
   assert.deepEqual(new Set(shapes.map((shape) => shape.fields)), new Set([3]));

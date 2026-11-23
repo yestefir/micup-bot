@@ -186,6 +186,11 @@ export class Settings extends EventEmitter {
     return true;
   }
 
+  clear(scope) {
+    this.#db.prepare("DELETE FROM settings WHERE scope = ?").run(scope);
+    this.#scopes.delete(scope);
+  }
+
   entries(scope, { editableOnly = false } = {}) {
     return this.definitions
       .filter((definition) => !editableOnly || definition.editable)

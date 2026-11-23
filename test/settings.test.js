@@ -204,6 +204,7 @@ test('every built in setting declares a category', async () => {
     'levels.channel': 'levels',
     'mute.sessionSeconds': 'moderation',
     'purge.maxAmount': 'moderation',
+    'moderation.logChannel': 'moderation',
     'ban.sessionSeconds': 'moderation',
     'autorole.roles': 'autorole',
     'guildtag.roles': 'guildtag',

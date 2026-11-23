@@ -27,7 +27,7 @@ test('formatDuration is compact', () => {
 
 test('all four moderation commands are loaded', async () => {
   const world = await createWorld();
-  assert.deepEqual([...world.client.slash.keys()].sort(), ['ban', 'leaderboard', 'mute', 'ping', 'purge', 'rank', 'settings']);
+  assert.deepEqual([...world.client.slash.keys()].sort(), ['avatar', 'ban', 'help', 'leaderboard', 'levelrole', 'mute', 'ping', 'purge', 'rank', 'serverinfo', 'settings', 'userinfo', 'xpadjust', 'xpignore', 'xpreset']);
   assert.ok(world.interactions.prefix.commands.has('mute'));
   assert.ok(world.interactions.prefix.commands.has('ban'));
 });

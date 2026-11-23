@@ -174,6 +174,9 @@
         "roles": "Roles given to members who wear the server tag",
         "removeRoles": "Take the roles back when the tag is removed",
         "logChannel": "Channel for logs when someone takes or removes the tag"
+      },
+      "moderation": {
+        "logChannel": "Channel where moderation actions (ban, mute, purge) are logged"
       }
     },
     "choices": {
@@ -249,5 +252,120 @@
     "msg": {
       "pong": "Pong! Latency: **{ms} ms**"
     }
+  },
+  "help": {
+    "name": "help",
+    "description": "List the commands you can use",
+    "msg": {
+      "title": "Commands",
+      "footer": "Some commands need extra permissions."
+    }
+  },
+  "avatar": {
+    "name": "avatar",
+    "description": "Show a user's avatar",
+    "user": {
+      "name": "user",
+      "description": "The user"
+    },
+    "msg": {
+      "title": "{user}'s avatar",
+      "none": "This user has no avatar.",
+      "open": "Open in full size"
+    }
+  },
+  "userinfo": {
+    "name": "userinfo",
+    "description": "Show information about a user",
+    "user": {
+      "name": "user",
+      "description": "The user"
+    },
+    "msg": {
+      "title": "User info",
+      "id": "ID",
+      "created": "Account created",
+      "joined": "Joined server",
+      "bot": "Bot"
+    }
+  },
+  "serverinfo": {
+    "name": "serverinfo",
+    "description": "Show information about this server",
+    "msg": {
+      "title": "Server info",
+      "owner": "Owner",
+      "members": "Members",
+      "created": "Created",
+      "id": "ID"
+    }
+  },
+  "xpadjust": {
+    "name": "xpadjust",
+    "description": "Add or remove XP (use a negative amount to remove)",
+    "user": {
+      "name": "user",
+      "description": "The user"
+    },
+    "amount": {
+      "name": "amount",
+      "description": "XP to add (negative to remove)"
+    },
+    "msg": {
+      "done": "{user} now has **{xp}** XP (level {level})."
+    }
+  },
+  "xpreset": {
+    "name": "xpreset",
+    "description": "Reset a user's XP",
+    "user": {
+      "name": "user",
+      "description": "The user"
+    },
+    "msg": {
+      "done": "{user}'s XP was reset.",
+      "nothing": "{user} has no XP to reset."
+    }
+  },
+  "levelrole": {
+    "name": "levelrole",
+    "description": "Set, remove or list level reward roles",
+    "level": {
+      "name": "level",
+      "description": "The level (leave empty to list rewards)"
+    },
+    "role": {
+      "name": "role",
+      "description": "The reward role (leave empty to remove the reward)"
+    },
+    "msg": {
+      "title": "Level rewards",
+      "empty": "No level rewards are set.",
+      "entry": "Level **{level}** → {role}",
+      "set": "Members reaching level **{level}** will get {role}.",
+      "removed": "The reward for level **{level}** was removed.",
+      "missing": "There is no reward for level **{level}**.",
+      "invalidLevel": "Enter a level between 1 and {max}."
+    }
+  },
+  "xpignore": {
+    "name": "xpignore",
+    "description": "Stop or resume XP gain in a channel",
+    "channel": {
+      "name": "channel",
+      "description": "The channel (default: this one)"
+    },
+    "msg": {
+      "added": "{channel} no longer gives XP.",
+      "removed": "{channel} gives XP again.",
+      "list": "Channels without XP"
+    }
+  },
+  "modlog": {
+    "mute": "User muted",
+    "ban": "User banned",
+    "purge": "Messages deleted",
+    "line": "{moderator} → {target}",
+    "count": "Messages"
   }
 }
