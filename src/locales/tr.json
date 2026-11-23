@@ -153,6 +153,9 @@
       "unknownKey": "Bilinmeyen ayar: {key}"
     },
     "items": {
+      "voice": {
+        "channel": "Botun bağlanacağı ses kanalını seç. Sıfırlarsan bot kanaldan ayrılır."
+      },
       "automod": {
         "adExemptChannels": "Dış bağlantılara izin verilen kanallar. Görsel yükleme izni her kanalda kontrol edilir.",
         "profanityWords": "Engellenecek kelimeleri ve ifadeleri virgülle ayır. Boş bırakırsan liste temizlenir."
@@ -201,6 +204,7 @@
       }
     },
     "categories": {
+      "voice": "Ses",
       "automod": "Otomatik moderasyon",
       "general": "Genel",
       "levels": "Seviye",
@@ -219,6 +223,13 @@
     "profanity": "Lütfen küfür kullanma.",
     "caps": "Lütfen mesajında daha az büyük harf kullan.",
     "spam": "Lütfen kısa sürede çok fazla veya tekrarlanan mesaj gönderme."
+  },
+  "voice": {
+    "invalidChannel": "Bu sunucudan bir ses kanalı seç.",
+    "missingPermissions": "Botun kanalı görme ve kanala bağlanma izinleri olmalı.",
+    "unavailable": "Ses bağlantısı şu anda hazır değil. Biraz sonra tekrar dene.",
+    "connectionFailed": "Bot ses kanalına bağlanamadı. Biraz sonra tekrar dene.",
+    "unsupportedChannel": "Bu ses kanalı uçtan uca şifreli veya eşler arası bağlantı kullanıyor."
   },
   "rank": {
     "name": "seviye",

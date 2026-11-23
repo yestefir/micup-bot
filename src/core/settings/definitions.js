@@ -101,4 +101,11 @@ export function defineSettings({ settings, i18n, config }) {
     maxLength: 2000,
     allowEmpty: true,
   });
+
+  settings.define('voice.channel', {
+    category: 'voice',
+    type: 'channel',
+    default: null,
+    channelTypes: [ChannelType.GuildVoice],
+  });
 }

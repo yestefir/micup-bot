@@ -153,6 +153,9 @@
       "unknownKey": "Unbekannte Einstellung: {key}"
     },
     "items": {
+      "voice": {
+        "channel": "Sprachkanal für den Bot. Setze die Einstellung zurück, um ihn zu trennen."
+      },
       "automod": {
         "adExemptChannels": "Kanäle, in denen externe Links erlaubt sind. Die Upload-Berechtigung gilt in jedem Kanal.",
         "profanityWords": "Trenne gesperrte Wörter und Ausdrücke mit Kommas. Ein leeres Feld leert die Liste."
@@ -201,6 +204,7 @@
       }
     },
     "categories": {
+      "voice": "Sprache",
       "automod": "Automatische Moderation",
       "general": "Allgemein",
       "levels": "Level",
@@ -219,6 +223,13 @@
     "profanity": "Bitte verwende keine Schimpfwörter.",
     "caps": "Bitte schreibe deine Nachricht nicht komplett in Großbuchstaben.",
     "spam": "Bitte sende Nachrichten langsamer und wiederhole sie nicht."
+  },
+  "voice": {
+    "invalidChannel": "Wähle einen Sprachkanal auf diesem Server.",
+    "missingPermissions": "Der Bot braucht die Rechte, den Kanal zu sehen und ihm beizutreten.",
+    "unavailable": "Die Sprachverbindung ist gerade nicht verfügbar. Versuche es gleich noch einmal.",
+    "connectionFailed": "Der Bot konnte dem Sprachkanal nicht beitreten. Versuche es gleich noch einmal.",
+    "unsupportedChannel": "Dieser Sprachkanal verwendet Ende-zu-Ende-Verschlüsselung oder eine Peer-to-Peer-Verbindung."
   },
   "rank": {
     "name": "rang",

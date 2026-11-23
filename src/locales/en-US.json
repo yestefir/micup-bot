@@ -151,6 +151,9 @@
       "unknownKey": "Unknown setting: {key}"
     },
     "items": {
+      "voice": {
+        "channel": "Voice channel the bot joins. Reset this setting to disconnect."
+      },
       "automod": {
         "adExemptChannels": "Channels where external links are allowed. The upload permission applies in every channel.",
         "profanityWords": "Separate blocked words and phrases with commas. Leave blank to clear the list."
@@ -199,6 +202,7 @@
       }
     },
     "categories": {
+      "voice": "Voice",
       "automod": "Auto moderation",
       "general": "General",
       "levels": "Levels",
@@ -217,6 +221,13 @@
     "profanity": "Please avoid profanity.",
     "caps": "Please avoid writing your message in all caps.",
     "spam": "Please avoid sending messages too quickly or repeating them."
+  },
+  "voice": {
+    "invalidChannel": "Select a voice channel from this server.",
+    "missingPermissions": "The bot needs permission to view and join this channel.",
+    "unavailable": "The voice connection is unavailable. Try again shortly.",
+    "connectionFailed": "The bot could not connect to the voice channel. Try again shortly.",
+    "unsupportedChannel": "This voice channel uses end-to-end encryption or a peer-to-peer connection."
   },
   "rank": {
     "name": "rank",
