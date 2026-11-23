@@ -156,7 +156,8 @@
       },
       "automod": {
         "adExemptChannels": "Channels where external links are allowed. The upload permission applies in every channel.",
-        "profanityWords": "Separate blocked words and phrases with commas. Leave blank to clear the list."
+        "profanityWords": "Separate blocked words and phrases with commas. Leave blank to clear the list.",
+        "exemptRoles": "Select roles that are exempt from all automatic moderation filters."
       },
       "prefix": "Text that starts a command, for example !",
       "language": "Language the bot uses in this server",

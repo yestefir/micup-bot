@@ -158,7 +158,8 @@
       },
       "automod": {
         "adExemptChannels": "Kanäle, in denen externe Links erlaubt sind. Die Upload-Berechtigung gilt in jedem Kanal.",
-        "profanityWords": "Trenne gesperrte Wörter und Ausdrücke mit Kommas. Ein leeres Feld leert die Liste."
+        "profanityWords": "Trenne gesperrte Wörter und Ausdrücke mit Kommas. Ein leeres Feld leert die Liste.",
+        "exemptRoles": "Wähle Rollen aus, die von allen Filtern der automatischen Moderation ausgenommen sind."
       },
       "prefix": "Zeichen, mit dem Befehle beginnen, z. B. !",
       "language": "Sprache des Bots auf diesem Server",
