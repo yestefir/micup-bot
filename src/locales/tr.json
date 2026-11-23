@@ -219,7 +219,8 @@
       "levelUp": "{user} seviye atladı! Yeni seviye: **{level}**",
       "level": "Seviye",
       "rank": "Sıralama",
-      "totalXp": "Toplam XP"
+      "totalXp": "Toplam XP",
+      "nextReward": "Sıradaki ödül"
     },
     "card": {
       "levelUp": "Seviye atladı"

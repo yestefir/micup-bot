@@ -219,7 +219,8 @@
       "levelUp": "¡{user} subió de nivel! Nuevo nivel: **{level}**",
       "level": "Nivel",
       "rank": "Puesto",
-      "totalXp": "XP total"
+      "totalXp": "XP total",
+      "nextReward": "Próxima recompensa"
     },
     "card": {
       "levelUp": "Subió de nivel"

@@ -217,7 +217,8 @@
       "levelUp": "{user} leveled up! New level: **{level}**",
       "level": "Level",
       "rank": "Rank",
-      "totalXp": "Total XP"
+      "totalXp": "Total XP",
+      "nextReward": "Next reward"
     },
     "card": {
       "levelUp": "Leveled up"

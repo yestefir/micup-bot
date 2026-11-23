@@ -11,6 +11,10 @@ function bar(ratio) {
   return '▰'.repeat(filled) + '▱'.repeat(BAR_SIZE - filled);
 }
 
+export function nextReward(context, level) {
+  return context.app.levels.rewards(context.guildId).find((reward) => reward.level > level) ?? null;
+}
+
 export function rankView(context, userId) {
   const { levels } = context.app;
   const guildId = context.guildId;
@@ -29,6 +33,11 @@ export function rankView(context, userId) {
     { name: context.t('rank.msg.rank'), value: `#${levels.rankOf(guildId, userId)} / ${levels.count(guildId)}`, inline: true },
     { name: context.t('rank.msg.totalXp'), value: formatNumber(context, row.xp), inline: true },
   ];
+  const reward = nextReward(context, state.level);
+  if (reward) {
+    const value = `${context.t('rank.msg.level')} ${reward.level} → <@&${reward.roleId}>`;
+    fields.push({ name: context.t('rank.msg.nextReward'), value, inline: false });
+  }
   return { type: 'info', text, options: { title, fields } };
 }
 

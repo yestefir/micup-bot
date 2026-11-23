@@ -203,7 +203,7 @@ test('a level up is announced with a card as a reply', async () => {
   assert.equal(data.from, 0);
   assert.equal(data.level, 1);
   assert.equal(data.lang, 'tr');
-  assert.deepEqual(data.labels, { level: 'Seviye', rank: 'Sıralama', totalXp: 'Toplam XP', levelUp: 'Seviye atladı' });
+  assert.deepEqual(data.labels, { level: 'Seviye', rank: 'Sıralama', totalXp: 'Toplam XP', levelUp: 'Seviye atladı', nextReward: 'Sıradaki ödül' });
   assert.equal(cards.rank.length, 0);
 });
 
@@ -262,7 +262,7 @@ test('rank sends a card built from the right data for another user and for yours
     { name: 'T', lang: 'tr', level: 2, rank: '#2', xpInto: '45', xpNeeded: '220', totalXp: '300' },
   );
   assert.equal(data.ratio, 45 / 220);
-  assert.deepEqual(data.labels, { level: 'Seviye', rank: 'Sıralama', totalXp: 'Toplam XP', levelUp: 'Seviye atladı' });
+  assert.deepEqual(data.labels, { level: 'Seviye', rank: 'Sıralama', totalXp: 'Toplam XP', levelUp: 'Seviye atladı', nextReward: 'Sıradaki ödül' });
   assert.equal(other.files[0].description, 'T · Seviye 2 · Sıralama #2 · 300 XP');
 
   await run(world, '!seviye', 'A');

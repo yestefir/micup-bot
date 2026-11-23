@@ -17,6 +17,8 @@ export const RANK_LAYOUT = Object.freeze({
   captionY: 192,
 });
 
+export const REWARD_ROW = Object.freeze({ extra: 44, y: 238 });
+
 export const LEVEL_UP_LAYOUT = Object.freeze({
   width: 720,
   height: 176,
@@ -152,7 +154,7 @@ async function open(data) {
 }
 
 export async function renderRankCard(data) {
-  const layout = RANK_LAYOUT;
+  const layout = data.reward ? { ...RANK_LAYOUT, height: RANK_LAYOUT.height + REWARD_ROW.extra } : RANK_LAYOUT;
   const { canvasApi, image } = await open(data);
   const { canvas, context } = setup(canvasApi, layout);
   const { lang, labels } = data;
@@ -217,7 +219,25 @@ export async function renderRankCard(data) {
   context.fillStyle = colors.muted;
   context.fillText(labels.totalXp, layout.contentRight - totalTextWidth - 10, layout.captionY);
 
+  if (data.reward) drawReward(context, data.reward, layout, data.lang);
+
   return canvas.toBuffer('image/png');
+}
+
+function drawReward(context, reward, layout, lang) {
+  rule(context, layout.contentX, REWARD_ROW.y - 24, layout.contentRight - layout.contentX);
+
+  drawLabel(context, reward.label, layout.contentX, REWARD_ROW.y, 'left', lang);
+  context.font = font(600, 12);
+  spaced(context, '1.6px');
+  const labelWidth = context.measureText(reward.label.toLocaleUpperCase(lang)).width;
+  spaced(context, '0px');
+
+  context.font = font(600, 16);
+  context.fillStyle = colors.text;
+  context.textAlign = 'left';
+  const x = layout.contentX + labelWidth + 16;
+  context.fillText(fitText(context, reward.text, layout.contentRight - x), x, REWARD_ROW.y + 1);
 }
 
 export async function renderLevelUpCard(data) {

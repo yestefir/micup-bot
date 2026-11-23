@@ -214,3 +214,56 @@ test('ping answers with a latency in milliseconds and never a negative one', asy
   assert.match(pingView(context, new Date(Date.now() + 60_000)).text, /\*\*0 ms\*\*/);
   assert.match(pingView(context, new Date(Date.now() - 250)).text, /\*\*\d{3,} ms\*\*/);
 });
+
+test('the rank embed shows the next reward above the current level and nothing when there is none', async () => {
+  const world = await createWorld();
+  world.app.cards.rank = async () => { throw new Error('no canvas'); };
+  world.app.levels.adjustXp(GUILD, 'A', 100);
+  world.app.levels.setReward(GUILD, 1, 'r1');
+  world.app.levels.setReward(GUILD, 4, 'r4');
+  world.app.levels.setReward(GUILD, 9, 'r9');
+
+  const fieldNames = (reply) => reply.embeds[0].fields.map((item) => item.name);
+  const embed = await run(world, '!rank', 'A');
+  const reward = embed.embeds[0].fields.find((item) => item.name === 'Sıradaki ödül');
+  assert.equal(reward.value, 'Seviye 4 → <@&r4>');
+
+  world.app.levels.adjustXp(GUILD, 'A', 1_000_000);
+  assert.equal(fieldNames(await run(world, '!rank', 'A')).includes('Sıradaki ödül'), false);
+});
+
+test('the rank card data carries the next reward with the role name and skips unknown roles', async () => {
+  const world = await createWorld();
+  const seen = [];
+  world.app.cards.rank = async (data) => (seen.push(data), Buffer.from('png'));
+  world.app.levels.adjustXp(GUILD, 'A', 100);
+  world.app.levels.setReward(GUILD, 4, 'mod');
+  world.app.levels.setReward(GUILD, 8, 'missing');
+
+  await run(world, '!rank', 'A');
+  assert.deepEqual(seen[0].reward, { label: 'Sıradaki ödül', text: 'Seviye 4' });
+
+  world.client.rest.guilds.roles = async () => [{ id: 'mod', name: 'Moderator' }];
+  await run(world, '!rank', 'A');
+  assert.deepEqual(seen[1].reward, { label: 'Sıradaki ödül', text: 'Seviye 4 · Moderator' });
+  assert.match(seen[1].alt, /Sıradaki ödül: Seviye 4 · Moderator/);
+
+  world.client.rest.guilds.roles = async () => { throw new Error('down'); };
+  await run(world, '!rank', 'A');
+  assert.equal(seen[2].reward.text, 'Seviye 4');
+
+  world.app.levels.removeReward(GUILD, 4);
+  world.app.levels.removeReward(GUILD, 8);
+  await run(world, '!rank', 'A');
+  assert.equal(seen[3].reward, null);
+});
+
+test('a rank card with a reward is taller and a long role name still renders', async () => {
+  const { renderRankCard, RANK_LAYOUT, REWARD_ROW } = await import('../src/utils/levels/card/render.js');
+  const { loadImage } = await import('@napi-rs/canvas');
+  const base = { name: 'Test', avatar: null, lang: 'tr', labels: { level: 'Seviye', rank: 'Sıralama', totalXp: 'Toplam XP' }, level: 3, rank: '#1', ratio: 0.4, xpInto: '10', xpNeeded: '20', totalXp: '100' };
+  const plain = await loadImage(await renderRankCard(base));
+  const withReward = await loadImage(await renderRankCard({ ...base, reward: { label: 'Sıradaki ödül', text: `Seviye 10 · ${'R'.repeat(200)}` } }));
+  assert.equal(withReward.height - plain.height, REWARD_ROW.extra * (plain.height / RANK_LAYOUT.height));
+  assert.equal(withReward.width, plain.width);
+});
