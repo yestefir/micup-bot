@@ -5,6 +5,7 @@ export default {
     const guildId = data?.id;
     if (!guildId || data.unavailable) return;
     const { app } = client;
+    await app.voiceChannels.forget(guildId);
     app.settings.clear(guildId);
     app.levels.deleteGuild(guildId);
     app.guildTags.deleteGuild(guildId);

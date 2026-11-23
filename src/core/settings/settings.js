@@ -160,6 +160,11 @@ export class Settings extends EventEmitter {
     return this.#load(scope).has(key);
   }
 
+  scopesFor(key) {
+    this.#require(key);
+    return this.#db.prepare('SELECT scope FROM settings WHERE key = ?').all(key).map(({ scope }) => scope);
+  }
+
   set(scope, key, value) {
     const definition = this.#require(key);
     const typed = coerce(definition, value);

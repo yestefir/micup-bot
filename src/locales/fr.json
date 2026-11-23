@@ -153,6 +153,9 @@
       "unknownKey": "Paramètre inconnu : {key}"
     },
     "items": {
+      "voice": {
+        "channel": "Salon vocal que le bot rejoint. Réinitialise ce réglage pour le déconnecter."
+      },
       "automod": {
         "adExemptChannels": "Salons où les liens externes sont autorisés. L’autorisation de joindre des fichiers est vérifiée dans chaque salon.",
         "profanityWords": "Sépare les mots et expressions bloqués par des virgules. Laisse le champ vide pour effacer la liste."
@@ -201,6 +204,7 @@
       }
     },
     "categories": {
+      "voice": "Vocal",
       "automod": "Modération automatique",
       "general": "Général",
       "levels": "Niveaux",
@@ -219,6 +223,13 @@
     "profanity": "Évite les insultes et les grossièretés.",
     "caps": "Évite d’écrire tout ton message en majuscules.",
     "spam": "Évite d’envoyer des messages trop vite ou de les répéter."
+  },
+  "voice": {
+    "invalidChannel": "Choisis un salon vocal de ce serveur.",
+    "missingPermissions": "Le bot doit pouvoir voir le salon et s’y connecter.",
+    "unavailable": "La connexion vocale est indisponible. Réessaie dans un instant.",
+    "connectionFailed": "Le bot n’a pas pu rejoindre le salon vocal. Réessaie dans un instant.",
+    "unsupportedChannel": "Ce salon vocal utilise le chiffrement de bout en bout ou une connexion pair à pair."
   },
   "rank": {
     "name": "niveau",
