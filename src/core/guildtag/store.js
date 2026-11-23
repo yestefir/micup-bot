@@ -52,6 +52,10 @@ export class GuildTagStore {
       .map((row) => row.guildId);
   }
 
+  deleteGuild(guildId) {
+    this.#db.prepare("DELETE FROM guild_tag_members WHERE guild_id = ?").run(guildId);
+  }
+
   count(guildId) {
     return this.#db.prepare('SELECT COUNT(*) AS total FROM guild_tag_members WHERE guild_id = ?').get(guildId).total;
   }

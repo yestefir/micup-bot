@@ -19,6 +19,7 @@
     "botMissingPermission": "I need this permission: {permission}",
     "usage": "Usage: {usage}",
     "setting": {
+      "tooManyChannels": "You can select at most {max} channels.",
       "invalidInteger": "The value must be a whole number.",
       "invalidBoolean": "The value must be true or false.",
       "tooSmall": "The value must be at least {min}.",
@@ -125,6 +126,8 @@
     "aliases": "config",
     "description": "Open the server settings panel",
     "panel": {
+      "pickChannels": "Select channels that allow advertising",
+      "channelsCount": "Channels: {count}",
       "title": "Server settings",
       "value": "Value",
       "default": "Default",
@@ -148,6 +151,10 @@
       "unknownKey": "Unknown setting: {key}"
     },
     "items": {
+      "automod": {
+        "adExemptChannels": "Channels where external links are allowed. The upload permission applies in every channel.",
+        "profanityWords": "Separate blocked words and phrases with commas. Leave blank to clear the list."
+      },
       "prefix": "Text that starts a command, for example !",
       "language": "Language the bot uses in this server",
       "levels": {
@@ -174,6 +181,13 @@
         "roles": "Roles given to members who wear the server tag",
         "removeRoles": "Take the roles back when the tag is removed",
         "logChannel": "Channel for logs when someone takes or removes the tag"
+      },
+      "moderation": {
+        "logChannel": "Channel where moderation actions (ban, mute, purge) are logged"
+      },
+      "welcome": {
+        "channel": "Channel where new members are welcomed with a card (empty = off)",
+        "message": "Welcome text. Use {user}, {server} and {count}. Empty = default text"
       }
     },
     "choices": {
@@ -185,15 +199,24 @@
       }
     },
     "categories": {
+      "automod": "Auto moderation",
       "general": "General",
       "levels": "Levels",
       "moderation": "Moderation",
       "autorole": "Auto role",
-      "guildtag": "Server tag"
+      "guildtag": "Server tag",
+      "welcome": "Welcome"
     },
     "requirements": {
       "guildTag": "The server tag is not active. These settings cannot be edited until the tag is enabled."
     }
+  },
+  "automod": {
+    "mediaPermission": "You do not have permission to upload images in this channel.",
+    "advertisement": "Advertising links are not allowed in this channel.",
+    "profanity": "Please avoid profanity.",
+    "caps": "Please avoid writing your message in all caps.",
+    "spam": "Please avoid sending messages too quickly or repeating them."
   },
   "rank": {
     "name": "rank",
@@ -209,7 +232,8 @@
       "levelUp": "{user} leveled up! New level: **{level}**",
       "level": "Level",
       "rank": "Rank",
-      "totalXp": "Total XP"
+      "totalXp": "Total XP",
+      "nextReward": "Next reward"
     },
     "card": {
       "levelUp": "Leveled up"
@@ -241,6 +265,137 @@
       "rolesGiven": "Roles given",
       "rolesRemoved": "Roles taken back",
       "rolesFailed": "Roles that could not be changed"
+    }
+  },
+  "ping": {
+    "name": "ping",
+    "description": "Check the bot latency",
+    "msg": {
+      "pong": "Pong! Latency: **{ms} ms**"
+    }
+  },
+  "help": {
+    "name": "help",
+    "description": "List the commands you can use",
+    "msg": {
+      "title": "Commands",
+      "footer": "Some commands need extra permissions."
+    }
+  },
+  "avatar": {
+    "name": "avatar",
+    "description": "Show a user's avatar",
+    "user": {
+      "name": "user",
+      "description": "The user"
+    },
+    "msg": {
+      "title": "{user}'s avatar",
+      "none": "This user has no avatar.",
+      "open": "Open in full size"
+    }
+  },
+  "userinfo": {
+    "name": "userinfo",
+    "description": "Show information about a user",
+    "user": {
+      "name": "user",
+      "description": "The user"
+    },
+    "msg": {
+      "title": "User info",
+      "id": "ID",
+      "created": "Account created",
+      "joined": "Joined server",
+      "bot": "Bot"
+    }
+  },
+  "serverinfo": {
+    "name": "serverinfo",
+    "description": "Show information about this server",
+    "msg": {
+      "title": "Server info",
+      "owner": "Owner",
+      "members": "Members",
+      "created": "Created",
+      "id": "ID"
+    }
+  },
+  "xpadjust": {
+    "name": "xpadjust",
+    "description": "Add or remove XP (use a negative amount to remove)",
+    "user": {
+      "name": "user",
+      "description": "The user"
+    },
+    "amount": {
+      "name": "amount",
+      "description": "XP to add (negative to remove)"
+    },
+    "msg": {
+      "done": "{user} now has **{xp}** XP (level {level})."
+    }
+  },
+  "xpreset": {
+    "name": "xpreset",
+    "description": "Reset a user's XP",
+    "user": {
+      "name": "user",
+      "description": "The user"
+    },
+    "msg": {
+      "done": "{user}'s XP was reset.",
+      "nothing": "{user} has no XP to reset."
+    }
+  },
+  "levelrole": {
+    "name": "levelrole",
+    "description": "Set, remove or list level reward roles",
+    "level": {
+      "name": "level",
+      "description": "The level (leave empty to list rewards)"
+    },
+    "role": {
+      "name": "role",
+      "description": "The reward role (leave empty to remove the reward)"
+    },
+    "msg": {
+      "title": "Level rewards",
+      "empty": "No level rewards are set.",
+      "entry": "Level **{level}** → {role}",
+      "set": "Members reaching level **{level}** will get {role}.",
+      "removed": "The reward for level **{level}** was removed.",
+      "missing": "There is no reward for level **{level}**.",
+      "invalidLevel": "Enter a level between 1 and {max}."
+    }
+  },
+  "xpignore": {
+    "name": "xpignore",
+    "description": "Stop or resume XP gain in a channel",
+    "channel": {
+      "name": "channel",
+      "description": "The channel (default: this one)"
+    },
+    "msg": {
+      "added": "{channel} no longer gives XP.",
+      "removed": "{channel} gives XP again.",
+      "list": "Channels without XP"
+    }
+  },
+  "modlog": {
+    "mute": "User muted",
+    "ban": "User banned",
+    "purge": "Messages deleted",
+    "line": "{moderator} → {target}",
+    "count": "Messages"
+  },
+  "welcome": {
+    "msg": {
+      "default": "Welcome to {server}, {user}!"
+    },
+    "card": {
+      "title": "Welcome",
+      "subtitle": "{server} · Member #{count}"
     }
   }
 }

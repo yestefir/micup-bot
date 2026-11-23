@@ -70,6 +70,7 @@ export function attachResponder(context, target) {
       fields: options.fields,
       footer: options.footer,
       timestamp: options.timestamp,
+      image: options.image,
     });
   };
 

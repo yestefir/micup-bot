@@ -19,6 +19,7 @@
     "botMissingPermission": "Necesito este permiso: {permission}",
     "usage": "Uso: {usage}",
     "setting": {
+      "tooManyChannels": "Se pueden elegir como máximo {max} canales.",
       "invalidInteger": "El valor debe ser un número entero.",
       "invalidBoolean": "El valor debe ser true o false.",
       "tooSmall": "El valor debe ser al menos {min}.",
@@ -127,6 +128,8 @@
     "aliases": "configuracion,config",
     "description": "Abre el panel de ajustes del servidor",
     "panel": {
+      "pickChannels": "Elige los canales que permiten publicidad",
+      "channelsCount": "Canales: {count}",
       "title": "Ajustes del servidor",
       "value": "Valor",
       "default": "Predeterminado",
@@ -150,6 +153,10 @@
       "unknownKey": "Ajuste desconocido: {key}"
     },
     "items": {
+      "automod": {
+        "adExemptChannels": "Canales donde se permiten enlaces externos. El permiso de subida se comprueba en todos los canales.",
+        "profanityWords": "Separa con comas las palabras y frases bloqueadas. Déjalo vacío para borrar la lista."
+      },
       "prefix": "Carácter con el que empiezan los comandos, por ejemplo !",
       "language": "Idioma que usa el bot en este servidor",
       "levels": {
@@ -176,6 +183,13 @@
         "roles": "Roles para quienes llevan la etiqueta del servidor",
         "removeRoles": "Quitar los roles cuando se retire la etiqueta",
         "logChannel": "Canal de registros cuando alguien pone o quita la etiqueta"
+      },
+      "moderation": {
+        "logChannel": "Canal donde se registran las acciones de moderación (ban, mute, borrar)"
+      },
+      "welcome": {
+        "channel": "Canal donde se da la bienvenida a los nuevos miembros con una tarjeta (vacío = desactivado)",
+        "message": "Texto de bienvenida. Puedes usar {user}, {server} y {count}. Vacío = texto por defecto"
       }
     },
     "choices": {
@@ -187,15 +201,24 @@
       }
     },
     "categories": {
+      "automod": "Moderación automática",
       "general": "General",
       "levels": "Niveles",
       "moderation": "Moderación",
       "autorole": "Rol automático",
-      "guildtag": "Etiqueta del servidor"
+      "guildtag": "Etiqueta del servidor",
+      "welcome": "Bienvenida"
     },
     "requirements": {
       "guildTag": "La etiqueta del servidor no está activa. Estos ajustes no se pueden editar hasta que se active."
     }
+  },
+  "automod": {
+    "mediaPermission": "No tienes permiso para subir imágenes en este canal.",
+    "advertisement": "No se permiten enlaces publicitarios en este canal.",
+    "profanity": "Evita usar palabrotas.",
+    "caps": "Evita escribir todo el mensaje en mayúsculas.",
+    "spam": "Evita mandar mensajes demasiado rápido o repetirlos."
   },
   "rank": {
     "name": "nivel",
@@ -211,7 +234,8 @@
       "levelUp": "¡{user} subió de nivel! Nuevo nivel: **{level}**",
       "level": "Nivel",
       "rank": "Puesto",
-      "totalXp": "XP total"
+      "totalXp": "XP total",
+      "nextReward": "Próxima recompensa"
     },
     "card": {
       "levelUp": "Subió de nivel"
@@ -243,6 +267,137 @@
       "rolesGiven": "Roles dados",
       "rolesRemoved": "Roles retirados",
       "rolesFailed": "Roles que no se pudieron cambiar"
+    }
+  },
+  "ping": {
+    "name": "ping",
+    "description": "Muestra la latencia del bot",
+    "msg": {
+      "pong": "¡Pong! Latencia: **{ms} ms**"
+    }
+  },
+  "help": {
+    "name": "ayuda",
+    "description": "Muestra los comandos disponibles",
+    "msg": {
+      "title": "Comandos",
+      "footer": "Algunos comandos requieren permisos adicionales."
+    }
+  },
+  "avatar": {
+    "name": "avatar",
+    "description": "Muestra el avatar de un usuario",
+    "user": {
+      "name": "usuario",
+      "description": "El usuario"
+    },
+    "msg": {
+      "title": "Avatar de {user}",
+      "none": "Este usuario no tiene avatar.",
+      "open": "Abrir en tamaño completo"
+    }
+  },
+  "userinfo": {
+    "name": "infousuario",
+    "description": "Muestra información sobre un usuario",
+    "user": {
+      "name": "usuario",
+      "description": "El usuario"
+    },
+    "msg": {
+      "title": "Información del usuario",
+      "id": "ID",
+      "created": "Cuenta creada",
+      "joined": "Se unió al servidor",
+      "bot": "Bot"
+    }
+  },
+  "serverinfo": {
+    "name": "infoservidor",
+    "description": "Muestra información sobre este servidor",
+    "msg": {
+      "title": "Información del servidor",
+      "owner": "Propietario",
+      "members": "Miembros",
+      "created": "Creado",
+      "id": "ID"
+    }
+  },
+  "xpadjust": {
+    "name": "ajustarxp",
+    "description": "Añade o quita XP (usa una cantidad negativa para quitar)",
+    "user": {
+      "name": "usuario",
+      "description": "El usuario"
+    },
+    "amount": {
+      "name": "cantidad",
+      "description": "XP a añadir (negativa para quitar)"
+    },
+    "msg": {
+      "done": "{user} ahora tiene **{xp}** XP (nivel {level})."
+    }
+  },
+  "xpreset": {
+    "name": "reiniciarxp",
+    "description": "Reinicia la XP de un usuario",
+    "user": {
+      "name": "usuario",
+      "description": "El usuario"
+    },
+    "msg": {
+      "done": "La XP de {user} se reinició.",
+      "nothing": "{user} no tiene XP que reiniciar."
+    }
+  },
+  "levelrole": {
+    "name": "rolnivel",
+    "description": "Establece, quita o lista los roles de recompensa por nivel",
+    "level": {
+      "name": "nivel",
+      "description": "El nivel (déjalo vacío para listar las recompensas)"
+    },
+    "role": {
+      "name": "rol",
+      "description": "El rol de recompensa (déjalo vacío para quitar la recompensa)"
+    },
+    "msg": {
+      "title": "Recompensas por nivel",
+      "empty": "No hay recompensas por nivel configuradas.",
+      "entry": "Nivel **{level}** → {role}",
+      "set": "Los miembros que alcancen el nivel **{level}** recibirán {role}.",
+      "removed": "Se quitó la recompensa del nivel **{level}**.",
+      "missing": "No hay recompensa para el nivel **{level}**.",
+      "invalidLevel": "Introduce un nivel entre 1 y {max}."
+    }
+  },
+  "xpignore": {
+    "name": "ignorarxp",
+    "description": "Detiene o reanuda la ganancia de XP en un canal",
+    "channel": {
+      "name": "canal",
+      "description": "El canal (por defecto: este)"
+    },
+    "msg": {
+      "added": "{channel} ya no da XP.",
+      "removed": "{channel} vuelve a dar XP.",
+      "list": "Canales sin XP"
+    }
+  },
+  "modlog": {
+    "mute": "Usuario silenciado",
+    "ban": "Usuario baneado",
+    "purge": "Mensajes borrados",
+    "line": "{moderator} → {target}",
+    "count": "Mensajes"
+  },
+  "welcome": {
+    "msg": {
+      "default": "¡Bienvenido a {server}, {user}!"
+    },
+    "card": {
+      "title": "Bienvenido",
+      "subtitle": "{server} · Miembro n.º {count}"
     }
   }
 }

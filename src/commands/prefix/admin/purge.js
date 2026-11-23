@@ -1,6 +1,7 @@
 import { Permission } from 'micup.ts';
 import { parseInteger, parseUserId } from '../../../utils/args/args.js';
 import { purgeMessages } from '../../../utils/purge/purge.js';
+import { postModLog } from '../../../utils/moderation/log.js';
 
 const NOTICE_TTL_MS = 5000;
 
@@ -28,6 +29,7 @@ export default {
 
     await message.delete().catch(() => {});
     const count = await purgeMessages({ channel: message.channel, amount, userId, before: message.id });
+    if (count > 0) await postModLog(context, { kind: 'purge', actor: message.member, channelId: message.channelId, fields: [{ name: context.t('modlog.count'), value: String(count), inline: true }] });
     const notice = { reply: false, ttl: NOTICE_TTL_MS };
     if (count === 0) await context.info(context.t('purge.msg.nothing'), notice);
     else await context.success(context.t('purge.msg.done', { count }), notice);
