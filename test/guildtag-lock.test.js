@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { requirementMet } from '../src/utils/settings/requirements.js';
 import { GUILD, apiError, body, createWorld } from './support/fakes.js';
-import { actionsOf, controls, field, footerOf, lines, openPanel, valueOf } from './support/panel.js';
+import { PAGE_COUNT, actionsOf, controls, field, footerOf, lines, openPanel, valueOf } from './support/panel.js';
 
 const PAGE = 4;
 const NOTICE = 'Sunucu etiketi aktif değil. Etiket açılana kadar bu ayarlar düzenlenemez.';
@@ -22,7 +22,7 @@ test('without a server tag the page shows the notice instead of the description'
   const view = await right(PAGE);
 
   assert.equal(field(view, 0).value.split('\n')[0], `⚠️ ${NOTICE}`);
-  assert.equal(footerOf(view), 'Sayfa 5/6 · 1/3');
+  assert.equal(footerOf(view), 'Sayfa 5/' + PAGE_COUNT + ' · 1/3');
   assert.equal(view.components.length, 3);
 });
 
@@ -35,7 +35,7 @@ test('the controls of a locked setting are disabled but navigation still works',
   assert.ok(controls(view)[0].every((component) => component.disabled !== true));
   const next = await down(1);
   assert.ok(allDisabled(next));
-  assert.equal(footerOf(next), 'Sayfa 5/6 · 2/3');
+  assert.equal(footerOf(next), 'Sayfa 5/' + PAGE_COUNT + ' · 2/3');
   assert.equal(lines(next).length, 3);
 });
 

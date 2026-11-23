@@ -19,6 +19,7 @@
     "botMissingPermission": "Mir fehlt diese Berechtigung: {permission}",
     "usage": "Verwendung: {usage}",
     "setting": {
+      "tooManyChannels": "Es können höchstens {max} Kanäle gewählt werden.",
       "invalidInteger": "Der Wert muss eine ganze Zahl sein.",
       "invalidBoolean": "Der Wert muss true oder false sein.",
       "tooSmall": "Der Wert muss mindestens {min} sein.",
@@ -127,6 +128,8 @@
     "aliases": "config",
     "description": "Öffnet das Panel mit den Servereinstellungen",
     "panel": {
+      "pickChannels": "Kanäle mit erlaubter Werbung auswählen",
+      "channelsCount": "Kanäle: {count}",
       "title": "Servereinstellungen",
       "value": "Wert",
       "default": "Standard",
@@ -150,6 +153,10 @@
       "unknownKey": "Unbekannte Einstellung: {key}"
     },
     "items": {
+      "automod": {
+        "adExemptChannels": "Kanäle, in denen externe Links erlaubt sind. Die Upload-Berechtigung gilt in jedem Kanal.",
+        "profanityWords": "Trenne gesperrte Wörter und Ausdrücke mit Kommas. Ein leeres Feld leert die Liste."
+      },
       "prefix": "Zeichen, mit dem Befehle beginnen, z. B. !",
       "language": "Sprache des Bots auf diesem Server",
       "levels": {
@@ -194,6 +201,7 @@
       }
     },
     "categories": {
+      "automod": "Automatische Moderation",
       "general": "Allgemein",
       "levels": "Level",
       "moderation": "Moderation",
@@ -204,6 +212,13 @@
     "requirements": {
       "guildTag": "Der Servertag ist nicht aktiv. Diese Einstellungen können erst bearbeitet werden, wenn der Tag aktiviert ist."
     }
+  },
+  "automod": {
+    "mediaPermission": "Du darfst in diesem Kanal keine Bilder hochladen.",
+    "advertisement": "Werbelinks sind in diesem Kanal nicht erlaubt.",
+    "profanity": "Bitte verwende keine Schimpfwörter.",
+    "caps": "Bitte schreibe deine Nachricht nicht komplett in Großbuchstaben.",
+    "spam": "Bitte sende Nachrichten langsamer und wiederhole sie nicht."
   },
   "rank": {
     "name": "rang",

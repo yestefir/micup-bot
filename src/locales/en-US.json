@@ -19,6 +19,7 @@
     "botMissingPermission": "I need this permission: {permission}",
     "usage": "Usage: {usage}",
     "setting": {
+      "tooManyChannels": "You can select at most {max} channels.",
       "invalidInteger": "The value must be a whole number.",
       "invalidBoolean": "The value must be true or false.",
       "tooSmall": "The value must be at least {min}.",
@@ -125,6 +126,8 @@
     "aliases": "config",
     "description": "Open the server settings panel",
     "panel": {
+      "pickChannels": "Select channels that allow advertising",
+      "channelsCount": "Channels: {count}",
       "title": "Server settings",
       "value": "Value",
       "default": "Default",
@@ -148,6 +151,10 @@
       "unknownKey": "Unknown setting: {key}"
     },
     "items": {
+      "automod": {
+        "adExemptChannels": "Channels where external links are allowed. The upload permission applies in every channel.",
+        "profanityWords": "Separate blocked words and phrases with commas. Leave blank to clear the list."
+      },
       "prefix": "Text that starts a command, for example !",
       "language": "Language the bot uses in this server",
       "levels": {
@@ -192,6 +199,7 @@
       }
     },
     "categories": {
+      "automod": "Auto moderation",
       "general": "General",
       "levels": "Levels",
       "moderation": "Moderation",
@@ -202,6 +210,13 @@
     "requirements": {
       "guildTag": "The server tag is not active. These settings cannot be edited until the tag is enabled."
     }
+  },
+  "automod": {
+    "mediaPermission": "You do not have permission to upload images in this channel.",
+    "advertisement": "Advertising links are not allowed in this channel.",
+    "profanity": "Please avoid profanity.",
+    "caps": "Please avoid writing your message in all caps.",
+    "spam": "Please avoid sending messages too quickly or repeating them."
   },
   "rank": {
     "name": "rank",

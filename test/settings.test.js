@@ -212,6 +212,8 @@ test('every built in setting declares a category', async () => {
     'guildtag.roles': 'guildtag',
     'guildtag.removeRoles': 'guildtag',
     'guildtag.logChannel': 'guildtag',
+    'automod.adExemptChannels': 'automod',
+    'automod.profanityWords': 'automod',
   });
   for (const category of new Set(Object.values(categories))) {
     for (const code of app.i18n.codes) {

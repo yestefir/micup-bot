@@ -45,6 +45,7 @@ export function createApp(overrides = {}) {
     levels: new LevelStore(config.levelsPath),
     guildTags: new GuildTagStore(config.guildTagPath),
     guildTagQueue: new Map(),
+    automodHistory: new Map(),
     requirementCache: new Map(),
     cards: { rank: renderRankCard, levelUp: renderLevelUpCard, leaderboard: renderLeaderboardCard, welcome: renderWelcomeCard },
     muteSessions: new Set(),

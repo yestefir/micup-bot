@@ -19,6 +19,7 @@
     "botMissingPermission": "Il me faut cette permission : {permission}",
     "usage": "Utilisation : {usage}",
     "setting": {
+      "tooManyChannels": "Tu peux choisir au maximum {max} salons.",
       "invalidInteger": "La valeur doit être un nombre entier.",
       "invalidBoolean": "La valeur doit être true ou false.",
       "tooSmall": "La valeur doit être au moins {min}.",
@@ -127,6 +128,8 @@
     "aliases": "paramètres,config",
     "description": "Ouvre le panneau des paramètres du serveur",
     "panel": {
+      "pickChannels": "Choisis les salons qui autorisent la publicité",
+      "channelsCount": "Salons : {count}",
       "title": "Paramètres du serveur",
       "value": "Valeur",
       "default": "Par défaut",
@@ -150,6 +153,10 @@
       "unknownKey": "Paramètre inconnu : {key}"
     },
     "items": {
+      "automod": {
+        "adExemptChannels": "Salons où les liens externes sont autorisés. L’autorisation de joindre des fichiers est vérifiée dans chaque salon.",
+        "profanityWords": "Sépare les mots et expressions bloqués par des virgules. Laisse le champ vide pour effacer la liste."
+      },
       "prefix": "Caractère qui démarre les commandes, par exemple !",
       "language": "Langue utilisée par le bot sur ce serveur",
       "levels": {
@@ -194,6 +201,7 @@
       }
     },
     "categories": {
+      "automod": "Modération automatique",
       "general": "Général",
       "levels": "Niveaux",
       "moderation": "Modération",
@@ -204,6 +212,13 @@
     "requirements": {
       "guildTag": "Le tag du serveur n'est pas actif. Ces paramètres ne peuvent pas être modifiés tant qu'il n'est pas activé."
     }
+  },
+  "automod": {
+    "mediaPermission": "Tu n’as pas l’autorisation de publier des images dans ce salon.",
+    "advertisement": "Les liens publicitaires sont interdits dans ce salon.",
+    "profanity": "Évite les insultes et les grossièretés.",
+    "caps": "Évite d’écrire tout ton message en majuscules.",
+    "spam": "Évite d’envoyer des messages trop vite ou de les répéter."
   },
   "rank": {
     "name": "niveau",

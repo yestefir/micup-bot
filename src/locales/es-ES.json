@@ -19,6 +19,7 @@
     "botMissingPermission": "Necesito este permiso: {permission}",
     "usage": "Uso: {usage}",
     "setting": {
+      "tooManyChannels": "Se pueden elegir como máximo {max} canales.",
       "invalidInteger": "El valor debe ser un número entero.",
       "invalidBoolean": "El valor debe ser true o false.",
       "tooSmall": "El valor debe ser al menos {min}.",
@@ -127,6 +128,8 @@
     "aliases": "configuracion,config",
     "description": "Abre el panel de ajustes del servidor",
     "panel": {
+      "pickChannels": "Elige los canales que permiten publicidad",
+      "channelsCount": "Canales: {count}",
       "title": "Ajustes del servidor",
       "value": "Valor",
       "default": "Predeterminado",
@@ -150,6 +153,10 @@
       "unknownKey": "Ajuste desconocido: {key}"
     },
     "items": {
+      "automod": {
+        "adExemptChannels": "Canales donde se permiten enlaces externos. El permiso de subida se comprueba en todos los canales.",
+        "profanityWords": "Separa con comas las palabras y frases bloqueadas. Déjalo vacío para borrar la lista."
+      },
       "prefix": "Carácter con el que empiezan los comandos, por ejemplo !",
       "language": "Idioma que usa el bot en este servidor",
       "levels": {
@@ -194,6 +201,7 @@
       }
     },
     "categories": {
+      "automod": "Moderación automática",
       "general": "General",
       "levels": "Niveles",
       "moderation": "Moderación",
@@ -204,6 +212,13 @@
     "requirements": {
       "guildTag": "La etiqueta del servidor no está activa. Estos ajustes no se pueden editar hasta que se active."
     }
+  },
+  "automod": {
+    "mediaPermission": "No tienes permiso para subir imágenes en este canal.",
+    "advertisement": "No se permiten enlaces publicitarios en este canal.",
+    "profanity": "Evita usar palabrotas.",
+    "caps": "Evita escribir todo el mensaje en mayúsculas.",
+    "spam": "Evita mandar mensajes demasiado rápido o repetirlos."
   },
   "rank": {
     "name": "nivel",

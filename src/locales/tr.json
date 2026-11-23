@@ -19,6 +19,7 @@
     "botMissingPermission": "Benim şu yetkiye ihtiyacım var: {permission}",
     "usage": "Kullanım: {usage}",
     "setting": {
+      "tooManyChannels": "En fazla {max} kanal seçilebilir.",
       "invalidInteger": "Değer tam sayı olmalı.",
       "invalidBoolean": "Değer true veya false olmalı.",
       "tooSmall": "Değer en az {min} olmalı.",
@@ -127,6 +128,8 @@
     "aliases": "ayar",
     "description": "Sunucu ayarları panelini açar",
     "panel": {
+      "pickChannels": "Reklama izin verilen kanalları seç",
+      "channelsCount": "Kanal: {count}",
       "title": "Sunucu ayarları",
       "value": "Değer",
       "default": "Varsayılan",
@@ -150,6 +153,10 @@
       "unknownKey": "Bilinmeyen ayar: {key}"
     },
     "items": {
+      "automod": {
+        "adExemptChannels": "Dış bağlantılara izin verilen kanallar. Görsel yükleme izni her kanalda kontrol edilir.",
+        "profanityWords": "Engellenecek kelimeleri ve ifadeleri virgülle ayır. Boş bırakırsan liste temizlenir."
+      },
       "prefix": "Komutları başlatan işaret, örneğin !",
       "language": "Botun bu sunucuda kullandığı dil",
       "levels": {
@@ -194,6 +201,7 @@
       }
     },
     "categories": {
+      "automod": "Otomatik moderasyon",
       "general": "Genel",
       "levels": "Seviye",
       "moderation": "Moderasyon",
@@ -204,6 +212,13 @@
     "requirements": {
       "guildTag": "Sunucu etiketi aktif değil. Etiket açılana kadar bu ayarlar düzenlenemez."
     }
+  },
+  "automod": {
+    "mediaPermission": "Bu kanalda görsel yükleme iznin yok.",
+    "advertisement": "Bu kanalda reklam bağlantısı paylaşamazsın.",
+    "profanity": "Lütfen küfür kullanma.",
+    "caps": "Lütfen mesajında daha az büyük harf kullan.",
+    "spam": "Lütfen kısa sürede çok fazla veya tekrarlanan mesaj gönderme."
   },
   "rank": {
     "name": "seviye",

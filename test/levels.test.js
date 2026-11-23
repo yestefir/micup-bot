@@ -648,8 +648,8 @@ test('slash leaderboard falls back to an embed edit when the card fails', async 
 
 test('the message event feeds the xp service through the client app', async () => {
   const world = await createWorld();
-  const { default: event } = await import('../src/events/messagexp.js');
+  const { default: event } = await import('../src/events/messagecreate.js');
   assert.equal(event.name, 'messageCreate');
-  await event.execute(chatMessage(world, 'hello there'), { app: world.app, ...world.client });
+  await event.execute(chatMessage(world, 'hello there'), { ...world.client, interactions: world.interactions });
   assert.equal(world.app.levels.count(GUILD), 1);
 });

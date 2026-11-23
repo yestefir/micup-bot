@@ -52,8 +52,8 @@ export const footerOf = (payload) => payload.embeds[0].footer.text;
 export const valueOf = (world, key) => world.app.settings.get(GUILD, key);
 
 export const PAGE_NAMES = {
-  tr: ['Genel', 'Seviye', 'Moderasyon', 'Otomatik rol', 'Sunucu etiketi', 'Hoşgeldin'],
-  'en-US': ['General', 'Levels', 'Moderation', 'Auto role', 'Server tag', 'Welcome'],
+  tr: ['Genel', 'Seviye', 'Moderasyon', 'Otomatik rol', 'Sunucu etiketi', 'Hoşgeldin', 'Otomatik moderasyon'],
+  'en-US': ['General', 'Levels', 'Moderation', 'Auto role', 'Server tag', 'Welcome', 'Auto moderation'],
 };
 
 export const PAGE_COUNT = PAGE_NAMES.tr.length;
