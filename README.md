@@ -124,6 +124,8 @@ npm run dev      # dosya değişince yeniden başlat
 npm test         # testleri çalıştır
 ```
 
+Dokploy'da `MICUP_BOT_TOKEN` değerini uygulamanın **Environment** sekmesine ekle ve başlangıç komutu olarak `npm start` kullan. Diğer değişkenleri de aynı sekmede tanımlayabilirsin. `.env` dosyası isteğe bağlıdır. Bir değişken iki yerde de tanımlıysa çalışma ortamındaki değer kullanılır.
+
 Veriler `db/` klasöründe (`settings.db`, `levels.db`, `guildtag.db`) tutulur.
 
 ---
