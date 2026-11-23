@@ -177,6 +177,10 @@
       },
       "moderation": {
         "logChannel": "Channel where moderation actions (ban, mute, purge) are logged"
+      },
+      "welcome": {
+        "channel": "Channel where new members are welcomed with a card (empty = off)",
+        "message": "Welcome text. Use {user}, {server} and {count}. Empty = default text"
       }
     },
     "choices": {
@@ -192,7 +196,8 @@
       "levels": "Levels",
       "moderation": "Moderation",
       "autorole": "Auto role",
-      "guildtag": "Server tag"
+      "guildtag": "Server tag",
+      "welcome": "Welcome"
     },
     "requirements": {
       "guildTag": "The server tag is not active. These settings cannot be edited until the tag is enabled."
@@ -367,5 +372,14 @@
     "purge": "Messages deleted",
     "line": "{moderator} → {target}",
     "count": "Messages"
+  },
+  "welcome": {
+    "msg": {
+      "default": "Welcome to {server}, {user}!"
+    },
+    "card": {
+      "title": "Welcome",
+      "subtitle": "{server} · Member #{count}"
+    }
   }
 }

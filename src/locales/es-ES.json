@@ -179,6 +179,10 @@
       },
       "moderation": {
         "logChannel": "Canal donde se registran las acciones de moderación (ban, mute, borrar)"
+      },
+      "welcome": {
+        "channel": "Canal donde se da la bienvenida a los nuevos miembros con una tarjeta (vacío = desactivado)",
+        "message": "Texto de bienvenida. Puedes usar {user}, {server} y {count}. Vacío = texto por defecto"
       }
     },
     "choices": {
@@ -194,7 +198,8 @@
       "levels": "Niveles",
       "moderation": "Moderación",
       "autorole": "Rol automático",
-      "guildtag": "Etiqueta del servidor"
+      "guildtag": "Etiqueta del servidor",
+      "welcome": "Bienvenida"
     },
     "requirements": {
       "guildTag": "La etiqueta del servidor no está activa. Estos ajustes no se pueden editar hasta que se active."
@@ -369,5 +374,14 @@
     "purge": "Mensajes borrados",
     "line": "{moderator} → {target}",
     "count": "Mensajes"
+  },
+  "welcome": {
+    "msg": {
+      "default": "¡Bienvenido a {server}, {user}!"
+    },
+    "card": {
+      "title": "Bienvenido",
+      "subtitle": "{server} · Miembro n.º {count}"
+    }
   }
 }

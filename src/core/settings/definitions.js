@@ -78,4 +78,8 @@ export function defineSettings({ settings, i18n, config }) {
   settings.define('guildtag.removeRoles', { category: 'guildtag', requires: 'guildTag', type: 'boolean', default: true });
 
   settings.define('guildtag.logChannel', { category: 'guildtag', requires: 'guildTag', type: 'channel', default: null });
+
+  settings.define('welcome.channel', { category: 'welcome', type: 'channel', default: null });
+
+  settings.define('welcome.message', { category: 'welcome', type: 'string', default: '', maxLength: 200 });
 }

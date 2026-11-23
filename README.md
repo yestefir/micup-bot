@@ -44,6 +44,10 @@ Sayfalı, avatarlı sıralama kartı.
 
 `/levelrole` ile bir seviyeye ulaşan üyeye otomatik rol verilir. `/xpignore` ile seçilen kanallarda XP kazanılmaz. `/xpadjust` ve `/xpreset` ile yöneticiler XP'yi düzeltebilir.
 
+### Hoşgeldin kartı
+
+Ayar panelinden bir kanal seçersen yeni gelen üyeler avatarlı bir kartla karşılanır. İstersen `{user}`, `{server}` ve `{count}` kullanan kendi metnini yazabilirsin. Kart çizilemezse düz embed gönderilir.
+
 ### Moderasyon günlüğü
 
 Ayar panelinden bir kanal seçersen ban, mute ve purge işlemleri oraya yazılır.

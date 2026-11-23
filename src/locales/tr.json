@@ -179,6 +179,10 @@
       },
       "moderation": {
         "logChannel": "Moderasyon işlemlerinin (ban, mute, sil) kaydedildiği kanal"
+      },
+      "welcome": {
+        "channel": "Yeni üyelerin kartla karşılandığı kanal (boş = kapalı)",
+        "message": "Karşılama metni. {user}, {server} ve {count} kullanılabilir. Boş = varsayılan metin"
       }
     },
     "choices": {
@@ -194,7 +198,8 @@
       "levels": "Seviye",
       "moderation": "Moderasyon",
       "autorole": "Otomatik rol",
-      "guildtag": "Sunucu etiketi"
+      "guildtag": "Sunucu etiketi",
+      "welcome": "Hoşgeldin"
     },
     "requirements": {
       "guildTag": "Sunucu etiketi aktif değil. Etiket açılana kadar bu ayarlar düzenlenemez."
@@ -369,5 +374,14 @@
     "purge": "Mesajlar silindi",
     "line": "{moderator} → {target}",
     "count": "Mesaj"
+  },
+  "welcome": {
+    "msg": {
+      "default": "{server} sunucusuna hoş geldin, {user}!"
+    },
+    "card": {
+      "title": "Hoş geldin",
+      "subtitle": "{server} · {count}. üye"
+    }
   }
 }

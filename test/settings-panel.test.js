@@ -103,14 +103,25 @@ test('right and left switch between category pages and wrap around', async () =>
     row('guildtag.logChannel', '—', false, 'guildtag.removeRoles'.length),
   ]);
 
+  const welcome = await right(1);
+  assert.equal(tabsOf(welcome), tabs(5));
+  assert.equal(footerOf(welcome), `Sayfa 6/${PAGE_COUNT} · 1/2`);
+  assert.deepEqual(lines(welcome), [
+    row('welcome.channel', '—', true, 'welcome.channel'.length),
+    row('welcome.message', '—', false, 'welcome.channel'.length),
+  ]);
+
   const general = await right(1);
   assert.equal(tabsOf(general), tabs(0));
   assert.equal(footerOf(general), `Sayfa 1/${PAGE_COUNT} · 1/2`);
 
   const wrapped = await left(1);
-  assert.equal(tabsOf(wrapped), tabs(4));
-  assert.equal(footerOf(wrapped), `Sayfa 5/${PAGE_COUNT} · 1/3`);
+  assert.equal(tabsOf(wrapped), tabs(5));
+  assert.equal(footerOf(wrapped), `Sayfa 6/${PAGE_COUNT} · 1/2`);
 
+  const guildTagBack = await left(1);
+  assert.equal(tabsOf(guildTagBack), tabs(4));
+  assert.equal(footerOf(guildTagBack), `Sayfa 5/${PAGE_COUNT} · 1/3`);
   const back = await left(1);
   assert.equal(tabsOf(back), tabs(3));
   assert.equal(footerOf(back), `Sayfa 4/${PAGE_COUNT} · 1/1`);
@@ -791,7 +802,7 @@ test('the panel keeps one height on every page and for every kind of setting', a
     for (let position = 1; position < size; position += 1) record(await down(1));
   }
 
-  assert.equal(shapes.length, 2 + 6 + 4 + 1 + 3 + 2);
+  assert.equal(shapes.length, 2 + 6 + 4 + 1 + 3 + 2 + 2);
   assert.deepEqual(new Set(shapes.map((shape) => shape.listRows)), new Set([6]));
   assert.deepEqual(new Set(shapes.map((shape) => shape.componentRows)), new Set([3]));
   assert.deepEqual(new Set(shapes.map((shape) => shape.fields)), new Set([3]));

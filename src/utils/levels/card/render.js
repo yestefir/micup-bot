@@ -43,6 +43,17 @@ export const LEADERBOARD_LAYOUT = Object.freeze({
   topRanks: 3,
 });
 
+export const WELCOME_LAYOUT = Object.freeze({
+  width: 900,
+  height: 300,
+  radius: 24,
+  avatar: { x: 390, y: 36, size: 120 },
+  labelY: 196,
+  nameY: 240,
+  subtitleY: 270,
+  textWidth: 780,
+});
+
 export const leaderboardHeight = (rowCount) =>
   LEADERBOARD_LAYOUT.headerHeight + rowCount * LEADERBOARD_LAYOUT.rowHeight + LEADERBOARD_LAYOUT.bottom;
 
@@ -242,6 +253,29 @@ export async function renderLevelUpCard(data) {
   const blockWidth = toRight - (fromRight - fromWidth);
   const nameWidth = layout.contentRight - blockWidth - 36 - layout.contentX;
   context.fillText(fitText(context, data.name, nameWidth), layout.contentX, layout.nameY);
+
+  return canvas.toBuffer('image/png');
+}
+
+export async function renderWelcomeCard(data) {
+  const layout = WELCOME_LAYOUT;
+  const { canvasApi, image } = await open(data);
+  const { canvas, context } = setup(canvasApi, layout);
+  const center = layout.width / 2;
+
+  drawSurface(context, layout);
+  drawAvatar(context, image, data.name, layout.avatar);
+
+  drawLabel(context, data.labels.welcome, center, layout.labelY, 'center', data.lang);
+
+  context.font = font(700, 36);
+  context.fillStyle = colors.text;
+  context.textAlign = 'center';
+  context.fillText(fitText(context, data.name, layout.textWidth), center, layout.nameY);
+
+  context.font = font(400, 16);
+  context.fillStyle = colors.secondary;
+  context.fillText(fitText(context, data.subtitle, layout.textWidth), center, layout.subtitleY);
 
   return canvas.toBuffer('image/png');
 }

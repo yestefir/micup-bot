@@ -179,6 +179,10 @@
       },
       "moderation": {
         "logChannel": "Kanal, in dem Moderationsaktionen (Ban, Mute, Löschen) protokolliert werden"
+      },
+      "welcome": {
+        "channel": "Kanal, in dem neue Mitglieder mit einer Karte begrüßt werden (leer = aus)",
+        "message": "Begrüßungstext. {user}, {server} und {count} sind möglich. Leer = Standardtext"
       }
     },
     "choices": {
@@ -194,7 +198,8 @@
       "levels": "Level",
       "moderation": "Moderation",
       "autorole": "Autorolle",
-      "guildtag": "Servertag"
+      "guildtag": "Servertag",
+      "welcome": "Willkommen"
     },
     "requirements": {
       "guildTag": "Der Servertag ist nicht aktiv. Diese Einstellungen können erst bearbeitet werden, wenn der Tag aktiviert ist."
@@ -369,5 +374,14 @@
     "purge": "Nachrichten gelöscht",
     "line": "{moderator} → {target}",
     "count": "Nachrichten"
+  },
+  "welcome": {
+    "msg": {
+      "default": "Willkommen auf {server}, {user}!"
+    },
+    "card": {
+      "title": "Willkommen",
+      "subtitle": "{server} · Mitglied Nr. {count}"
+    }
   }
 }
