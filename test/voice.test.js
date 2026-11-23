@@ -1,7 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { EventEmitter } from 'node:events';
 import { ChannelType, Permission } from 'micup.ts';
 import readyEvent from '../src/events/clientready.js';
+import voiceStateUpdate from '../src/events/voicestateupdate.js';
 import { VoiceChannels } from '../src/utils/voice/channels.js';
 import { GUILD, body, createWorld, settle } from './support/fakes.js';
 import { controls, openPanel, valueOf } from './support/panel.js';
@@ -15,6 +17,7 @@ async function voiceWorld() {
   const world = await createWorld();
   const { app, client } = world;
   const operations = [];
+  const rooms = [];
   const failedRooms = new Set();
   let grant;
   const session = {
@@ -37,13 +40,17 @@ async function voiceWorld() {
   app.voiceChannels = new VoiceChannels(app, async (current, options) => {
     operations.push(['connect', current.channel_id, options]);
     if (failedRooms.has(current.channel_id)) throw new Error('Voice transport unavailable');
-    return {
+    const room = Object.assign(new EventEmitter(), {
       connected: true,
-      on() {},
-      close: async () => operations.push(['close', current.channel_id]),
-    };
+      close: async () => {
+        room.connected = false;
+        operations.push(['close', current.channel_id]);
+      },
+    });
+    rooms.push(room);
+    return room;
   });
-  return { ...world, operations, failedRooms, session };
+  return { ...world, operations, rooms, failedRooms, session, loseGrant: () => { grant = undefined; } };
 }
 
 test('the administrator can select, move and reset the silent voice channel from the settings panel', async () => {
@@ -107,4 +114,59 @@ test('startup restores the saved channel and a failed move returns to the previo
   await app.voiceChannels.close();
   assert.equal(session.voice(), undefined);
   assert.equal(app.settings.get(GUILD, KEY), FIRST);
+});
+
+test('a dropped room rejoins the saved channel and retries a temporary connection failure', async ({ mock }) => {
+  mock.timers.enable({ apis: ['setTimeout'] });
+  const { app, client, operations, rooms, failedRooms, session } = await voiceWorld();
+  await app.voiceChannels.change(client, GUILD, FIRST);
+
+  failedRooms.add(FIRST);
+  rooms[0].connected = false;
+  rooms[0].emit('disconnected');
+  rooms[0].emit('disconnected');
+  mock.timers.tick(2_000);
+  await settle();
+  assert.equal(operations.filter(([action]) => action === 'join').length, 2);
+  assert.equal(session.voice(), undefined);
+
+  failedRooms.delete(FIRST);
+  mock.timers.tick(3_999);
+  await settle();
+  assert.equal(session.voice(), undefined);
+  mock.timers.tick(1);
+  await settle();
+  assert.equal(session.voice().channel_id, FIRST);
+  assert.equal(operations.filter(([action]) => action === 'join').length, 3);
+  await app.voiceChannels.close();
+});
+
+test('a gateway disconnect triggers recovery, and clearing the setting cancels recovery', async ({ mock }) => {
+  mock.timers.enable({ apis: ['setTimeout'] });
+  const { app, client, operations, rooms, session, loseGrant } = await voiceWorld();
+  const state = { guild_id: GUILD, user_id: client.user.id, channel_id: null };
+  const joins = () => operations.filter(([action]) => action === 'join').length;
+  await app.voiceChannels.change(client, GUILD, FIRST);
+
+  loseGrant();
+  voiceStateUpdate.execute({ ...state, user_id: 'T' }, client);
+  mock.timers.tick(2_000);
+  await settle();
+  assert.equal(joins(), 1);
+
+  voiceStateUpdate.execute(state, client);
+  mock.timers.tick(2_000);
+  await settle();
+  assert.equal(session.voice().channel_id, FIRST);
+  assert.equal(joins(), 2);
+
+  voiceStateUpdate.execute(state, client);
+  await app.voiceChannels.change(client, GUILD, null);
+  rooms.at(-1).emit('disconnected');
+  mock.timers.tick(60_000);
+  await settle();
+  assert.equal(app.settings.get(GUILD, KEY), null);
+  assert.equal(session.voice(), undefined);
+  assert.equal(joins(), 2);
+  await app.voiceChannels.close();
 });

@@ -3,6 +3,8 @@ import { ChannelType, hasPermissions, Permission } from 'micup.ts';
 
 export const VOICE_CHANNEL_SETTING = 'voice.channel';
 const VOICE_PERMISSIONS = Permission.ViewChannel | Permission.Connect;
+const RECONNECT_DELAY = 2_000;
+const MAX_RECONNECT_DELAY = 60_000;
 
 export class VoiceChannelError extends Error {
   constructor(code) {
@@ -14,6 +16,7 @@ export class VoiceChannelError extends Error {
 export class VoiceChannels {
   #active = new Map();
   #pending = new Map();
+  #reconnectTimers = new Map();
   #closing = false;
 
   constructor({ settings, logger }, connectRoom = (grant, options) => VoiceRoom.connect(grant, options)) {
@@ -30,6 +33,7 @@ export class VoiceChannels {
         await this.#apply(client, guildId, channelId);
         if (channelId === null) this.settings.reset(guildId, VOICE_CHANNEL_SETTING);
         else this.settings.set(guildId, VOICE_CHANNEL_SETTING, channelId);
+        this.#cancelReconnect(guildId);
       } catch (error) {
         if (this.#active.get(guildId)?.channelId !== (previous ?? undefined)) {
           await this.#apply(client, guildId, previous).catch(() => this.#warn(guildId, 'restore failed'));
@@ -42,9 +46,13 @@ export class VoiceChannels {
   restore(client, guildId) {
     if (this.#closing) return;
     return this.#run(guildId, async () => {
-      const channelId = this.settings.get(guildId, VOICE_CHANNEL_SETTING);
-      if (channelId) await this.#apply(client, guildId, channelId);
-    }).catch(() => this.#warn(guildId, 'restore failed'));
+      this.#cancelReconnect(guildId);
+      await this.#restore(client, guildId, RECONNECT_DELAY);
+    });
+  }
+
+  reconnect(client, guildId) {
+    if (this.#active.has(guildId)) this.#scheduleReconnect(client, guildId, RECONNECT_DELAY);
   }
 
   async restoreConfigured(client) {
@@ -60,6 +68,7 @@ export class VoiceChannels {
   forget(guildId) {
     if (this.#closing) return;
     return this.#run(guildId, async () => {
+      this.#cancelReconnect(guildId);
       const entry = this.#active.get(guildId);
       if (!entry) return;
       this.#active.delete(guildId);
@@ -69,6 +78,7 @@ export class VoiceChannels {
 
   async close() {
     this.#closing = true;
+    for (const guildId of this.#reconnectTimers.keys()) this.#cancelReconnect(guildId);
     await Promise.allSettled(this.#pending.values());
     await Promise.all([...this.#active].map(async ([guildId, entry]) => {
       try {
@@ -87,6 +97,37 @@ export class VoiceChannels {
     return next.finally(() => {
       if (this.#pending.get(guildId) === next) this.#pending.delete(guildId);
     });
+  }
+
+  async #restore(client, guildId, retryDelay) {
+    const channelId = this.settings.get(guildId, VOICE_CHANNEL_SETTING);
+    if (this.#closing || !channelId) return;
+    try {
+      await this.#apply(client, guildId, channelId);
+    } catch (error) {
+      this.#warn(guildId, 'restore failed');
+      if (!(error instanceof VoiceChannelError) || error.code === 'unavailable') {
+        this.#scheduleReconnect(client, guildId, retryDelay);
+      }
+    }
+  }
+
+  #scheduleReconnect(client, guildId, delay) {
+    if (this.#closing || this.#reconnectTimers.has(guildId) || !this.settings.get(guildId, VOICE_CHANNEL_SETTING)) return;
+    const timer = setTimeout(() => {
+      void this.#run(guildId, async () => {
+        if (this.#reconnectTimers.get(guildId) !== timer) return;
+        this.#reconnectTimers.delete(guildId);
+        await this.#restore(client, guildId, Math.min(delay * 2, MAX_RECONNECT_DELAY));
+      }).catch(() => this.#warn(guildId, 'reconnect failed'));
+    }, delay);
+    timer.unref();
+    this.#reconnectTimers.set(guildId, timer);
+  }
+
+  #cancelReconnect(guildId) {
+    clearTimeout(this.#reconnectTimers.get(guildId));
+    this.#reconnectTimers.delete(guildId);
   }
 
   async #apply(client, guildId, channelId) {
@@ -131,10 +172,7 @@ export class VoiceChannels {
       const entry = { room, session, channelId, connectionId: grant.connection_id };
       this.#active.set(guildId, entry);
       room.on('disconnected', () => {
-        if (this.#closing) return;
-        return this.#run(guildId, async () => {
-          if (this.#active.get(guildId) === entry) await this.#disconnect(guildId, entry);
-        }).catch(() => this.#warn(guildId, 'disconnect cleanup failed'));
+        if (this.#active.get(guildId) === entry) this.reconnect(client, guildId);
       });
     } catch (error) {
       await session.leaveVoice(guildId, grant.connection_id).catch(() => this.#warn(guildId, 'join cleanup failed'));
